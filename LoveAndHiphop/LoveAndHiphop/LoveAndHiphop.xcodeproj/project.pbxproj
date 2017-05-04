@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		022B89D386F45E87F1090D8E /* Pods_LoveAndHiphop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */; };
+		225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */; };
+		225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */; };
+		225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476131EB453F300C0DCF5 /* MusicObject.swift */; };
+		225476161EB456DB00C0DCF5 /* TopListenerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476151EB456DB00C0DCF5 /* TopListenerObject.swift */; };
+		225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476171EB4701500C0DCF5 /* FashionCell.swift */; };
+		2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476191EB4773500C0DCF5 /* FashionObject.swift */; };
+		226A17AD1EB953D6005ACC83 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */; };
+		226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */; };
+		226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226A17B21EBAF6C3005ACC83 /* Main.storyboard */; };
+		22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */; };
+		22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A41EAFF3CB00DCEC74 /* MatchesViewController.swift */; };
+		22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A61EAFF3CB00DCEC74 /* DiscussionsViewController.swift */; };
+		22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E946AB1EAFF3CB00DCEC74 /* Assets.xcassets */; };
+		22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E946AD1EAFF3CB00DCEC74 /* LaunchScreen.storyboard */; };
+		22E946BC1EAFF48500DCEC74 /* HotFashionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946BB1EAFF48500DCEC74 /* HotFashionsViewController.swift */; };
+		22E946BE1EAFF4A300DCEC74 /* TopMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946BD1EAFF4A300DCEC74 /* TopMusicViewController.swift */; };
+		22E946C01EB0669700DCEC74 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946BF1EB0669700DCEC74 /* SongCell.swift */; };
+		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
+		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
+		AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */; };
+		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
+		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveAndHiphop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2224E2371EBB132600789B63 /* LoveAndHiphop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveAndHiphop.entitlements; sourceTree = "<group>"; };
+		2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerCell.swift; sourceTree = "<group>"; };
+		225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerViewController.swift; sourceTree = "<group>"; };
+		225476131EB453F300C0DCF5 /* MusicObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicObject.swift; sourceTree = "<group>"; };
+		225476151EB456DB00C0DCF5 /* TopListenerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerObject.swift; sourceTree = "<group>"; };
+		225476171EB4701500C0DCF5 /* FashionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FashionCell.swift; sourceTree = "<group>"; };
+		225476191EB4773500C0DCF5 /* FashionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FashionObject.swift; sourceTree = "<group>"; };
+		226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		226A17B21EBAF6C3005ACC83 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		22E9469F1EAFF3CB00DCEC74 /* LoveAndHiphop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveAndHiphop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		22E946A41EAFF3CB00DCEC74 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
+		22E946A61EAFF3CB00DCEC74 /* DiscussionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsViewController.swift; sourceTree = "<group>"; };
+		22E946AB1EAFF3CB00DCEC74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22E946AE1EAFF3CB00DCEC74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		22E946B01EAFF3CB00DCEC74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22E946BB1EAFF48500DCEC74 /* HotFashionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotFashionsViewController.swift; sourceTree = "<group>"; };
+		22E946BD1EAFF4A300DCEC74 /* TopMusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMusicViewController.swift; sourceTree = "<group>"; };
+		22E946BF1EB0669700DCEC74 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.debug.xcconfig"; sourceTree = "<group>"; };
+		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
+		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPageViewController.swift; sourceTree = "<group>"; };
+		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
+		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
+		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22E9469C1EAFF3CB00DCEC74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				022B89D386F45E87F1090D8E /* Pods_LoveAndHiphop.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C8743542A5E8670AB9CC177 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22E946961EAFF3CB00DCEC74 = {
+			isa = PBXGroup;
+			children = (
+				22E946A11EAFF3CB00DCEC74 /* LoveAndHiphop */,
+				22E946A01EAFF3CB00DCEC74 /* Products */,
+				4690266472D86C9C626EE420 /* Pods */,
+				1C8743542A5E8670AB9CC177 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		22E946A01EAFF3CB00DCEC74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22E9469F1EAFF3CB00DCEC74 /* LoveAndHiphop.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22E946A11EAFF3CB00DCEC74 /* LoveAndHiphop */ = {
+			isa = PBXGroup;
+			children = (
+				2224E2371EBB132600789B63 /* LoveAndHiphop.entitlements */,
+				22E946BA1EAFF42C00DCEC74 /* Parse Clients */,
+				22E946B91EAFF41A00DCEC74 /* Model */,
+				22E946B81EAFF41300DCEC74 /* Views */,
+				22E946B71EAFF3FA00DCEC74 /* View Controllers */,
+				22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */,
+				22E946AB1EAFF3CB00DCEC74 /* Assets.xcassets */,
+				22E946AD1EAFF3CB00DCEC74 /* LaunchScreen.storyboard */,
+				226A17B21EBAF6C3005ACC83 /* Main.storyboard */,
+				22E946B01EAFF3CB00DCEC74 /* Info.plist */,
+			);
+			path = LoveAndHiphop;
+			sourceTree = "<group>";
+		};
+		22E946B71EAFF3FA00DCEC74 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */,
+				22E946A41EAFF3CB00DCEC74 /* MatchesViewController.swift */,
+				22E946A61EAFF3CB00DCEC74 /* DiscussionsViewController.swift */,
+				22E946BB1EAFF48500DCEC74 /* HotFashionsViewController.swift */,
+				22E946BD1EAFF4A300DCEC74 /* TopMusicViewController.swift */,
+				226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */,
+				ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */,
+				AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */,
+				AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		22E946B81EAFF41300DCEC74 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */,
+				22E946BF1EB0669700DCEC74 /* SongCell.swift */,
+				225476171EB4701500C0DCF5 /* FashionCell.swift */,
+				226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */,
+				AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */,
+				AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		22E946B91EAFF41A00DCEC74 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				225476131EB453F300C0DCF5 /* MusicObject.swift */,
+				225476151EB456DB00C0DCF5 /* TopListenerObject.swift */,
+				225476191EB4773500C0DCF5 /* FashionObject.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		22E946BA1EAFF42C00DCEC74 /* Parse Clients */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Parse Clients";
+			sourceTree = "<group>";
+		};
+		4690266472D86C9C626EE420 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */,
+				E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		22E9469E1EAFF3CB00DCEC74 /* LoveAndHiphop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22E946B31EAFF3CB00DCEC74 /* Build configuration list for PBXNativeTarget "LoveAndHiphop" */;
+			buildPhases = (
+				EDBEBBEA57D9992E6643B1A2 /* [CP] Check Pods Manifest.lock */,
+				22E9469B1EAFF3CB00DCEC74 /* Sources */,
+				22E9469C1EAFF3CB00DCEC74 /* Frameworks */,
+				22E9469D1EAFF3CB00DCEC74 /* Resources */,
+				99C8F00E5C022606069B1681 /* [CP] Embed Pods Frameworks */,
+				FF74A70B4A7051FE451222EA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoveAndHiphop;
+			productName = LoveAndHiphop;
+			productReference = 22E9469F1EAFF3CB00DCEC74 /* LoveAndHiphop.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22E946971EAFF3CB00DCEC74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Mogulla, Naveen";
+				TargetAttributes = {
+					22E9469E1EAFF3CB00DCEC74 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = MCYQH6V7BK;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 22E9469A1EAFF3CB00DCEC74 /* Build configuration list for PBXProject "LoveAndHiphop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 22E946961EAFF3CB00DCEC74;
+			productRefGroup = 22E946A01EAFF3CB00DCEC74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22E9469E1EAFF3CB00DCEC74 /* LoveAndHiphop */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22E9469D1EAFF3CB00DCEC74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
+				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
+				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99C8F00E5C022606069B1681 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDBEBBEA57D9992E6643B1A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF74A70B4A7051FE451222EA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22E9469B1EAFF3CB00DCEC74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
+				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
+				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
+				22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */,
+				225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */,
+				225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */,
+				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
+				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
+				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
+				226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */,
+				225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */,
+				225476161EB456DB00C0DCF5 /* TopListenerObject.swift in Sources */,
+				226A17AD1EB953D6005ACC83 /* ImagesViewController.swift in Sources */,
+				22E946BC1EAFF48500DCEC74 /* HotFashionsViewController.swift in Sources */,
+				22E946C01EB0669700DCEC74 /* SongCell.swift in Sources */,
+				AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */,
+				22E946BE1EAFF4A300DCEC74 /* TopMusicViewController.swift in Sources */,
+				AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */,
+				AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		22E946AD1EAFF3CB00DCEC74 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22E946AE1EAFF3CB00DCEC74 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		22E946B11EAFF3CB00DCEC74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		22E946B21EAFF3CB00DCEC74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		22E946B41EAFF3CB00DCEC74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LoveAndHiphop/LoveAndHiphop.entitlements;
+				DEVELOPMENT_TEAM = MCYQH6V7BK;
+				INFOPLIST_FILE = LoveAndHiphop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.naveen.LoveAndHiphop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		22E946B51EAFF3CB00DCEC74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LoveAndHiphop/LoveAndHiphop.entitlements;
+				DEVELOPMENT_TEAM = MCYQH6V7BK;
+				INFOPLIST_FILE = LoveAndHiphop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.naveen.LoveAndHiphop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22E9469A1EAFF3CB00DCEC74 /* Build configuration list for PBXProject "LoveAndHiphop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22E946B11EAFF3CB00DCEC74 /* Debug */,
+				22E946B21EAFF3CB00DCEC74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22E946B31EAFF3CB00DCEC74 /* Build configuration list for PBXNativeTarget "LoveAndHiphop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22E946B41EAFF3CB00DCEC74 /* Debug */,
+				22E946B51EAFF3CB00DCEC74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22E946971EAFF3CB00DCEC74 /* Project object */;
+}
