@@ -29,6 +29,8 @@
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
 		AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */; };
 		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
+		ABD180181EBC295200290E09 /* ComposeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD180171EBC295100290E09 /* ComposeCell.xib */; };
+		ABD1801A1EBC2AAD00290E09 /* ChatMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD180191EBC2AAD00290E09 /* ChatMessageCell.xib */; };
 		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPageViewController.swift; sourceTree = "<group>"; };
 		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
+		ABD180171EBC295100290E09 /* ComposeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeCell.xib; sourceTree = "<group>"; };
+		ABD180191EBC2AAD00290E09 /* ChatMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatMessageCell.xib; sourceTree = "<group>"; };
 		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +147,8 @@
 				226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */,
 				AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */,
 				AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */,
+				ABD180171EBC295100290E09 /* ComposeCell.xib */,
+				ABD180191EBC2AAD00290E09 /* ChatMessageCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -241,9 +247,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABD180181EBC295200290E09 /* ComposeCell.xib in Resources */,
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
+				ABD1801A1EBC2AAD00290E09 /* ChatMessageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,13 @@
 import UIKit
 import Parse
 
+
 class ChatMessageCell: UITableViewCell {
   
   // MARK: Properties
-  @IBOutlet weak var chatMessageText: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var messageOwnerImageView: UIImageView!
+  @IBOutlet weak var chatMessageText: UILabel!
   
   var message: PFObject! {
     didSet {

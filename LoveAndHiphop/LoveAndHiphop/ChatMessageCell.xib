@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatMessageCell" rowHeight="219" id="qdq-4i-ver" customClass="ChatMessageCell" customModule="LoveAndHiphop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="219"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdq-4i-ver" id="4Do-KB-LNT">
+                <rect key="frame" x="0.0" y="0.0" width="392" height="219"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eating delicious bcakes@" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJE-Hc-qHz">
+                        <rect key="frame" x="80" y="40.5" width="302" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rock Music-50" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-vB-Xqs">
+                        <rect key="frame" x="10" y="40.5" width="65" height="65"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="65" id="fYj-If-TZ0"/>
+                            <constraint firstAttribute="width" constant="65" id="tH7-It-TlP"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BCakes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcc-f6-gnD">
+                        <rect key="frame" x="10" y="10" width="58" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vKJ-vB-Xqs" secondAttribute="bottom" constant="10" id="GEp-qD-Ld5"/>
+                    <constraint firstItem="jcc-f6-gnD" firstAttribute="leading" secondItem="4Do-KB-LNT" secondAttribute="leading" constant="10" id="OCD-N5-th6"/>
+                    <constraint firstItem="jcc-f6-gnD" firstAttribute="top" secondItem="4Do-KB-LNT" secondAttribute="top" constant="10" id="Uim-5M-131"/>
+                    <constraint firstItem="cJE-Hc-qHz" firstAttribute="leading" secondItem="vKJ-vB-Xqs" secondAttribute="trailing" constant="5" id="heJ-dD-H5d"/>
+                    <constraint firstItem="vKJ-vB-Xqs" firstAttribute="top" secondItem="jcc-f6-gnD" secondAttribute="bottom" constant="10" id="jdO-X3-Hfa"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cJE-Hc-qHz" secondAttribute="bottom" constant="10" id="uM7-Rk-lbC"/>
+                    <constraint firstItem="vKJ-vB-Xqs" firstAttribute="leading" secondItem="4Do-KB-LNT" secondAttribute="leading" constant="10" id="vvQ-IE-4eG"/>
+                    <constraint firstAttribute="trailing" secondItem="cJE-Hc-qHz" secondAttribute="trailing" constant="10" id="xiB-xh-BR6"/>
+                    <constraint firstItem="cJE-Hc-qHz" firstAttribute="top" secondItem="vKJ-vB-Xqs" secondAttribute="top" id="zuo-43-nPW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="chatMessageText" destination="cJE-Hc-qHz" id="25l-xy-jgG"/>
+                <outlet property="messageOwnerImageView" destination="vKJ-vB-Xqs" id="ttj-mF-2Xg"/>
+                <outlet property="nameLabel" destination="jcc-f6-gnD" id="7h4-vM-Mlb"/>
+            </connections>
+            <point key="canvasLocation" x="-25" y="-15.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Rock Music-50" width="25" height="25"/>
+    </resources>
+</document>
