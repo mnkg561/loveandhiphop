@@ -17,6 +17,8 @@
 		226A17AD1EB953D6005ACC83 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */; };
 		226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */; };
 		226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226A17B21EBAF6C3005ACC83 /* Main.storyboard */; };
+		22DBC30E1EBD3DE2002D0220 /* ComposeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */; };
+		22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */; };
 		22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */; };
 		22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A41EAFF3CB00DCEC74 /* MatchesViewController.swift */; };
 		22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A61EAFF3CB00DCEC74 /* DiscussionsViewController.swift */; };
@@ -46,6 +48,8 @@
 		226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		226A17B21EBAF6C3005ACC83 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeCell.xib; sourceTree = "<group>"; };
+		22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatMessageCell.xib; sourceTree = "<group>"; };
 		22E9469F1EAFF3CB00DCEC74 /* LoveAndHiphop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveAndHiphop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22E946A41EAFF3CB00DCEC74 /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 				226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */,
 				AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */,
 				AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */,
+				22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */,
+				22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -248,9 +254,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */,
+				22DBC30E1EBD3DE2002D0220 /* ComposeCell.xib in Resources */,
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
+				22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
