@@ -17,29 +17,31 @@ enum PhotoLocationSelection {
 class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeCellDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   // MARK: Properties
-  @IBOutlet var tableView: UITableView!
-  var messages: [PFObject]?
+  @IBOutlet weak var tableView: UITableView!
+  var messages: [PFObject]? = []
   var cameraOriginalPostion: CGPoint!
   
   // MARK: ViewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // LOG ME IN (This is only here temporarily to allow posting to discussions
+    //LOG ME IN (This is only here temporarily to allow posting to discussions
     PFUser.logInWithUsername(inBackground: "hollywoodno", password: "password") { (user: PFUser?, error: Error?) in
       if user != nil {
       } else {
         print("Error logging hollywoodno in, error: \(error?.localizedDescription)")
       }
     }
-    
     // Set up timer to fetch new messages
     Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
     
     // MARK: Set Up TableView
     tableView.dataSource = self
+    tableView.register(UINib(nibName: "ComposeCell", bundle: nil), forCellReuseIdentifier: "ComposeCell")
+    tableView.register(UINib(nibName: "ChatMessageCell", bundle: nil), forCellReuseIdentifier: "ChatMessageCell")
     tableView.estimatedRowHeight = 150
     tableView.rowHeight = UITableViewAutomaticDimension
+    
     
     // Tap on navigation bar to dismiss composing a message (consider proper place to put this)
     let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))

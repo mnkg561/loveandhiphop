@@ -17,7 +17,7 @@ class ComposeCell: UITableViewCell {
   
   // MARK: Properties
   var delegate: ComposeCellDelegate!
-  @IBOutlet weak var composeText: UITextField!
+  @IBOutlet weak var composeText: UITextView!
   @IBOutlet weak var cameraButton: UIButton!
   
   override func awakeFromNib() {
@@ -34,8 +34,6 @@ class ComposeCell: UITableViewCell {
   
   @IBAction func onSend(_ sender: Any) {
     delegate.ComposeCell(composeCell: self, didTapSend: true)
-    
   }
-  
   
 }
