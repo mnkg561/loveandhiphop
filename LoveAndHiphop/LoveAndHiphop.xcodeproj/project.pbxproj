@@ -29,6 +29,8 @@
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
 		AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */; };
 		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
+		ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1153C1EBBE61700911786 /* FBViewController.swift */; };
+		ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA1153D1EBBE61700911786 /* FBViewController.xib */; };
 		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPageViewController.swift; sourceTree = "<group>"; };
 		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
+		ABA1153C1EBBE61700911786 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBViewController.swift; sourceTree = "<group>"; };
+		ABA1153D1EBBE61700911786 /* FBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBViewController.xib; sourceTree = "<group>"; };
 		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +134,7 @@
 				ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */,
 				AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */,
 				AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */,
+				ABA1153C1EBBE61700911786 /* FBViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 		22E946B81EAFF41300DCEC74 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ABA1153D1EBBE61700911786 /* FBViewController.xib */,
 				2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */,
 				22E946BF1EB0669700DCEC74 /* SongCell.swift */,
 				225476171EB4701500C0DCF5 /* FashionCell.swift */,
@@ -241,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */,
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
@@ -314,6 +321,7 @@
 				226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */,
 				225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */,
 				225476161EB456DB00C0DCF5 /* TopListenerObject.swift in Sources */,
+				ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */,
 				226A17AD1EB953D6005ACC83 /* ImagesViewController.swift in Sources */,
 				22E946BC1EAFF48500DCEC74 /* HotFashionsViewController.swift in Sources */,
 				22E946C01EB0669700DCEC74 /* SongCell.swift in Sources */,
@@ -379,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -424,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
