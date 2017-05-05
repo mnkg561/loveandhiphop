@@ -21,6 +21,8 @@ class QuizPageViewController: UIPageViewController, UIPageViewControllerDelegate
     return [storyboard.instantiateViewController(withIdentifier: "QuizTableViewController") as! QuizTableViewController, storyboard.instantiateViewController(withIdentifier: "QuizTableViewController") as! QuizTableViewController, storyboard.instantiateViewController(withIdentifier: "QuizTableViewController") as! QuizTableViewController, storyboard.instantiateViewController(withIdentifier: "SubmitQuizViewController") as! SubmitQuizViewController]
   }()
   
+  let answers = ["A", "B", "C"]
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
