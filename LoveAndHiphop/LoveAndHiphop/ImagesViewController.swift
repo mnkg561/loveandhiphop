@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import AFNetworking
 
-class ImagesViewController: UIViewController {
+class ImagesViewController: UIViewController, UIScrollViewDelegate {
 
 
 
-    @IBOutlet weak var topImageView: UIImageView!
-
-    @IBOutlet weak var bottomImageView: UIImageView!
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    
+    //var imageView: UIImageView!
     
     var fashionObjects: [FashionObject]?
     var indexPath: IndexPath?
     var index: Int?
+    
     
     var testUrl: URL?
     
@@ -26,88 +28,50 @@ class ImagesViewController: UIViewController {
         super.viewDidLoad()
         
         index = indexPath!.row
+        mainScrollView.delegate = self
+        mainScrollView.frame = view.frame
+        mainScrollView.maximumZoomScale = 5.0
+        mainScrollView.minimumZoomScale = 0.5
         
-        let topPanGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanGestureImages))
-        topImageView.addGestureRecognizer(topPanGesture)
+        index = indexPath!.row
+  
+        for i in 0..<self.fashionObjects!.count {
+            let imageView = UIImageView()
+            imageView.setImageWith((self.fashionObjects?[i].imagUrl!)!)
+            imageView.contentMode = .scaleAspectFit
+            let xPosition = self.view.frame.width * CGFloat(i)
+            imageView.frame = CGRect(x: xPosition, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height)
+            mainScrollView.contentSize.width = mainScrollView.frame.width * CGFloat(i+1)
+            mainScrollView.addSubview(imageView)
+            print("added")
+        }
+        let presentPosition = self.view.frame.width * CGFloat(index!)
+        mainScrollView.setContentOffset(CGPoint(x: presentPosition, y: 0), animated: true)
         
-        let bottomPanGesture = UIPanGestureRecognizer(target: self, action: #selector(onPanGestureImages))
-        
-        bottomImageView.addGestureRecognizer(bottomPanGesture)
-        
-        loadImages(index: index!, imageView: topImageView)
       
+    }
+    /*
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
         
-        // Do any additional setup after loading the view.
     }
     
-    func loadImages(index: Int, imageView: UIImageView){
-        let fashionObject: FashionObject = (self.fashionObjects?[index])!
-        imageView.setImageWith(fashionObject.imagUrl!)
-        
-
-        
-    }
+    */
+   
+    
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onClickCancelButton(_ sender: UIButton) {
-        self.dismiss(animated: true)
+    
+    @IBAction func clickOnCancelButton(_ sender: UIButton) {
+        self.dismiss(animated: true) { 
+            print("Image View is being dismissed")
+        }
     }
-
-    
-    
    
-    
-    func onPanGestureImages(sender: UIPanGestureRecognizer) {
-        
-        let point = sender.location(in: view)
-        let translation = sender.translation(in: view)
-        let velocity = sender.velocity(in: view)
-        let pannedImage = sender.view as! UIImageView
-        var otherImage: UIImageView?
-        
-        if pannedImage == topImageView {
-            otherImage = self.bottomImageView
-        } else if pannedImage == bottomImageView{
-            otherImage = self.topImageView
-        }
-        
-        
-        if sender.state == .began{
-            
-        }else if sender.state == .changed {
-            
-            if (translation.x > 0){
-                print("i'm movinng right side")
-                pannedImage.center = CGPoint(x: point.x + translation.x, y: pannedImage.center.y)
-            } else if (translation.x < 0 ){
-                print("i'm moving left side")
-               UIView.animate(withDuration: 0.5, animations: {
-             pannedImage.center = CGPoint(x: point.x + translation.x, y: pannedImage.center.y)
-               })
-               
-                
-            } else if (translation.y < 0){
-                print("i'm moving upside")
-            } else if (translation.y > 0 ){
-                print("i'm moving downside")
-            }
-            
-            
-        }else if sender.state == .ended {
-            
-            if (velocity.x < 0) {
-                print("loading the image for left side")
-                loadImages(index: index!+1, imageView: otherImage!)
-                self.index = self.index!+1
-            } else if (velocity.x > 0) {
-                self.index = self.index!-1
-                loadImages(index: index!-1, imageView: otherImage!)
-            }
-        }
-    }
     
     
     /*

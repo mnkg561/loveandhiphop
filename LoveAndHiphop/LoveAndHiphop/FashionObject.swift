@@ -14,6 +14,7 @@ class FashionObject: PFObject, PFSubclassing {
     var imageId: String?
     var userId: String?
     var likesCount: Int?
+    var liked_users: [String]?
     var imageFile: PFFile?
     var imagUrl: URL?
     
@@ -22,6 +23,7 @@ class FashionObject: PFObject, PFSubclassing {
         userId = pfObject["uploadedBy_userid "] as? String
         likesCount = pfObject["likes_count"] as? Int
         imageFile = pfObject["fashion_image"] as? PFFile
+        liked_users = pfObject["liked_users"] as? [String]
         let imageFileURL: String = imageFile!.url!
         imagUrl = URL(string: imageFileURL)
         super.init()
