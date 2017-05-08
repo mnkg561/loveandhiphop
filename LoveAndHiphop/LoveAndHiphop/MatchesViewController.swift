@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import AFNetworking
 
-class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MatchDetailedViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var profileMatches: [PFUser]?
@@ -33,6 +33,18 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //Load matches for the current user
         loadMatchesForCurrentUser()
+    }
+    
+    //Implementing the MatchDetailedViewControllerDelegate Protocol
+    func didLikeUnlikeUser(user: PFUser, didLike: Bool) {
+        
+        if(didLike) {
+            self.likedByUsersDict[user.objectId!]?.append(self.currentUserObjectId)
+        } else {
+            if let index = likedByUsersDict[user.objectId!]?.index(of: self.currentUserObjectId) {
+                  likedByUsersDict[user.objectId!]?.remove(at: index)
+            }
+        }        
     }
     
     /**
@@ -126,6 +138,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let user = profileMatches?[(indexPath?.row)!]
         vc.user = user
         vc.likedByUsers = self.likedByUsersDict[(user?.objectId!)!]
+        vc.delegate = self
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
