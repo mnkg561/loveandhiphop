@@ -76,7 +76,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let query: PFQuery = PFUser.query()!
         query.whereKeyExists("name")                                        // all users
         query.whereKey("objectId", notEqualTo: currentUserObjectId) // who are not current user
-        query.whereKey("gender", equalTo: currentUserInterestedGender!)// who are current user's interested gender
+//        query.whereKey("gender", equalTo: currentUserInterestedGender!)// who are current user's interested gender
         query.findObjectsInBackground{ (profileMatches: [PFObject]?, error: Error?) in
             if profileMatches != nil {
                 self.profileMatches = profileMatches as! [PFUser]?
@@ -117,15 +117,17 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
             let name = user.object(forKey: "name")! as! String
             let age = user.object(forKey: "age")! as! String
             matchCell.nameLabel.text =  name+", "+age
-            matchCell.genderLabel.text = user.object(forKey: "gender") as! String?
+            matchCell.genderLabel.text = "Male"
             matchCell.registeredAsLabel.text = user.object(forKey: "membershipType") as! String?
             matchCell.locationLabel.text = user.object(forKey: "location") as! String?
             matchCell.topInterestLabel.text = user.object(forKey: "interested_gender")! as? String
             
             let profilePictureFile = user.object(forKey: "picture") as? PFFile
-            let pictureURL: String = profilePictureFile!.url!
-            let profilePictureURL = URL(string: pictureURL)
-            matchCell.matchProfilePic.setImageWith(profilePictureURL!)
+            if profilePictureFile != nil {
+              let pictureURL: String = profilePictureFile!.url!
+              let profilePictureURL = URL(string: pictureURL)
+              matchCell.matchProfilePic.setImageWith(profilePictureURL!)
+            }
         }
         
         return matchCell
