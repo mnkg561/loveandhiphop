@@ -36,6 +36,10 @@ class SubmitQuizViewController: UIViewController {
     } else {
       // Send to beginning of quiz
       print("Oh fudge, you didn't pass this time!")
+      
+      // Currently, if user fails quiz we just reissue same quiz
+      let membershipQuizVC = storyboard?.instantiateViewController(withIdentifier: "MembershipQuizTableViewController") as! MembershipQuizTableViewController
+      show(membershipQuizVC, sender: self)
     }
   }
   
