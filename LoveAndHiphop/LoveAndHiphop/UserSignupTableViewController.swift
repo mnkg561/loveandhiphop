@@ -12,24 +12,33 @@ import ParseFacebookUtilsV4
 
 class UserSignupTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
-  @IBOutlet weak var userInterestedInLabel: UISegmentedControl!
-  @IBOutlet weak var userProfilePicImageView: UIImageView!
-  @IBOutlet weak var userIntroTextView: UITextView!
+  // MARK: Properties
+  let genders = ["male", "female"]
+  @IBOutlet weak var genderPreferenceControl: UISegmentedControl!
+  
+  let hipHopIdentities = ["Artist", "Producer", "DJ", "Fan", "Model", "Director"]
+  @IBOutlet weak var hipHopIdentityControl: UISegmentedControl!
+  @IBOutlet weak var profileImageView: UIImageView!
+  @IBOutlet weak var genderControl: UISegmentedControl!
+  @IBOutlet weak var aboutTextView: UITextView!
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
-  @IBOutlet weak var userAgeTextField: UITextField!
-  @IBOutlet weak var userHeightTextField: UITextField!
-  @IBOutlet weak var userProfessionTextField: UITextField!
-  @IBOutlet weak var userCountryTextField: UITextField!
-  @IBOutlet weak var userStateTextField: UITextField!
-  @IBOutlet weak var userCityTextField: UITextField!
-  @IBOutlet weak var userHipHopIdentity: UISegmentedControl!
-  @IBOutlet weak var userOtherInterestsTextView: UITextView!
-  @IBOutlet weak var userPreferenceMinAgeTextField: UITextField!
-  @IBOutlet weak var userPreferenceMaxAgeTextField: UITextField!
-  @IBOutlet weak var userPreferenceMinHeight: UITextField!
-  @IBOutlet weak var userPreferenceMaxHeight: UITextField!
-  @IBOutlet weak var emailIdTextField: UITextField!
+  @IBOutlet weak var ageTextField: UITextField!
+  @IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var occupationTextField: UITextField!
+  
+  // Disabled fields that are wired, but not being stored in Parse
+  @IBOutlet weak var heightTextField: UITextField!
+  @IBOutlet weak var weightTextField: UITextField!
+  @IBOutlet weak var countryTextField: UITextField!
+  @IBOutlet weak var stateTextField: UITextField!
+  @IBOutlet weak var cityTextField: UITextField!
+  @IBOutlet weak var interestsTextView: UITextView!
+  @IBOutlet weak var minAgePreferenceTextField: UITextField!
+  @IBOutlet weak var maxAgePreferenceTextField: UITextField!
+  @IBOutlet weak var minHeightPreferenceTextField: UITextField!
+  @IBOutlet weak var maxHeightTextField: UITextField!
+ 
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,7 +49,19 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem
     
-    userProfilePicImageView.isUserInteractionEnabled = true
+    profileImageView.isUserInteractionEnabled = true
+    
+    
+    // Disable all disabled fields
+    heightTextField.isEnabled = false
+    weightTextField.isEnabled = false
+    countryTextField.isEnabled = false
+    stateTextField.isEnabled = false
+    cityTextField.isEnabled = false
+    interestsTextView.isEditable = false
+    minAgePreferenceTextField.isEnabled = false
+    maxAgePreferenceTextField.isEnabled = false
+    minHeightPreferenceTextField.isEnabled = false
   }
   
   
@@ -54,95 +75,123 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
         if let user = user {
           if let firstName = user["firstName"] as? String {
             self.firstNameTextField.text = firstName
+            self.firstNameTextField.isEnabled = false // Can't change
           }
           if let lastName = user["lastName"] as? String {
             self.lastNameTextField.text = lastName
+            self.lastNameTextField.isEnabled = false // Can't change
           }
           if let email = user["email"] as? String {
-            self.emailIdTextField.text = email
+            self.emailTextField.text = email
+            self.emailTextField.isEnabled = false // Can't change email
           }
           if let gender = user["gender"] as? String {
             // Update UI to include gender
+            for (i, genderTitle) in self.genders.enumerated() {
+              if genderTitle == gender {
+                self.genderControl.selectedSegmentIndex = i
+              }
+            }
           }
           
           // Load profile image
-          if let profilePic = user["profilePic"] as? PFFile {
-            profilePic.getDataInBackground(block: { (data: Data?, error: Error?) in
+          if let profileImage = user["profileImage"] as? PFFile {
+            profileImage.getDataInBackground(block: { (data: Data?, error: Error?) in
               if (error == nil) {
-                self.userProfilePicImageView.image = UIImage(data: data!)
+                self.profileImageView.image = UIImage(data: data!)
               }
-            })
+            }) // End of query block for profile image
           }
         }
       }
-    })
+    }) // End of fetch block
   }
   
   // MARK: Update User Profile Data in Parse
   @IBAction func onUpdateProfile(_ sender: Any) {
+    
     // Update user profile data
     if PFUser.current() != nil {
-      let currentUser = PFUser.current()
+      let currentUser = PFUser.current()!
       let query = PFQuery(className:"_User")
       
-      query.getObjectInBackground(withId: (currentUser?.objectId)!, block: { (userProfile: PFObject?, error: Error?) in
-        userProfile?["firstName"] = self.firstNameTextField.text
-        userProfile?["lastName"] = self.lastNameTextField.text
-        userProfile?["userIntro"] = self.userIntroTextView.text
-        userProfile?["userAge"] = Int(self.userAgeTextField.text!)
-        userProfile?["userHeight"] = Int(self.userHeightTextField.text!)
-        userProfile?["userWeight"] = Int(self.userHeightTextField.text!)
-        let userInterestedInLabelIndex = self.userInterestedInLabel.selectedSegmentIndex
-        if userInterestedInLabelIndex == 0 {
-          userProfile?["userInterestedIn"] = "male"
+      query.getObjectInBackground(withId: currentUser.objectId!, block: { (user: PFObject?, error: Error?) in
+        
+        // MARK: User Personal Attributes
+        if let user = user {
+          user["firstName"] = self.firstNameTextField.text
+          user["lastName"] = self.lastNameTextField.text
+          
+          let genderIndex = self.genderControl.selectedSegmentIndex
+          user["gender"] = self.genders[genderIndex]
+          
+          user["age"] = self.ageTextField.text
+          user["occupation"] = self.occupationTextField.text
+          
+          let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
+          user["hiphopIdentity"] = self.hipHopIdentities[hipHopIdentityIndex]
+          
+          user["about"] = self.aboutTextView.text
+          
+          // Profile Image
+          let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
+          let imageName = UUID().uuidString
+          let extensionString: String = ".jpg"
+          
+          let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
+          user["profileImage"] = imageFile
+          
+          
+          /* Location Details
+           userProfile?["city"] = self.userCityTextField.text
+           userProfile?["state"] = self.userStateTextField.text
+           userProfile?["country"] = self.userCountryTextField.text
+           */
+          
+          /* Contact details
+           
+           */
+          
+          
+          // MARK: User Matches
+          
+          let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
+          user["genderPreference"] = self.genders[genderPreferenceIndex]
+          
+          /* Preference Details
+           userProfile?["userHeight"] = Int(self.userHeightTextField.text!)
+           userProfile?["userWeight"] = Int(self.userHeightTextField.text!)
+           userProfile?["userPreferenceMinAge"] = Int(self.userPreferenceMinAgeTextField.text!)
+           userProfile?["userPreferenceMaxAge"] = Int(self.userPreferenceMaxAgeTextField.text!)
+           userProfile?["userPreferenceMinHeight"] = Int(self.userPreferenceMinHeight.text!)
+           userProfile?["userPreferenceMaxHeight"] = Int(self.userPreferenceMaxHeight.text!)
+           userProfile?["userOtherInterests"] = self.userOtherInterestsTextView.text
+           */
+          
+          // Save udpated profile
+          user.saveInBackground(block: { (success: Bool, error: Error?) in
+            if (success) {
+              print("user succesfully created into table")
+              
+              // Send user to matches section
+              let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+              let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+              
+              // After update user can't go back to profile set up section
+              matchesVC.navigationItem.hidesBackButton = true
+              matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
+              self.show(matchesVC, sender: self)
+            } else {
+              print("unable to save the data into user class")
+            }
+          }) // End of save user data block
+          
         } else {
-          userProfile?["userInterestedIn"] = "female"
+          print("Cannot update user profile. User object query did not return any results")
         }
-        let userHipHopIdentityIndex = self.userHipHopIdentity.selectedSegmentIndex
-        
-        if userHipHopIdentityIndex == 0 {
-          userProfile?["userHipHopIdentity"] = "Actor"
-        } else if userHipHopIdentityIndex == 1 {
-          userProfile?["userHipHopIdentity"] = "Director"
-        } else if userHipHopIdentityIndex == 2 {
-          userProfile?["userHipHopIdentity"] = "DJ"
-        } else {
-          userProfile?["userHipHopIdentity"] = "Listener"
-        }
-        userProfile?["emailId"] = self.emailIdTextField.text
-        userProfile?["userCity"] = self.userCityTextField.text
-        userProfile?["userState"] = self.userStateTextField.text
-        userProfile?["userCountry"] = self.userCountryTextField.text
-        userProfile?["userProfession"] = self.userProfessionTextField.text
-        userProfile?["userPreferenceMinAge"] = Int(self.userPreferenceMinAgeTextField.text!)
-        userProfile?["userPreferenceMaxAge"] = Int(self.userPreferenceMaxAgeTextField.text!)
-        userProfile?["userPreferenceMinHeight"] = Int(self.userPreferenceMinHeight.text!)
-        userProfile?["userPreferenceMaxHeight"] = Int(self.userPreferenceMaxHeight.text!)
-        userProfile?["userOtherInterests"] = self.userOtherInterestsTextView.text
-        
-        
-        let imageData = UIImageJPEGRepresentation(self.userProfilePicImageView.image!, 1.0)
-        let imageName = UUID().uuidString
-        let extensionString: String = ".jpg"
-        
-        let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
-        userProfile?["userProfilePic"] = imageFile
-        userProfile?.saveInBackground { (success: Bool, error: Error?) in
-          if(success){
-            print("user succesfully created into table")
-            // Send user to matches section
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-            
-            // After update user can't go back to profile set up section
-            matchesVC.navigationItem.hidesBackButton = true
-            matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
-            self.show(matchesVC, sender: self)
-          } else {
-            print("unable to save the data into user class")
-          }
-        }
-      })
+      }) // End of object query block
+    } else {
+      print("Cannot update user profile. User is not logged in.")
     }
   }
   
@@ -187,15 +236,6 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     //        }
     
   }
-  
-  
-  
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
   
   /*
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
