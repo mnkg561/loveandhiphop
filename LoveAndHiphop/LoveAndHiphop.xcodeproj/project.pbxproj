@@ -33,6 +33,8 @@
 		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
 		ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1153C1EBBE61700911786 /* FBViewController.swift */; };
 		ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA1153D1EBBE61700911786 /* FBViewController.xib */; };
+		ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */; };
+		ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD7102A1EBFA71B00E302B5 /* User.storyboard */; };
 		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
 		ABA1153C1EBBE61700911786 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBViewController.swift; sourceTree = "<group>"; };
 		ABA1153D1EBBE61700911786 /* FBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBViewController.xib; sourceTree = "<group>"; };
+		ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignupTableViewController.swift; sourceTree = "<group>"; };
+		ABD7102A1EBFA71B00E302B5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +124,7 @@
 				22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */,
 				22E946AB1EAFF3CB00DCEC74 /* Assets.xcassets */,
 				22E946AD1EAFF3CB00DCEC74 /* LaunchScreen.storyboard */,
+				ABD7102A1EBFA71B00E302B5 /* User.storyboard */,
 				226A17B21EBAF6C3005ACC83 /* Main.storyboard */,
 				22E946B01EAFF3CB00DCEC74 /* Info.plist */,
 			);
@@ -137,6 +142,7 @@
 				226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */,
 				ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */,
 				AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */,
+				ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */,
 				AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */,
 				ABA1153C1EBBE61700911786 /* FBViewController.swift */,
 			);
@@ -258,6 +264,7 @@
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
+				ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */,
 				22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +333,7 @@
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
 				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
+				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
 				226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */,
 				225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */,
 				225476161EB456DB00C0DCF5 /* TopListenerObject.swift in Sources */,

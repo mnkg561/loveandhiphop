@@ -20,9 +20,108 @@ class FBViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  // MARK: User Facebook Profile Data
+  func loadFBData() {
+    
+    var savedFBProfileData = true
+    let requestParameters = ["fields": "id, email, first_name, last_name"]
+    
+    let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: requestParameters)
+    
+    userDetails?.start(completionHandler: { (connection: FBSDKGraphRequestConnection?, data: Any?, error: Error?) in
+      if(error != nil) {
+        print("\(error?.localizedDescription)")
+        savedFBProfileData = false
+        return
+      }
+      
+      // FB graph API returned user data
+      if data != nil {
+        // User Facebook data from graph call
+        let userFBData = data as! NSDictionary
+        
+        let currentUser = PFUser.current()
+        if currentUser != nil {
+          let query = PFQuery(className:"_User")
+          query.getObjectInBackground(withId: (currentUser?.objectId)!) {
+            (user: PFObject?, error: Error?) -> Void in
+            if error != nil {
+            }
+            
+            if let user = user {
+              
+              // Save user facebook profile data to parse
+              // and update current user
+              if let firstName = userFBData["first_name"] as? String {
+                currentUser?.setObject(firstName, forKey: "firstName")
+                user["firstName"] = firstName
+              }
+              
+              if let lastName = userFBData["last_name"] as? String {
+                currentUser?.setObject(lastName, forKey: "lastName")
+                user["lastName"] = lastName
+              }
+              
+              if let email = userFBData["email"] as? String {
+                currentUser?.setObject(email, forKey: "email")
+                user["email"] = email
+              }
+              
+              if let gender = userFBData["gender"] {
+                currentUser?.setObject(gender, forKey: "gender")
+                user["gender"] = gender
+              }
+              
+              // Retrieve users profile pic from Facebook
+              let facebookID = userFBData["id"] as? String
+              if facebookID != nil {
+                let pictureURL = "https://graph.facebook.com/\(facebookID!)/picture?type=large&return_ssl_resources=1"
+                let url = URL(string: pictureURL)
+                let request = URLRequest(url: url!)
+                let session = URLSession(
+                  configuration: URLSessionConfiguration.default,
+                  delegate:nil,
+                  delegateQueue:OperationQueue.main
+                )
+                
+                let task: URLSessionDataTask = session.dataTask(
+                  with: request as URLRequest,
+                  completionHandler: { (data, response, error) in
+                    if error != nil {
+                      print("Error getting profile url from facebook \(error)")
+                    }
+                    if let data = data {
+                      
+                      let picture = PFFile(data: data)! as PFFile
+                      PFUser.current()?.setObject(picture, forKey: "profilePic")
+                      user["profilePic"] = picture
+                      
+                    }
+                    else {
+                      print("Error: \(error?.localizedDescription)")
+                    }
+                    
+                });
+                task.resume()
+              }
+              
+              user.saveInBackground(block: { (success: Bool, error: Error?) in
+                savedFBProfileData = success
+                if error != nil {
+                  print("Error updating user object, error: \(error)")
+                } else {
+                  
+                  savedFBProfileData = false
+                }
+              })
+            }
+          }
+        } else {
+          
+          
+        }
+      }
+    })
   }
   
   @IBAction func onFBLogin(_ sender: Any) {
@@ -34,25 +133,25 @@ class FBViewController: UIViewController {
           print("User logged in through Facebook!")
         }
         
-        // Currently, just send logged in user to dating section.
-        // Eventually they will be sent to Profile Setup.
-        let flirtVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeTabBarController")
+        // Get user FB basic data
+        self.loadFBData()
         
-        self.show(flirtVC, sender: self)
+        // Currently, just send all users to profile set up.
+        let storyboard = UIStoryboard.init(name: "User", bundle: nil)
+        let userSignUpVC = storyboard.instantiateViewController(withIdentifier: "UserSignupTableViewController") as! UserSignupTableViewController
+        self.show(userSignUpVC, sender: self)
       } else {
         print("Uh oh. The user cancelled the Facebook login.")
       }
     }
   }
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
   
+  
+  // MARK: - Navigation
+  
+  
+  // MARK: TODO
+  // Move FB data to FB Client
+  // Set up user data model
   
 }
