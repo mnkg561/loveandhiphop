@@ -36,6 +36,8 @@
 		ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA1153D1EBBE61700911786 /* FBViewController.xib */; };
 		ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */; };
 		ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD7102A1EBFA71B00E302B5 /* User.storyboard */; };
+		ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */; };
+		ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */; };
 		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		ABA1153D1EBBE61700911786 /* FBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBViewController.xib; sourceTree = "<group>"; };
 		ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignupTableViewController.swift; sourceTree = "<group>"; };
 		ABD7102A1EBFA71B00E302B5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
+		ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipQuizTableViewController.swift; sourceTree = "<group>"; };
 		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +133,7 @@
 				ABD7102A1EBFA71B00E302B5 /* User.storyboard */,
 				226A17B21EBAF6C3005ACC83 /* Main.storyboard */,
 				22E946B01EAFF3CB00DCEC74 /* Info.plist */,
+				ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */,
 			);
 			path = LoveAndHiphop;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */,
 				ABA1153C1EBBE61700911786 /* FBViewController.swift */,
 				221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */,
+				ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
 				ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */,
 				22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */,
+				ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +344,7 @@
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
 				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
+				ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */,
 				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
 				226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */,
 				225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */,

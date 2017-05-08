@@ -29,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
     PFUser.enableRevocableSessionInBackground()
     
+    // Currently, loads quiz when user launches app.
+    // Eventually checks for currently logged in user,
+    // or users who have passed the quiz must be peformed first.
+    let storyboard = UIStoryboard(name: "Quiz", bundle: nil)
+    let initialViewController = storyboard.instantiateViewController(withIdentifier: "MembershipQuizTableViewController")
+    
+    self.window?.rootViewController = initialViewController
+    self.window?.makeKeyAndVisible()
+    
     return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
   }
   
