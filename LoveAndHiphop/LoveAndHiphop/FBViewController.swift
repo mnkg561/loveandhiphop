@@ -24,7 +24,7 @@ class FBViewController: UIViewController {
   func loadFBData() {
     
     var savedFBProfileData = true
-    let requestParameters = ["fields": "id, email, first_name, last_name"]
+    let requestParameters = ["fields": "id, email, first_name, last_name, gender"]
     
     let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: requestParameters)
     
@@ -93,8 +93,8 @@ class FBViewController: UIViewController {
                     if let data = data {
                       
                       let picture = PFFile(data: data)! as PFFile
-                      PFUser.current()?.setObject(picture, forKey: "profilePic")
-                      user["profilePic"] = picture
+                      PFUser.current()?.setObject(picture, forKey: "profileImage")
+                      user["profileImage"] = picture
                       
                     }
                     else {
