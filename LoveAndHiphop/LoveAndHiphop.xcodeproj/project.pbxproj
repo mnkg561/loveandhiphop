@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		022B89D386F45E87F1090D8E /* Pods_LoveAndHiphop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */; };
+		221474FD1EC0069D00D2F9F4 /* MatchDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */; };
 		225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */; };
 		225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */; };
 		225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476131EB453F300C0DCF5 /* MusicObject.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveAndHiphop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchDetailedViewController.swift; sourceTree = "<group>"; };
 		2224E2371EBB132600789B63 /* LoveAndHiphop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveAndHiphop.entitlements; sourceTree = "<group>"; };
 		2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerCell.swift; sourceTree = "<group>"; };
 		225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */,
 				AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */,
 				ABA1153C1EBBE61700911786 /* FBViewController.swift */,
+				221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221474FD1EC0069D00D2F9F4 /* MatchDetailedViewController.swift in Sources */,
 				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
 				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
 				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
