@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import AFNetworking
 
-class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MatchDetailedViewControllerDelegate {
+class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var profileMatches: [PFUser]?
@@ -20,19 +20,46 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     var currentUserGender: String? = nil
     var currentUserInterestedGender: String? = nil
     var currentUserObjectId: String = ""
+    var userObjects: [UserObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         //Find and set the current user's gender, interested_gender and objectId of user table
         setCurrentUserDetails()
         
+        
         //Load matches for the current user
-        loadMatchesForCurrentUser()
+        //loadMatchesForCurrentUser()
+        loadUsers()
+    }
+    
+    
+    func loadUsers(){
+        let query: PFQuery = PFUser.query()!
+        query.whereKey("gender", equalTo: PFUser.current()?.object(forKey: "genderPreference"))
+        
+        query.findObjectsInBackground { (userObjects: [PFObject]?, error: Error?) in
+            if error == nil {
+                print("i'm inside")
+                let userObjects2 = UserObject.userObjectWithArray(pfObjects: userObjects!)
+                self.userObjects = userObjects2
+                print("total \(self.userObjects?.count)")
+                self.tableView.reloadData()
+                
+            }
+        }
+        
+       
+        
+        
     }
     
     //Implementing the MatchDetailedViewControllerDelegate Protocol
@@ -104,11 +131,31 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //TODO: eventually return the count of the matches from the findMyMatches() method
-        return self.profileMatchesCount
+        
+        
+        if self.userObjects?.count != nil {
+            return (self.userObjects?.count)!
+        } else {
+            return 0
+        }
+    
     }
     
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
+        
+       cell.userObject = self.userObjects?[indexPath.row]
+
+        return cell
+        
+    }
+    /*
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let matchCell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
         
@@ -134,18 +181,32 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+ */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! MatchDetailedViewController
+//        let vc = segue.destination as! MatchDetailedViewController
+//        let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
+//        let user = profileMatches?[(indexPath?.row)!]
+//        vc.user = user
+//        vc.likedByUsers = self.likedByUsersDict[(user?.objectId!)!]
+//        vc.delegate = self
+        
+        
+        
+        print(" Yea me too")
+        let detailViewController = segue.destination as! DetailViewController
         let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
-        let user = profileMatches?[(indexPath?.row)!]
-        vc.user = user
-        vc.likedByUsers = self.likedByUsersDict[(user?.objectId!)!]
-        vc.delegate = self
+        detailViewController.userObject = self.userObjects?[(indexPath?.row)!]
+
+        
     }
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("i got selected")
+ 
+    tableView.deselectRow(at: indexPath, animated: true)
         
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

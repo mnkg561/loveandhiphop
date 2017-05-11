@@ -10,5 +10,6 @@ target 'LoveAndHiphop' do
   pod 'AFNetworking'
   pod 'FBSDKCoreKit'
   pod 'ParseFacebookUtilsV4'
+  pod 'SwiftyGif'
 
 end

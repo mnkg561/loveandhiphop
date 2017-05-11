@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		022B89D386F45E87F1090D8E /* Pods_LoveAndHiphop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */; };
 		221474FD1EC0069D00D2F9F4 /* MatchDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */; };
+		221475011EC1935800D2F9F4 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221475001EC1935800D2F9F4 /* UserProfileViewController.swift */; };
+		221475031EC21AF800D2F9F4 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221475021EC21AF800D2F9F4 /* UserObject.swift */; };
+		224491771EC2F911008DCA0A /* love_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 224491761EC2F911008DCA0A /* love_gif.gif */; };
+		224491791EC2FD15008DCA0A /* lovepath_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 224491781EC2FD15008DCA0A /* lovepath_gif.gif */; };
+		2244917B1EC3A5C0008DCA0A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */; };
+		2244917D1EC3B1C9008DCA0A /* loveme_or_not_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2244917C1EC3B1C9008DCA0A /* loveme_or_not_gif.gif */; };
 		225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */; };
 		225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */; };
 		225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476131EB453F300C0DCF5 /* MusicObject.swift */; };
@@ -16,8 +22,8 @@
 		225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476171EB4701500C0DCF5 /* FashionCell.swift */; };
 		2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225476191EB4773500C0DCF5 /* FashionObject.swift */; };
 		226A17AD1EB953D6005ACC83 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */; };
-		226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */; };
 		226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226A17B21EBAF6C3005ACC83 /* Main.storyboard */; };
+		229024E41EC22CEC003CA4C8 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229024E31EC22CEC003CA4C8 /* MatchCell.swift */; };
 		22DBC30E1EBD3DE2002D0220 /* ComposeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */; };
 		22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */; };
 		22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */; };
@@ -44,7 +50,13 @@
 /* Begin PBXFileReference section */
 		129A5B85D99A6A50A939FD83 /* Pods_LoveAndHiphop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveAndHiphop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchDetailedViewController.swift; sourceTree = "<group>"; };
+		221475001EC1935800D2F9F4 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		221475021EC21AF800D2F9F4 /* UserObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		2224E2371EBB132600789B63 /* LoveAndHiphop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveAndHiphop.entitlements; sourceTree = "<group>"; };
+		224491761EC2F911008DCA0A /* love_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = love_gif.gif; sourceTree = "<group>"; };
+		224491781EC2FD15008DCA0A /* lovepath_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lovepath_gif.gif; sourceTree = "<group>"; };
+		2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2244917C1EC3B1C9008DCA0A /* loveme_or_not_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loveme_or_not_gif.gif; sourceTree = "<group>"; };
 		2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerCell.swift; sourceTree = "<group>"; };
 		225476111EB44AE800C0DCF5 /* TopListenerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopListenerViewController.swift; sourceTree = "<group>"; };
 		225476131EB453F300C0DCF5 /* MusicObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicObject.swift; sourceTree = "<group>"; };
@@ -52,8 +64,8 @@
 		225476171EB4701500C0DCF5 /* FashionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FashionCell.swift; sourceTree = "<group>"; };
 		225476191EB4773500C0DCF5 /* FashionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FashionObject.swift; sourceTree = "<group>"; };
 		226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
-		226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		226A17B21EBAF6C3005ACC83 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		229024E31EC22CEC003CA4C8 /* MatchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeCell.xib; sourceTree = "<group>"; };
 		22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatMessageCell.xib; sourceTree = "<group>"; };
 		22E9469F1EAFF3CB00DCEC74 /* LoveAndHiphop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveAndHiphop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,9 +143,12 @@
 				22E946AB1EAFF3CB00DCEC74 /* Assets.xcassets */,
 				22E946AD1EAFF3CB00DCEC74 /* LaunchScreen.storyboard */,
 				ABD7102A1EBFA71B00E302B5 /* User.storyboard */,
+				2244917C1EC3B1C9008DCA0A /* loveme_or_not_gif.gif */,
 				226A17B21EBAF6C3005ACC83 /* Main.storyboard */,
+				224491781EC2FD15008DCA0A /* lovepath_gif.gif */,
 				22E946B01EAFF3CB00DCEC74 /* Info.plist */,
 				ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */,
+				224491761EC2F911008DCA0A /* love_gif.gif */,
 			);
 			path = LoveAndHiphop;
 			sourceTree = "<group>";
@@ -154,6 +169,8 @@
 				ABA1153C1EBBE61700911786 /* FBViewController.swift */,
 				221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */,
 				ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */,
+				221475001EC1935800D2F9F4 /* UserProfileViewController.swift */,
+				2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -165,11 +182,11 @@
 				2254760F1EB448A600C0DCF5 /* TopListenerCell.swift */,
 				22E946BF1EB0669700DCEC74 /* SongCell.swift */,
 				225476171EB4701500C0DCF5 /* FashionCell.swift */,
-				226A17AE1EBA5F7B005ACC83 /* MatchCell.swift */,
 				AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */,
 				AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */,
 				22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */,
 				22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */,
+				229024E31EC22CEC003CA4C8 /* MatchCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -180,6 +197,7 @@
 				225476131EB453F300C0DCF5 /* MusicObject.swift */,
 				225476151EB456DB00C0DCF5 /* TopListenerObject.swift */,
 				225476191EB4773500C0DCF5 /* FashionObject.swift */,
+				221475021EC21AF800D2F9F4 /* UserObject.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -270,8 +288,11 @@
 			files = (
 				ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */,
 				22DBC30E1EBD3DE2002D0220 /* ComposeCell.xib in Resources */,
+				2244917D1EC3B1C9008DCA0A /* loveme_or_not_gif.gif in Resources */,
+				224491791EC2FD15008DCA0A /* lovepath_gif.gif in Resources */,
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
+				224491771EC2F911008DCA0A /* love_gif.gif in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
 				ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */,
 				22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */,
@@ -335,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				221474FD1EC0069D00D2F9F4 /* MatchDetailedViewController.swift in Sources */,
+				221475011EC1935800D2F9F4 /* UserProfileViewController.swift in Sources */,
 				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
 				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
 				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
@@ -346,9 +368,10 @@
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
 				ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */,
 				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
-				226A17AF1EBA5F7B005ACC83 /* MatchCell.swift in Sources */,
+				2244917B1EC3A5C0008DCA0A /* DetailViewController.swift in Sources */,
 				225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */,
 				225476161EB456DB00C0DCF5 /* TopListenerObject.swift in Sources */,
+				229024E41EC22CEC003CA4C8 /* MatchCell.swift in Sources */,
 				ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */,
 				226A17AD1EB953D6005ACC83 /* ImagesViewController.swift in Sources */,
 				22E946BC1EAFF48500DCEC74 /* HotFashionsViewController.swift in Sources */,
@@ -356,6 +379,7 @@
 				AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */,
 				22E946BE1EAFF4A300DCEC74 /* TopMusicViewController.swift in Sources */,
 				AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */,
+				221475031EC21AF800D2F9F4 /* UserObject.swift in Sources */,
 				AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
