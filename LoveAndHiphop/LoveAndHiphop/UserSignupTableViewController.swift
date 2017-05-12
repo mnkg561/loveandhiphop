@@ -38,7 +38,7 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   @IBOutlet weak var maxAgePreferenceTextField: UITextField!
   @IBOutlet weak var minHeightPreferenceTextField: UITextField!
   @IBOutlet weak var maxHeightTextField: UITextField!
- 
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -113,85 +113,123 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     // Update user profile data
     if PFUser.current() != nil {
       let currentUser = PFUser.current()!
-      let query = PFQuery(className:"_User")
+      //      let query = PFQuery(className:"_User")
       
-      query.getObjectInBackground(withId: currentUser.objectId!, block: { (user: PFObject?, error: Error?) in
-        
-        // MARK: User Personal Attributes
-        if let user = user {
-          user["firstName"] = self.firstNameTextField.text
-          user["lastName"] = self.lastNameTextField.text
+      //      query.getObjectInBackground(withId: currentUser.objectId!, block: { (user: PFObject?, error: Error?) in
+      
+      // MARK: User Personal Attributes
+      //        if let user = user {
+      let firstName = self.firstNameTextField.text!
+      let lastName = self.lastNameTextField.text!
+      let genderIndex = self.genderControl.selectedSegmentIndex
+      let gender = self.genders[genderIndex]
+      let age = self.ageTextField.text!
+      let occupation = self.occupationTextField.text!
+      let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
+      let hiphopIdentity = self.hipHopIdentities[hipHopIdentityIndex]
+      let about = self.aboutTextView.text!
+      // Profile Image
+      let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
+      let imageName = UUID().uuidString
+      
+      let extensionString: String = ".jpg"
+      let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
+      let image = imageFile!
+      
+      let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
+      let genderPreference = self.genders[genderPreferenceIndex]
+      
+      currentUser.setValuesForKeys(["firstName" : firstName, "lastName": lastName, "age": age, "gender": gender, "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about, "profilePicImage": image, "genderPreference": genderPreference])
+      
+      currentUser.saveInBackground(block: { (success: Bool, error: Error?) in
+        if (success) {
+          print("user succesfully created into table")
           
-          let genderIndex = self.genderControl.selectedSegmentIndex
-          user["gender"] = self.genders[genderIndex]
+          // Send user to matches section
+          let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+          let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
           
-          user["age"] = self.ageTextField.text
-          user["occupation"] = self.occupationTextField.text
-          
-          let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
-          user["hiphopIdentity"] = self.hipHopIdentities[hipHopIdentityIndex]
-          
-          user["about"] = self.aboutTextView.text
-          
-          // Profile Image
-          let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
-          let imageName = UUID().uuidString
-          let extensionString: String = ".jpg"
-          
-          let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
-          user["profileImage"] = imageFile
-          
-          
-          /* Location Details
-           userProfile?["city"] = self.userCityTextField.text
-           userProfile?["state"] = self.userStateTextField.text
-           userProfile?["country"] = self.userCountryTextField.text
-           */
-          
-          /* Contact details
-           
-           */
-          
-          
-          // MARK: User Matches
-          
-          let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
-          user["genderPreference"] = self.genders[genderPreferenceIndex]
-          
-          /* Preference Details
-           userProfile?["userHeight"] = Int(self.userHeightTextField.text!)
-           userProfile?["userWeight"] = Int(self.userHeightTextField.text!)
-           userProfile?["userPreferenceMinAge"] = Int(self.userPreferenceMinAgeTextField.text!)
-           userProfile?["userPreferenceMaxAge"] = Int(self.userPreferenceMaxAgeTextField.text!)
-           userProfile?["userPreferenceMinHeight"] = Int(self.userPreferenceMinHeight.text!)
-           userProfile?["userPreferenceMaxHeight"] = Int(self.userPreferenceMaxHeight.text!)
-           userProfile?["userOtherInterests"] = self.userOtherInterestsTextView.text
-           */
-          
-          // Save udpated profile
-          user.saveInBackground(block: { (success: Bool, error: Error?) in
-            if (success) {
-              print("user succesfully created into table")
-              
-              // Send user to matches section
-              let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-              let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-              
-              // After update user can't go back to profile set up section
-              matchesVC.navigationItem.hidesBackButton = true
-              matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
-              self.show(matchesVC, sender: self)
-            } else {
-              print("unable to save the data into user class")
-            }
-          }) // End of save user data block
-          
+          // After update user can't go back to profile set up section
+          matchesVC.navigationItem.hidesBackButton = true
+          matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
+          self.show(matchesVC, sender: self)
         } else {
-          print("Cannot update user profile. User object query did not return any results")
+          print("unable to save the data into user class")
         }
-      }) // End of object query block
-    } else {
-      print("Cannot update user profile. User is not logged in.")
+        
+      })
+      //          user["firstName"] = firstName
+      //          user["lastName"] = self.lastNameTextField.text
+      //
+      //          let genderIndex = self.genderControl.selectedSegmentIndex
+      //          user["gender"] = self.genders[genderIndex]
+      //
+      //          user["age"] = self.ageTextField.text
+      //          user["occupation"] = self.occupationTextField.text
+      //
+      //          let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
+      //          user["hiphopIdentity"] = self.hipHopIdentities[hipHopIdentityIndex]
+      //
+      //          user["about"] = self.aboutTextView.text
+      
+      
+      
+      //          let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
+      //          user["profileImage"] = imageFile
+      
+      
+      /* Location Details
+       userProfile?["city"] = self.userCityTextField.text
+       userProfile?["state"] = self.userStateTextField.text
+       userProfile?["country"] = self.userCountryTextField.text
+       */
+      
+      /* Contact details
+       
+       */
+      
+      
+      // MARK: User Matches
+      
+      //          let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
+      //          user["genderPreference"] = self.genders[genderPreferenceIndex]
+      
+      /* Preference Details
+       userProfile?["userHeight"] = Int(self.userHeightTextField.text!)
+       userProfile?["userWeight"] = Int(self.userHeightTextField.text!)
+       userProfile?["userPreferenceMinAge"] = Int(self.userPreferenceMinAgeTextField.text!)
+       userProfile?["userPreferenceMaxAge"] = Int(self.userPreferenceMaxAgeTextField.text!)
+       userProfile?["userPreferenceMinHeight"] = Int(self.userPreferenceMinHeight.text!)
+       userProfile?["userPreferenceMaxHeight"] = Int(self.userPreferenceMaxHeight.text!)
+       userProfile?["userOtherInterests"] = self.userOtherInterestsTextView.text
+       */
+      
+      
+      
+      // Save udpated profile
+      //          user.saveInBackground(block: { (success: Bool, error: Error?) in
+      //            if (success) {
+      //              print("user succesfully created into table")
+      //
+      //              // Send user to matches section
+      //              let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+      //              let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+      //
+      //              // After update user can't go back to profile set up section
+      //              matchesVC.navigationItem.hidesBackButton = true
+      //              matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
+      //              self.show(matchesVC, sender: self)
+      //            } else {
+      //              print("unable to save the data into user class")
+      //            }
+      //          }) // End of save user data block
+      //
+      //        } else {
+      //          print("Cannot update user profile. User object query did not return any results")
+      //        }
+      //      }) // End of object query block
+      //    } else {
+      //      print("Cannot update user profile. User is not logged in.")
     }
   }
   
