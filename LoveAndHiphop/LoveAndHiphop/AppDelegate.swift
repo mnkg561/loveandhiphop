@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,16 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    // MARK: Parse Initilization
+    // MARK: Parse Initialization
     Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
       configuration.applicationId = "group3projectcodepathloveandhiphop"
       configuration.server = "https://loveandhiphop.herokuapp.com/parse"
     }))
     
-    // MARK: Facebook Initilization
+    // MARK: Facebook Initialization
     FBSDKSettings.setAppID("1491026230961299")
     PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
     PFUser.enableRevocableSessionInBackground()
+    
+    // MARK: Google Places Initialization
+    GMSPlacesClient.provideAPIKey("AIzaSyBz_NJSzflKV2HyTMRaCXf8UZXZDuTz38A")
     
     // First time users (or users who've logged out)
     // must pass HipHop membership quiz.

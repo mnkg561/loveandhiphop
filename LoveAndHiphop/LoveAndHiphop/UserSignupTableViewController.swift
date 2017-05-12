@@ -9,13 +9,14 @@
 import UIKit
 import Parse
 import ParseFacebookUtilsV4
+import GooglePlaces
 
-class UserSignupTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UserSignupTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationSearchViewControllerDelegate {
   
   // MARK: Properties
   let genders = ["male", "female"]
   @IBOutlet weak var genderPreferenceControl: UISegmentedControl!
-  
+  @IBOutlet weak var searchContainerView: UIView!
   let hipHopIdentities = ["Artist", "Producer", "DJ", "Fan", "Model", "Director"]
   @IBOutlet weak var hipHopIdentityControl: UISegmentedControl!
   @IBOutlet weak var profileImageView: UIImageView!
@@ -38,7 +39,6 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   @IBOutlet weak var maxAgePreferenceTextField: UITextField!
   @IBOutlet weak var minHeightPreferenceTextField: UITextField!
   @IBOutlet weak var maxHeightTextField: UITextField!
- 
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,14 +50,12 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     self.navigationItem.rightBarButtonItem = self.editButtonItem
     
     profileImageView.isUserInteractionEnabled = true
-    
+    let imageTap = UITapGestureRecognizer(target: self, action: #selector(onTapProfileImage(_:)))
+    profileImageView.addGestureRecognizer(imageTap)
     
     // Disable all disabled fields
     heightTextField.isEnabled = false
     weightTextField.isEnabled = false
-    countryTextField.isEnabled = false
-    stateTextField.isEnabled = false
-    cityTextField.isEnabled = false
     interestsTextView.isEditable = false
     minAgePreferenceTextField.isEnabled = false
     maxAgePreferenceTextField.isEnabled = false
@@ -98,9 +96,19 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           if let profileImage = user["profileImage"] as? PFFile {
             profileImage.getDataInBackground(block: { (data: Data?, error: Error?) in
               if (error == nil) {
-                self.profileImageView.image = UIImage(data: data!)
+                if let data = data {
+                  self.profileImageView.image = UIImage(data: data)
+                }
               }
             }) // End of query block for profile image
+          }
+          
+          if let city = user["city"] as? String {
+            self.cityTextField.text = city
+          }
+          
+          if let state = user["state"] as? String {
+            self.stateTextField.text = state
           }
         }
       }
@@ -113,10 +121,9 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     // Update user profile data
     if PFUser.current() != nil {
       let currentUser = PFUser.current()!
-      let query = PFQuery(className:"_User")
       
+      let query = PFQuery(className:"_User")
       query.getObjectInBackground(withId: currentUser.objectId!, block: { (user: PFObject?, error: Error?) in
-        
         // MARK: User Personal Attributes
         if let user = user {
           user["firstName"] = self.firstNameTextField.text
@@ -134,26 +141,31 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           user["about"] = self.aboutTextView.text
           
           // Profile Image
-          let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
-          let imageName = UUID().uuidString
-          let extensionString: String = ".jpg"
+          //          let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
+          //          let imageName = UUID().uuidString
+          //          let extensionString: String = ".jpg"
+          //
+          //          let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
+          //          user["profilePicImage"] = imageFile
           
-          let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
-          user["profileImage"] = imageFile
+          if let image = self.profileImageView.image {
+            let imageData = UIImagePNGRepresentation(image)
+            let imageFile = PFFile(name: "profileImage.png", data:imageData!)
+            user["profilePicImage"] = imageFile
+          }
           
+          // Location Details
+          user["city"] = self.cityTextField.text
+          user["state"] = self.stateTextField.text
+          user["country"] = self.countryTextField.text
           
-          /* Location Details
-           userProfile?["city"] = self.userCityTextField.text
-           userProfile?["state"] = self.userStateTextField.text
-           userProfile?["country"] = self.userCountryTextField.text
-           */
           
           /* Contact details
            
            */
           
           
-          // MARK: User Matches
+          // MARK: User Interests in Matches
           
           let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
           user["genderPreference"] = self.genders[genderPreferenceIndex]
@@ -171,8 +183,6 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           // Save udpated profile
           user.saveInBackground(block: { (success: Bool, error: Error?) in
             if (success) {
-              print("user succesfully created into table")
-              
               // Send user to matches section
               let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
               let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
@@ -195,101 +205,72 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     }
   }
   
-  
-  
-  //    @IBAction func onTapUserProfilePicImageView(_ sender: UITapGestureRecognizer) {
-  
-  //        let vc = UIImagePickerController()
-  //        vc.delegate = self
-  //        vc.allowsEditing = true
-  //
-  //        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-  //            vc.sourceType = .photoLibrary
-  //        }
-  //
-  //        /*
-  //         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-  //         print("Camera is available 📸")
-  //         vc.sourceType = .camera
-  //         } else {
-  //         print("Camera 🚫 available so we will use photo library instead")
-  //         vc.sourceType = .photoLibrary
-  //         }
-  //         */
-  //
-  //        self.present(vc, animated: true, completion: nil)
-  
-  
-  //    }
+  func onTapProfileImage(_ sender: UITapGestureRecognizer) {
+    let vc = UIImagePickerController()
+    vc.delegate = self
+    vc.allowsEditing = true
+    
+    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+      vc.sourceType = .photoLibrary
+    }
+    
+    /*
+     if UIImagePickerController.isSourceTypeAvailable(.camera) {
+     print("Camera is available 📸")
+     vc.sourceType = .camera
+     } else {
+     print("Camera 🚫 available so we will use photo library instead")
+     vc.sourceType = .photoLibrary
+     }
+     */
+    
+    self.present(vc, animated: true, completion: nil)
+  }
   
   
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    //        // Get the image captured by the UIImagePickerController
-    //        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-    //         let imageData = UIImageJPEGRepresentation(originalImage, 1.0)
-    //        dismiss(animated: true) {
-    //
-    //            self.userProfilePicImaveView.image = UIImage(data: imageData!)
-    //
-    //
-    //        }
+    // Get the image captured by the UIImagePickerController
+    let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+    let imageData = UIImageJPEGRepresentation(originalImage, 1.0)
+    dismiss(animated: true) {
+      
+      self.profileImageView.image = UIImage(data: imageData!)
+      
+      self.tableView.reloadData()
+    }
     
   }
   
-  /*
-   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-   
-   // Configure the cell...
-   
-   return cell
-   }
-   */
   
-  /*
-   // Override to support conditional editing of the table view.
-   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the specified item to be editable.
-   return true
-   }
-   */
+  // MARK: Google Places location search
+  func LocationSearchViewController(locationSearchViewController: LocationSearchViewController, selectedLocation: GMSPlace) {
+    // Prepopulate user location info from Google Places search.
+    // We are only interested in city, state and country.
+    if let addressLines = selectedLocation.addressComponents {
+      for field in addressLines {
+        switch field.type {
+        case kGMSPlaceTypeLocality:
+          cityTextField.text = field.name
+          
+        case kGMSPlaceTypeAdministrativeAreaLevel1:
+          stateTextField.text = field.name
+          
+        case kGMSPlaceTypeCountry:
+          countryTextField.text = field.name
+        default:
+          print("Type: \(field.type), Name: \(field.name)")
+        }
+      }
+    }
+  }
   
-  /*
-   // Override to support editing the table view.
-   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-   if editingStyle == .delete {
-   // Delete the row from the data source
-   tableView.deleteRows(at: [indexPath], with: .fade)
-   } else if editingStyle == .insert {
-   // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-   }
-   }
-   */
+  // MARK: - Navigation
   
-  /*
-   // Override to support rearranging the table view.
-   override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-   
-   }
-   */
-  
-  /*
-   // Override to support conditional rearranging of the table view.
-   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the item to be re-orderable.
-   return true
-   }
-   */
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // User will select a location to which can update the location in the form.
+    let locationSearchVC = segue.destination as! LocationSearchViewController
+    locationSearchVC.delegate = self
+  }
 }

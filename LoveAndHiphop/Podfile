@@ -11,5 +11,6 @@ target 'LoveAndHiphop' do
   pod 'FBSDKCoreKit'
   pod 'ParseFacebookUtilsV4'
   pod 'SwiftyGif'
+  pod 'GooglePlaces'
 
 end

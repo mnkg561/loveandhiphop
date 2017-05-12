@@ -84,7 +84,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         //Find the current user's gender and interested_gender
         self.currentUserObjectId = PFUser.current()!.objectId!
         self.currentUserGender = PFUser.current()!.object(forKey: "gender") as! String?
-        self.currentUserInterestedGender = PFUser.current()?.object(forKey: "interested_gender") as! String?
+        self.currentUserInterestedGender = PFUser.current()?.object(forKey: "genderPreference") as! String?
         print("Gender: \(currentUserGender)")
         print("Interested Gender: \(currentUserInterestedGender)")
         print("Object Id: \(currentUserObjectId)")
