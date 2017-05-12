@@ -34,6 +34,7 @@
 		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
 		ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1153C1EBBE61700911786 /* FBViewController.swift */; };
 		ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA1153D1EBBE61700911786 /* FBViewController.xib */; };
+		ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */; };
 		ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */; };
 		ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD7102A1EBFA71B00E302B5 /* User.storyboard */; };
 		ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */; };
@@ -73,6 +74,7 @@
 		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
 		ABA1153C1EBBE61700911786 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBViewController.swift; sourceTree = "<group>"; };
 		ABA1153D1EBBE61700911786 /* FBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBViewController.xib; sourceTree = "<group>"; };
+		ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
 		ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignupTableViewController.swift; sourceTree = "<group>"; };
 		ABD7102A1EBFA71B00E302B5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */,
 				22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */,
 				22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */,
+				ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
 				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
 				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
+				ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */,
 				22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */,
 				225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */,
 				225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */,

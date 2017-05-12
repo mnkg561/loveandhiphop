@@ -102,10 +102,20 @@ class MembershipQuizTableViewController: UITableViewController {
     
     if userFactAnswer == factRightAnswer || userMultipleChoiceAnswer == multipleChoiceRightAnswer {
       print("YOU PASSED HORRAY!!!!!!!!!!!!!!")
-      let fbVC = FBViewController(nibName: "FBViewController", bundle: nil)
-      show(fbVC, sender: self)
+      
+      // Modal Showing they passed and login to facebook button
+      let resultsVC = storyboard?.instantiateViewController(withIdentifier: "QuizResultsViewController") as! QuizResultsViewController
+      let passQuizView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+      passQuizView.backgroundColor = UIColor.orange
+      resultsVC.view = passQuizView
+//      resultsVC.contentView = passQuizView
+      show(resultsVC, sender: self)
+//      let fbVC = FBViewController(nibName: "FBViewController", bundle: nil)
+//      show(fbVC, sender: self)
     } else {
       print("Oh fudge! No worries you can take the quiz as many times as you like.")
+      
+      // Same Modal showing failed and cancel button to go back
       loadQuiz()
     }
     
