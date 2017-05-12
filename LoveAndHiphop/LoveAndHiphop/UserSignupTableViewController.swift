@@ -122,6 +122,20 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     if PFUser.current() != nil {
       let currentUser = PFUser.current()!
       
+      // Request current user location
+      PFGeoPoint.geoPointForCurrentLocation(inBackground: { (geoPoint: PFGeoPoint?, error: Error?) in
+        if error == nil {
+          if let geoPoint = geoPoint {
+            currentUser.setObject(geoPoint, forKey: "currentLocation")
+            currentUser.saveInBackground()
+          } else {
+            print("No geoPoint received")
+          }
+        } else {
+          print("Error retrieving users current location, error: \(error)")
+        }
+      })
+      
       // MARK: User Personal Attributes
       let firstName = self.firstNameTextField.text!
       let lastName = self.lastNameTextField.text!
@@ -131,6 +145,9 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       let occupation = self.occupationTextField.text!
       let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
       let hiphopIdentity = self.hipHopIdentities[hipHopIdentityIndex]
+      let city = self.cityTextField.text!
+      let state = self.stateTextField.text!
+      let country = self.countryTextField.text!
       let about = self.aboutTextView.text!
       
       // Profile Image
@@ -144,7 +161,10 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
       let genderPreference = self.genders[genderPreferenceIndex]
       
-      currentUser.setValuesForKeys(["firstName" : firstName, "lastName": lastName, "age": age, "gender": gender, "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about, "profilePicImage": image, "genderPreference": genderPreference])
+      currentUser.setValuesForKeys(["firstName" : firstName, "lastName": lastName, "age": age, "gender": gender,
+                                    "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about,
+                                    "profilePicImage": image, "genderPreference": genderPreference, "city": city,
+                                    "state": state, "country": country])
       
       currentUser.saveInBackground(block: { (success: Bool, error: Error?) in
         if (success) {
@@ -159,7 +179,7 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
           self.show(matchesVC, sender: self)
         } else {
-          print("unable to save the data into user class")
+          print("Unable to save the data into user class, error: \(error?.localizedDescription)")
         }
         
       })

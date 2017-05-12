@@ -91,11 +91,10 @@ class FBViewController: UIViewController {
                       print("Error getting profile url from facebook \(error)")
                     }
                     if let data = data {
-                      
-                      let picture = PFFile(data: data)! as PFFile
-                      PFUser.current()?.setObject(picture, forKey: "profileImage")
-                      user["profileImage"] = picture
-                      
+                      let extensionString: String = ".jpg"
+                      let imageFile = PFFile(name:"profileImage" + extensionString, data:data)
+                      let image = imageFile!
+                      PFUser.current()?.setObject(image, forKey: "profilePicImage")
                     }
                     else {
                       print("Error: \(error?.localizedDescription)")
