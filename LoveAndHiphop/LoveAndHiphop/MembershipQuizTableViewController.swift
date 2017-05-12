@@ -81,7 +81,7 @@ class MembershipQuizTableViewController: UITableViewController {
             let answer2 = question[2] as? String
             let answer3 = question[3] as? String
             let answer4 = question[4] as? String
-            self.multipleChoiceRightAnswer = question[1] as? String
+            self.multipleChoiceRightAnswer = question[5] as? String
             self.question2Label.text = question[0] as? String
             self.multipleChoiceControl.setTitle(answer1, forSegmentAt: 0)
             self.multipleChoiceControl.setTitle(answer2, forSegmentAt: 1)
@@ -99,7 +99,6 @@ class MembershipQuizTableViewController: UITableViewController {
     
     let userFactAnswer = String(describing: trueFalseControl.selectedSegmentIndex)
     let userMultipleChoiceAnswer = String(describing: multipleChoiceControl.selectedSegmentIndex)
-    
     if userFactAnswer == factRightAnswer || userMultipleChoiceAnswer == multipleChoiceRightAnswer {
       print("YOU PASSED HORRAY!!!!!!!!!!!!!!")
       

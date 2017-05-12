@@ -115,7 +115,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
         // Save message to parse
         let newMessage = PFObject(className: "Message")
         newMessage["text"] = text
-        newMessage["user"] = PFUser.current() as AnyObject
+        newMessage["user"] = PFUser.current()
         newMessage.saveInBackground(block: { (success: Bool, error: Error?) in
           if success {
             // Reset text field and hide keyboard
@@ -140,6 +140,8 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
   
   func addToTable(_ newMessage: PFObject) {
     self.messages?.insert(newMessage, at: 0)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageCell") as! ChatMessageCell
+    cell.message = newMessage
     self.tableView.beginUpdates()
     self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
     self.tableView.endUpdates()
@@ -226,7 +228,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     // Get the image captured by the UIImagePickerController
     let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-    let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+//    let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
     
     // Do something with the images (based on your use case)
     print("GOT AN IMAGE, \(originalImage)")

@@ -4,25 +4,25 @@
 ## User Stories
 
 
-- [ ] Become A Member
-   - [ ] To become a member user must pass the Hiphop quiz. Show HipHop Quiz along with Intro of the app on the first page for
+- [X] Become A Member
+   - [X] To become a member user must pass the Hiphop quiz. Show HipHop Quiz along with Intro of the app on the first page for
          unregistered users.
-   - [ ] If user passes quiz, Show the "Login with Facebook" option.
-   - [ ] Once user redirected back from facebook after succesful authentication, show the all the registration fields with              pre-filled data and allow users to update the information. Once user clicks on update/Agree button insert/update the          information in Parse Server.
+   - [X] If user passes quiz, Show the "Login with Facebook" option.
+   - [X] Once user redirected back from facebook after succesful authentication, show the all the registration fields with              pre-filled data and allow users to update the information. Once user clicks on update/Agree button insert/update the          information in Parse Server.
    
-- [ ] Tab Bar options on Users Home screen  
-- [ ] Date/Flirt/Matches
+- [X] Tab Bar options on Users Home screen  
+- [-] Date/Flirt/Matches
    - [ ] If user has a valid session, Display all the potential matches according to Match criteria.
    - [ ] Provide the basic info in the main page like Name, Age, Location, Top Hip hop liked songs.
    - [ ] Allow users to send a friend(??) requests to potential matches.
    - [ ] if both the users mutually like then show the email id on the screen.
-- [ ] Open Chat
-   - [ ] Implement a discussion board or open chat using Parse and allow all the users to have interaction open discussions
-- [ ] View current trends in fashion, automotive, etc
-   - [ ] An admin controlled static page with all the top trends in fashion, automative etc
-- [ ] Listen and rate new music
-   - [ ] Top 10 playlist of the week from Hip Hop world and allow users to play
-   - [ ] Top listener view can show the top users who are listening this song with "Number of times played" count
+- [X] Open Chat
+   - [X] Implement a discussion board or open chat using Parse and allow all the users to have interaction open discussions
+- [X] View current trends in fashion, automotive, etc
+   - [X] An admin controlled static page with all the top trends in fashion, automative etc
+- [-] Listen and rate new music
+   - [-] Top 10 playlist of the week from Hip Hop world and allow users to play
+   - [X] Top listener view can show the top users who are listening this song with "Number of times played" count
 
 The following **optional** features are implemented:
 
@@ -48,7 +48,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://cloud.githubusercontent.com/assets/13710170/25353491/3ffa2596-28e4-11e7-9574-6e45fec9efe5.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://cloud.githubusercontent.com/assets/13710170/25791699/e372856e-3376-11e7-9e16-318720610de4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

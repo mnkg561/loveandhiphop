@@ -32,12 +32,14 @@ PODS:
     - FBSDKLoginKit (~> 4.10)
     - FBSDKTVOSKit (~> 4.10)
     - Parse (~> 1.12)
+  - SwiftyGif (3.0.3)
 
 DEPENDENCIES:
   - AFNetworking
   - FBSDKCoreKit
   - Parse
   - ParseFacebookUtilsV4
+  - SwiftyGif
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -46,7 +48,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
+  SwiftyGif: 89a0bb19709bdb6990e10405ad456d8bea804a65
 
-PODFILE CHECKSUM: b330d9ece6493d0151f35e162facb0327dc32c1f
+PODFILE CHECKSUM: d1c0cdbadd893ce7e88625f1ade38c67480c486d
 
 COCOAPODS: 1.2.0

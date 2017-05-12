@@ -20,19 +20,58 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     var currentUserGender: String? = nil
     var currentUserInterestedGender: String? = nil
     var currentUserObjectId: String = ""
+    var userObjects: [UserObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         //Find and set the current user's gender, interested_gender and objectId of user table
         setCurrentUserDetails()
         
+        
         //Load matches for the current user
-        loadMatchesForCurrentUser()
+        //loadMatchesForCurrentUser()
+        loadUsers()
+    }
+    
+    
+    func loadUsers(){
+        let query: PFQuery = PFUser.query()!
+        query.whereKey("gender", equalTo: PFUser.current()?.object(forKey: "genderPreference"))
+        
+        query.findObjectsInBackground { (userObjects: [PFObject]?, error: Error?) in
+            if error == nil {
+                print("i'm inside")
+                let userObjects2 = UserObject.userObjectWithArray(pfObjects: userObjects!)
+                self.userObjects = userObjects2
+                print("total \(self.userObjects?.count)")
+                self.tableView.reloadData()
+                
+            }
+        }
+        
+       
+        
+        
+    }
+    
+    //Implementing the MatchDetailedViewControllerDelegate Protocol
+    func didLikeUnlikeUser(user: PFUser, didLike: Bool) {
+        
+        if(didLike) {
+            self.likedByUsersDict[user.objectId!]?.append(self.currentUserObjectId)
+        } else {
+            if let index = likedByUsersDict[user.objectId!]?.index(of: self.currentUserObjectId) {
+                  likedByUsersDict[user.objectId!]?.remove(at: index)
+            }
+        }        
     }
     
     /**
@@ -64,7 +103,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let query: PFQuery = PFUser.query()!
         query.whereKeyExists("name")                                        // all users
         query.whereKey("objectId", notEqualTo: currentUserObjectId) // who are not current user
-        query.whereKey("gender", equalTo: currentUserInterestedGender!)// who are current user's interested gender
+//        query.whereKey("gender", equalTo: currentUserInterestedGender!)// who are current user's interested gender
         query.findObjectsInBackground{ (profileMatches: [PFObject]?, error: Error?) in
             if profileMatches != nil {
                 self.profileMatches = profileMatches as! [PFUser]?
@@ -92,11 +131,31 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //TODO: eventually return the count of the matches from the findMyMatches() method
-        return self.profileMatchesCount
+        
+        
+        if self.userObjects?.count != nil {
+            return (self.userObjects?.count)!
+        } else {
+            return 0
+        }
+    
     }
     
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
+        
+       cell.userObject = self.userObjects?[indexPath.row]
+
+        return cell
+        
+    }
+    /*
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let matchCell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
         
@@ -105,32 +164,49 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
             let name = user.object(forKey: "name")! as! String
             let age = user.object(forKey: "age")! as! String
             matchCell.nameLabel.text =  name+", "+age
-            matchCell.genderLabel.text = user.object(forKey: "gender") as! String?
+            matchCell.genderLabel.text = "Male"
             matchCell.registeredAsLabel.text = user.object(forKey: "membershipType") as! String?
             matchCell.locationLabel.text = user.object(forKey: "location") as! String?
             matchCell.topInterestLabel.text = user.object(forKey: "interested_gender")! as? String
             
             let profilePictureFile = user.object(forKey: "picture") as? PFFile
-            let pictureURL: String = profilePictureFile!.url!
-            let profilePictureURL = URL(string: pictureURL)
-            matchCell.matchProfilePic.setImageWith(profilePictureURL!)
+            if profilePictureFile != nil {
+              let pictureURL: String = profilePictureFile!.url!
+              let profilePictureURL = URL(string: pictureURL)
+              matchCell.matchProfilePic.setImageWith(profilePictureURL!)
+            }
         }
         
         return matchCell
         
     }
     
+ */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! MatchDetailedViewController
+//        let vc = segue.destination as! MatchDetailedViewController
+//        let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
+//        let user = profileMatches?[(indexPath?.row)!]
+//        vc.user = user
+//        vc.likedByUsers = self.likedByUsersDict[(user?.objectId!)!]
+//        vc.delegate = self
+        
+        
+        
+        print(" Yea me too")
+        let detailViewController = segue.destination as! DetailViewController
         let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
-        let user = profileMatches?[(indexPath?.row)!]
-        vc.user = user
-        vc.likedByUsers = self.likedByUsersDict[(user?.objectId!)!]
+        detailViewController.userObject = self.userObjects?[(indexPath?.row)!]
+
+        
     }
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("i got selected")
+ 
+    tableView.deselectRow(at: indexPath, animated: true)
         
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

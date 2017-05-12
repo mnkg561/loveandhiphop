@@ -24,7 +24,7 @@ class FBViewController: UIViewController {
   func loadFBData() {
     
     var savedFBProfileData = true
-    let requestParameters = ["fields": "id, email, first_name, last_name"]
+    let requestParameters = ["fields": "id, email, first_name, last_name, gender"]
     
     let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: requestParameters)
     
@@ -93,8 +93,8 @@ class FBViewController: UIViewController {
                     if let data = data {
                       
                       let picture = PFFile(data: data)! as PFFile
-                      PFUser.current()?.setObject(picture, forKey: "profilePic")
-                      user["profilePic"] = picture
+                      PFUser.current()?.setObject(picture, forKey: "profileImage")
+                      user["profileImage"] = picture
                       
                     }
                     else {
@@ -129,9 +129,7 @@ class FBViewController: UIViewController {
       if let user = user {
         if user.isNew {
           print("User signed up and logged in through Facebook!")
-        } else {
-          print("User logged in through Facebook!")
-        }
+        
         
         // Get user FB basic data
         self.loadFBData()
@@ -140,6 +138,16 @@ class FBViewController: UIViewController {
         let storyboard = UIStoryboard.init(name: "User", bundle: nil)
         let userSignUpVC = storyboard.instantiateViewController(withIdentifier: "UserSignupTableViewController") as! UserSignupTableViewController
         self.show(userSignUpVC, sender: self)
+        } else {
+            print("User logged in through Facebook!")
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+            
+            // After update user can't go back to profile set up section
+            matchesVC.navigationItem.hidesBackButton = true
+            matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
+            self.show(matchesVC, sender: self)
+        }
       } else {
         print("Uh oh. The user cancelled the Facebook login.")
       }
