@@ -96,64 +96,32 @@ class MembershipQuizTableViewController: UITableViewController {
   @IBAction func onSubmitQuiz(_ sender: Any) {
     
     //Grade users test
-    
     let userFactAnswer = String(describing: trueFalseControl.selectedSegmentIndex)
     let userMultipleChoiceAnswer = String(describing: multipleChoiceControl.selectedSegmentIndex)
+    
+    // Prepare results view controller custom result views
+    let resultsVC = storyboard?.instantiateViewController(withIdentifier: "QuizResultsViewController") as! QuizResultsViewController
+   
+    let passQuizViewNib = UINib(nibName: "PassQuizView", bundle: nil)
+    let passQuizView = passQuizViewNib.instantiate(withOwner: resultsVC, options: nil)[0] as! UIView
+    resultsVC.view.addSubview(passQuizView)
+    
+    let failQuizViewNib = UINib(nibName: "FailQuizView", bundle: nil)
+    let failQuizView = failQuizViewNib.instantiate(withOwner: "QuizResultsViewController", options: nil)[0] as! UIView
+    resultsVC.view.addSubview(failQuizView)
+    
+    // Passing grade users sent to login with Facebook, else
+    // quiz is reloaded.
     if userFactAnswer == factRightAnswer || userMultipleChoiceAnswer == multipleChoiceRightAnswer {
-      print("YOU PASSED HORRAY!!!!!!!!!!!!!!")
-      let fbVC = FBViewController(nibName: "FBViewController", bundle: nil)
-      show(fbVC, sender: self)
+      resultsVC.view.bringSubview(toFront: passQuizView)
+      show(resultsVC, sender: nil)
     } else {
-      print("Oh fudge! No worries you can take the quiz as many times as you like.")
-      loadQuiz()
+      present(resultsVC, animated: true, completion: {
+        self.loadQuiz()
+      })
     }
     
   }
-  
-  /*
-   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-   
-   // Configure the cell...
-   
-   return cell
-   }
-   */
-  
-  /*
-   // Override to support conditional editing of the table view.
-   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the specified item to be editable.
-   return true
-   }
-   */
-  
-  /*
-   // Override to support editing the table view.
-   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-   if editingStyle == .delete {
-   // Delete the row from the data source
-   tableView.deleteRows(at: [indexPath], with: .fade)
-   } else if editingStyle == .insert {
-   // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-   }
-   }
-   */
-  
-  /*
-   // Override to support rearranging the table view.
-   override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-   
-   }
-   */
-  
-  /*
-   // Override to support conditional rearranging of the table view.
-   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the item to be re-orderable.
-   return true
-   }
-   */
   
   /*
    // MARK: - Navigation

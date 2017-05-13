@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FBViewController" customModule="LoveAndHiphop" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="i5M-Pr-FkT" id="wMJ-Iw-kXh"/>
+                <outlet property="loginFBButton" destination="Kk5-dM-ex3" id="RqD-Mt-tOF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,12 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kk5-dM-ex3">
-                    <rect key="frame" x="112" y="296" width="150" height="74"/>
-                    <color key="backgroundColor" red="0.28800152529547107" green="0.52057105240522294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="83" y="312" width="209" height="42"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.70884542785234905" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="150" id="TDh-tl-h4u"/>
-                        <constraint firstAttribute="height" constant="74" id="z3J-jD-FNO"/>
+                        <constraint firstAttribute="width" constant="209" id="TDh-tl-h4u"/>
+                        <constraint firstAttribute="height" constant="42" id="z3J-jD-FNO"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                     <state key="normal" title="Login With Facebook">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

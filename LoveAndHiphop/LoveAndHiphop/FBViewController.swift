@@ -12,12 +12,11 @@ import ParseFacebookUtilsV4
 
 class FBViewController: UIViewController {
   @IBOutlet var contentView: UIView!
-  
+  @IBOutlet weak var loginFBButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
+    loginFBButton.layer.cornerRadius = 4
   }
   
   // MARK: User Facebook Profile Data
@@ -141,7 +140,6 @@ class FBViewController: UIViewController {
             print("User logged in through Facebook!")
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-            
             // After update user can't go back to profile set up section
             matchesVC.navigationItem.hidesBackButton = true
             matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
