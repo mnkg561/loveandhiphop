@@ -19,11 +19,11 @@ class ChatMessageCell: UITableViewCell {
   var message: PFObject! {
     didSet {
       chatMessageText.text = message["text"] as? String
-      let postingUser = message["user"] as! PFObject
+      let postingUser = message["createdBy"] as! PFUser
       nameLabel.text = postingUser["firstName"] as? String
       
       // Load profile image
-      if let postingUserProfileImage = postingUser["profileImage"] as? PFFile {
+      if let postingUserProfileImage = postingUser["profilePicImage"] as? PFFile {
         postingUserProfileImage.getDataInBackground(block: { (data: Data?, error: Error?) in
           if (error == nil) {
             self.messageOwnerImageView.image = UIImage(data: data!)
