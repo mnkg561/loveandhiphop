@@ -50,6 +50,8 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>To help you find matches</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Find matches near you</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To help you find matches</string>
 	<key>UILaunchStoryboardName</key>

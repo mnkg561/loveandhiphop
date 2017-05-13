@@ -14,6 +14,7 @@ class UserObject: PFObject, PFSubclassing {
     var firstName: String?
     var lastName: String?
     var age: Int?
+    var gender: String?
     var occupation: String?
     var email: String?
     var about: String?
@@ -40,6 +41,7 @@ class UserObject: PFObject, PFSubclassing {
         lastName = pfObject["lastName"] as? String
         fullName = firstName!+space+lastName!
         //age = pfObject["age"] as? Int
+        gender = pfObject["gender"] as? String
         occupation = pfObject["occupation"] as? String
         email = pfObject["email"] as? String
         about = pfObject["about"] as? String
