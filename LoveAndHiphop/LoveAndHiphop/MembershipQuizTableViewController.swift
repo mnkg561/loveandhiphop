@@ -64,25 +64,25 @@ class MembershipQuizTableViewController: UITableViewController {
       } else {
         
         for quiz in quizzes! {
-          let question = quiz["question"] as! Array<Any>
+          let question = quiz["question"] as! Array<String>
           let questionType = quiz["type"] as! String
           
           if questionType == "fact" {
             self.trueFalseControl.selectedSegmentIndex = -1
-            self.question1Label.text = question[0] as? String
+            self.question1Label.text = question[0]
             self.trueFalseControl.setTitle("True", forSegmentAt: 0)
             self.trueFalseControl.setTitle("False", forSegmentAt: 1)
-            self.factRightAnswer = question[1] as? String
+            self.factRightAnswer = question[1]
           }
           
           if questionType == "multiple" {
             self.multipleChoiceControl.selectedSegmentIndex = -1
-            let answer1 = question[1] as? String
-            let answer2 = question[2] as? String
-            let answer3 = question[3] as? String
-            let answer4 = question[4] as? String
-            self.multipleChoiceRightAnswer = question[5] as? String
-            self.question2Label.text = question[0] as? String
+            let answer1 = question[1]
+            let answer2 = question[2]
+            let answer3 = question[3]
+            let answer4 = question[4]
+            self.multipleChoiceRightAnswer = question[5]
+            self.question2Label.text = question[0]
             self.multipleChoiceControl.setTitle(answer1, forSegmentAt: 0)
             self.multipleChoiceControl.setTitle(answer2, forSegmentAt: 1)
             self.multipleChoiceControl.setTitle(answer3, forSegmentAt: 2)
