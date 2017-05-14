@@ -15,6 +15,8 @@ class ChatMessageCell: UITableViewCell {
   @IBOutlet weak var chatMessageText: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var messageOwnerImageView: UIImageView!
+  @IBOutlet weak var cellContentView: UIView!
+  
   
   var message: PFObject! {
     didSet {
@@ -35,10 +37,16 @@ class ChatMessageCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
     chatMessageText.sizeToFit()
     chatMessageText.layoutIfNeeded()
+    chatMessageText.layer.cornerRadius = 15
+    
     messageOwnerImageView.image = #imageLiteral(resourceName: "Selfie-50")
+    messageOwnerImageView.layer.cornerRadius = 20
+    
+    contentView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+    contentView.layer.borderWidth = 7
+    contentView.layer.cornerRadius = 15
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

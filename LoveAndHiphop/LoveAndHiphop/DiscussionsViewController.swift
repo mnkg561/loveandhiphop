@@ -69,7 +69,6 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageCell", for: indexPath) as! ChatMessageCell
     cell.message = messages?[indexPath.row]
-    
     return cell
   }
   
@@ -110,7 +109,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
         let newMessage = PFObject(className: "Message")
         let createdBy = PFUser.current()
         newMessage.setValuesForKeys(["createdBy": createdBy!, "text": text])
-
+        
         newMessage.saveInBackground(block: { (success: Bool, error: Error?) in
           if success {
             // Reset text field and hide keyboard
@@ -223,7 +222,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     // Get the image captured by the UIImagePickerController
     let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-//    let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+    //    let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
     
     // Do something with the images (based on your use case)
     print("GOT AN IMAGE, \(originalImage)")
