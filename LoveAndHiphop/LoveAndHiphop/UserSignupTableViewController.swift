@@ -93,7 +93,7 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           }
           
           // Load profile image
-          if let profileImage = user["profileImage"] as? PFFile {
+          if let profileImage = user["profilePicImage"] as? PFFile {
             profileImage.getDataInBackground(block: { (data: Data?, error: Error?) in
               if (error == nil) {
                 if let data = data {
@@ -242,6 +242,13 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       
       self.profileImageView.image = UIImage(data: imageData!)
       
+      // Update current user profile Image
+      let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
+      let imageName = UUID().uuidString
+      let extensionString: String = ".jpg"
+      let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
+      let image = imageFile!
+      PFUser.current()?.setObject(image, forKey: "profilePicImage")
       self.tableView.reloadData()
     }
     
