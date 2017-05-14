@@ -15,15 +15,17 @@ class ChatMessageCell: UITableViewCell {
   @IBOutlet weak var chatMessageText: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var messageOwnerImageView: UIImageView!
+  @IBOutlet weak var cellContentView: UIView!
+  
   
   var message: PFObject! {
     didSet {
       chatMessageText.text = message["text"] as? String
-      let postingUser = message["user"] as! PFObject
+      let postingUser = message["createdBy"] as! PFUser
       nameLabel.text = postingUser["firstName"] as? String
       
       // Load profile image
-      if let postingUserProfileImage = postingUser["profileImage"] as? PFFile {
+      if let postingUserProfileImage = postingUser["profilePicImage"] as? PFFile {
         postingUserProfileImage.getDataInBackground(block: { (data: Data?, error: Error?) in
           if (error == nil) {
             self.messageOwnerImageView.image = UIImage(data: data!)
@@ -35,10 +37,16 @@ class ChatMessageCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
     chatMessageText.sizeToFit()
     chatMessageText.layoutIfNeeded()
+    chatMessageText.layer.cornerRadius = 15
+    
     messageOwnerImageView.image = #imageLiteral(resourceName: "Selfie-50")
+    messageOwnerImageView.layer.cornerRadius = 20
+    
+    contentView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+    contentView.layer.borderWidth = 7
+    contentView.layer.cornerRadius = 15
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

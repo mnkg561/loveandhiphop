@@ -25,13 +25,6 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    //LOG ME IN (This is only here temporarily to allow posting to discussions
-    PFUser.logInWithUsername(inBackground: "hollywoodno", password: "password") { (user: PFUser?, error: Error?) in
-      if user != nil {
-      } else {
-        print("Error logging hollywoodno in, error: \(error?.localizedDescription)")
-      }
-    }
     // Set up timer to fetch new messages
     Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
     
@@ -76,7 +69,6 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageCell", for: indexPath) as! ChatMessageCell
     cell.message = messages?[indexPath.row]
-    
     return cell
   }
   
@@ -112,10 +104,12 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
   func ComposeCell(composeCell: ComposeCell, didTapSend value: Bool) {
     if let text = composeCell.composeText.text {
       if text != "" {
+        
         // Save message to parse
         let newMessage = PFObject(className: "Message")
-        newMessage["text"] = text
-        newMessage["user"] = PFUser.current()
+        let createdBy = PFUser.current()
+        newMessage.setValuesForKeys(["createdBy": createdBy!, "text": text])
+        
         newMessage.saveInBackground(block: { (success: Bool, error: Error?) in
           if success {
             // Reset text field and hide keyboard
@@ -132,12 +126,6 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
   }
   
-  func onTimer() {
-    // Update messages
-    print("FETCHING SOME DATA!")
-    getMessages()
-  }
-  
   func addToTable(_ newMessage: PFObject) {
     self.messages?.insert(newMessage, at: 0)
     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageCell") as! ChatMessageCell
@@ -150,7 +138,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
   func getMessages() {
     let query = PFQuery(className: "Message")
     query.order(byDescending: "createdAt")
-    query.includeKey("user")
+    query.includeKey("createdBy")
     
     query.findObjectsInBackground { (messages: [PFObject]?, error: Error?) in
       if error == nil {
@@ -160,6 +148,12 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
         print("Error getting messages from Parse, error: \(error?.localizedDescription)")
       }
     }
+  }
+  
+  func onTimer() {
+    // Update messages.
+    print("FETCHING SOME DATA!")
+    getMessages()
   }
   
   func onTap(_ sender: UITapGestureRecognizer) {
@@ -228,7 +222,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     // Get the image captured by the UIImagePickerController
     let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-//    let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+    //    let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
     
     // Do something with the images (based on your use case)
     print("GOT AN IMAGE, \(originalImage)")
