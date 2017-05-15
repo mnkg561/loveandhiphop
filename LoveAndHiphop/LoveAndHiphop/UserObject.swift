@@ -20,8 +20,6 @@ class UserObject: PFObject, PFSubclassing {
     var about: String?
     var intrestedIn: String?
     var hiphopIdentity: String?
-    var height: Int?
-    var weight: Int?
     var city: String?
     var state: String?
     var country: String?
@@ -31,8 +29,8 @@ class UserObject: PFObject, PFSubclassing {
     var fullName: String?
     var userObjectId: String?
     var location: String?
+    var cancelledMatches: [String]?
     var space: String = " "
-    
     
     
     init(pfObject: PFObject) {
@@ -47,8 +45,6 @@ class UserObject: PFObject, PFSubclassing {
         about = pfObject["about"] as? String
         intrestedIn = pfObject["genderPreference"] as? String
         hiphopIdentity = pfObject["hiphopIdentity"] as? String
-        //height = pfObject["height"] as? Int
-       // weight = pfObject["weight"] as? Int
         city = pfObject["city"] as? String
         state = pfObject["state"] as? String
         
@@ -64,6 +60,8 @@ class UserObject: PFObject, PFSubclassing {
         profileImageFile = pfObject["profilePicImage"] as? PFFile
         let profileImageFileURL: String = profileImageFile!.url!
         profileImageUrl = URL(string: profileImageFileURL)
+
+        cancelledMatches = pfObject["cancelledMatches"] as? [String]
         super.init()
     }
     
