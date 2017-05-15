@@ -20,9 +20,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.22.0):
+  - FBSDKCoreKit (4.22.1):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.22.0):
+  - FBSDKLoginKit (4.22.1):
     - FBSDKCoreKit
   - GoogleMaps/Base (2.2.0)
   - GooglePlaces (2.2.0):
@@ -48,8 +48,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: c693bad19feb225469eeff14452ba364522ee48b
-  FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
+  FBSDKCoreKit: 9c2daf0162214d6d2e21cf8208a9c6c2a2e42b9c
+  FBSDKLoginKit: 00cf28916b9f0169763a3d61985d745b579fe304
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e

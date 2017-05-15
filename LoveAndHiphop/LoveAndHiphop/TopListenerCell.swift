@@ -15,6 +15,8 @@ class TopListenerCell: UITableViewCell {
 
     @IBOutlet weak var countLabel: UILabel!
     
+    var userObject: UserObject?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

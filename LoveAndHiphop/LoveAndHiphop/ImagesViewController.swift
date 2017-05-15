@@ -29,9 +29,9 @@ class ImagesViewController: UIViewController, UIScrollViewDelegate {
         
         index = indexPath!.row
         mainScrollView.delegate = self
-        mainScrollView.frame = view.frame
-        mainScrollView.maximumZoomScale = 5.0
-        mainScrollView.minimumZoomScale = 0.5
+        //mainScrollView.frame = view.frame
+        //mainScrollView.maximumZoomScale = 5.0
+       // mainScrollView.minimumZoomScale = 0.5
         
         index = indexPath!.row
   

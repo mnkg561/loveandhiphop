@@ -13,10 +13,14 @@ class TopListenerObject: PFObject, PFSubclassing {
     
     var userId: String?
     var playedCount: Int?
+    var listenerUserId: String?
+    var listenerName: String?
     
     init(pfObject: PFObject){
         userId = pfObject["userId"] as? String
         playedCount = pfObject["played_count"] as? Int
+        listenerUserId = pfObject["listener_userid"] as? String
+        listenerName = pfObject["listener_name"] as? String
         super.init()
     }
     

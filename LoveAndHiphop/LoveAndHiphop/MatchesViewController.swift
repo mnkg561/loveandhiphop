@@ -35,11 +35,14 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     //Find and set the current user's gender, interested_gender and objectId of user table
     setCurrentUserDetails()
     
+    
+    
     //Load matches for the current user
     //loadMatchesForCurrentUser()
     loadUsers()
   }
-  
+    
+
   
   func loadUsers(){
     let currentUser = PFUser.current()

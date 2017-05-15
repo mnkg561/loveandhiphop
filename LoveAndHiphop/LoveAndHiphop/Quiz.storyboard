@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H5K-m2-V8F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X77-WB-5WR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,7 +24,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ycL-mm-Wrf" id="U7P-QS-GLW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HipHop Quiz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0v5-aF-Nqp">
@@ -50,7 +50,7 @@
                                         <rect key="frame" x="0.0" y="135" width="375" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pGu-gW-tiC" id="di3-Bf-RLg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A quick fun membership quiz to bring you up-to-date with HipHop." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POT-EP-xtP">
@@ -80,7 +80,7 @@
                                         <rect key="frame" x="0.0" y="298" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NCs-ff-QXi" id="ZqU-UK-dcr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snoop Dog is known for founding Beats audio." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIG-Tk-HSS">
@@ -103,7 +103,7 @@
                                         <rect key="frame" x="0.0" y="386" width="375" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Vh-vh-hTP" id="IIv-cc-WWN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="BVV-cc-9wK">
@@ -128,10 +128,10 @@
                             <tableViewSection headerTitle="MUSIC TRENDS" footerTitle="" id="zI7-gy-Ejx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="kjR-0t-Oa7">
-                                        <rect key="frame" x="0.0" y="487" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="486.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kjR-0t-Oa7" id="dul-6t-raI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which rap artist popularized autotune in hiphop?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRU-hi-Lrj">
@@ -153,10 +153,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="42" id="8oO-jz-M9k">
-                                        <rect key="frame" x="0.0" y="531" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="530.5" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8oO-jz-M9k" id="Rxw-gG-Y32">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="7k1-RI-M5X">
@@ -182,10 +182,10 @@
                             <tableViewSection id="KNm-Wb-mFh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cdS-yu-yHZ">
-                                        <rect key="frame" x="0.0" y="609" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="608.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cdS-yu-yHZ" id="cg4-Cz-7h3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDN-vL-uuX">
@@ -221,7 +221,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odo-f8-PaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="8DV-Bm-4WZ"/>
             </objects>
-            <point key="canvasLocation" x="-2082.4000000000001" y="707.49625187406298"/>
+            <point key="canvasLocation" x="-1962" y="707"/>
         </scene>
         <!--Quiz Results View Controller-->
         <scene sceneID="7am-on-OjH">
@@ -239,7 +239,78 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GVe-u5-T1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1416.8" y="712.89355322338838"/>
+            <point key="canvasLocation" x="-1239" y="707"/>
+        </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="qOV-Qq-nWK">
+            <objects>
+                <viewController storyboardIdentifier="IntroViewController" id="X77-WB-5WR" customClass="IntroViewController" customModule="LoveAndHiphop" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gAX-qB-diR"/>
+                        <viewControllerLayoutGuide type="bottom" id="zmk-XQ-I3x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="POn-Rc-0NQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-Xz-JNe">
+                                <rect key="frame" x="0.0" y="86" width="375" height="508"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="DZX-1s-9CY"/>
+                                    <constraint firstAttribute="height" constant="508" id="Miu-gG-3ok"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojM-bc-KNP">
+                                <rect key="frame" x="268" y="28" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AeB-HC-Uhj"/>
+                                    <constraint firstAttribute="width" constant="50" id="BQ0-wj-jWo"/>
+                                </constraints>
+                                <state key="normal" image="Init_Pause"/>
+                                <connections>
+                                    <action selector="onTapPauseButton:" destination="X77-WB-5WR" eventType="touchUpInside" id="zk7-Tf-hXd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGk-ee-K0W">
+                                <rect key="frame" x="268" y="609" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="VUJ-Fm-vKS"/>
+                                    <constraint firstAttribute="width" constant="50" id="tk7-H7-DXl"/>
+                                </constraints>
+                                <state key="normal" image="Circled Right 2 Filled-50"/>
+                                <connections>
+                                    <action selector="onTapNextButton:" destination="X77-WB-5WR" eventType="touchUpInside" id="9eY-oM-f6q"/>
+                                    <segue destination="H5K-m2-V8F" kind="show" id="Lz6-Tc-YCN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zmk-XQ-I3x" firstAttribute="top" secondItem="QGk-ee-K0W" secondAttribute="bottom" constant="8" id="3pm-4e-tFC"/>
+                            <constraint firstAttribute="trailing" secondItem="q2C-Xz-JNe" secondAttribute="trailing" id="3rj-EX-qWY"/>
+                            <constraint firstItem="q2C-Xz-JNe" firstAttribute="top" secondItem="POn-Rc-0NQ" secondAttribute="top" constant="86" id="843-Yu-Q3g"/>
+                            <constraint firstItem="ojM-bc-KNP" firstAttribute="top" secondItem="gAX-qB-diR" secondAttribute="bottom" constant="8" id="8ck-16-Vep"/>
+                            <constraint firstItem="QGk-ee-K0W" firstAttribute="top" secondItem="q2C-Xz-JNe" secondAttribute="bottom" constant="15" id="BH2-q3-aJa"/>
+                            <constraint firstItem="q2C-Xz-JNe" firstAttribute="leading" secondItem="POn-Rc-0NQ" secondAttribute="leading" id="DCj-9f-cah"/>
+                            <constraint firstAttribute="trailing" secondItem="ojM-bc-KNP" secondAttribute="trailing" constant="57" id="Jkn-Tt-bQ7"/>
+                            <constraint firstItem="q2C-Xz-JNe" firstAttribute="top" secondItem="ojM-bc-KNP" secondAttribute="bottom" constant="8" id="Sw0-iB-asc"/>
+                            <constraint firstItem="zmk-XQ-I3x" firstAttribute="top" secondItem="q2C-Xz-JNe" secondAttribute="bottom" constant="73" id="T0z-Rf-d1c"/>
+                            <constraint firstAttribute="trailing" secondItem="QGk-ee-K0W" secondAttribute="trailing" constant="57" id="zUb-mk-OFh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animatedImageView" destination="q2C-Xz-JNe" id="ENh-Kt-XrA"/>
+                        <outlet property="playButton" destination="ojM-bc-KNP" id="oxk-dJ-fdW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bfH-Ll-7WN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2772" y="706.59670164917543"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circled Right 2 Filled-50" width="50" height="50"/>
+        <image name="Init_Pause" width="50" height="50"/>
+    </resources>
 </document>
