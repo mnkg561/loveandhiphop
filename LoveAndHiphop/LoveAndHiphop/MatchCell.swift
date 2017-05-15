@@ -10,7 +10,7 @@ import UIKit
 import SwiftyGif
 
 protocol MatchCellDelegate: class {
-    func onLikeClicked (user: UserObject)
+    func onLikeClicked (selectedUserObject: UserObject)
     func onCancelClicked (cancelledUserObject: UserObject)
 
 }
@@ -35,10 +35,21 @@ class MatchCell: UITableViewCell {
             occupationLabel.text = userObject.occupation
             hiphopIdentityLabel.text = userObject.hiphopIdentity
             nameLabel.text = userObject.fullName
-           
-          
         }
     }
+    
+//    var likedByUsers: [String] {
+//        if let likedByUsers = likedByUsers {
+//            if likedByUsers.contains((PFUser.current()?.objectId!)!) {
+//                likeUnlikeImageView.setImage(UIImage(named: "Heart-Liked"), for: UIControlState.normal)
+//            } else {
+//                likeUnlikeImageView.setImage(UIImage(named: "Heart-Unliked"), for: UIControlState.normal)
+//            }
+//        }
+//    }
+    
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -53,7 +64,7 @@ class MatchCell: UITableViewCell {
     
     @IBAction func onClickLikeButton(_ sender: UIButton) {
         print("somebody clicked like/unlike in cell")
-        delegate?.onLikeClicked(user: userObject)
+        delegate?.onLikeClicked(selectedUserObject: userObject)
 
     }
 

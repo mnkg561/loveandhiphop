@@ -166,25 +166,24 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
 
 
-    func onLikeClicked (user: UserObject) {
+    func onLikeClicked (selectedUserObject: UserObject) {
         print("User has clicked like/unlike in Matches View Controller")
-        //        let selectedUserObjectId: String = (self.userObject?.userObjectId)!
-        //        let currentUserObjectId: String = PFUser.current()!.objectId!
-        //
-        //        if let likedByUsers = likedByUsers {
-        //            if likedByUsers.contains(currentUserObjectId) {
-        //                //Unlike the match
-        //                self.removeLikedByUser(unlikedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
-        //            } else {
-        //                //Like the match
-        //                self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
-        //            }
-        //        } else {
-        //            //Like the match since the likeByUsers is nil
-        //            self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
-        //
-        //        }
-
+        
+        let selectedUserObjectId: String = (selectedUserObject.userObjectId)!
+        let currentUserObjectId: String = (self.currentUserObject?.userObjectId)!
+        
+        if let likedByUsers = likedByUsersDict[selectedUserObjectId] {
+            if likedByUsers.contains(currentUserObjectId) {
+                //Unlike the match
+                self.removeLikedByUser(unlikedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
+            } else {
+                //Like the match
+                self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
+            }
+        } else {
+            //Like the match since the likeByUsers is nil
+            self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
+        }
     }
 
 
@@ -240,6 +239,115 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     tableView.deselectRow(at: indexPath, animated: true)
     
   }
+    
+    
+    func removeLikedByUser(unlikedUserObjectId: String, likedByUserObjectId: String) {
+        
+        let query = PFQuery(className: "Like2")
+        query.whereKey("userObjectId", equalTo: unlikedUserObjectId)
+        query.findObjectsInBackground { (likeTableResults: [PFObject]?, error: Error?) in
+            
+            //This means there is just one row which is the expected case
+            if(likeTableResults?.count == 1){
+                
+                //Get the array of likedByUsers
+                let likeTableRow = likeTableResults?.first
+                var curLikedByUsers: [String] = likeTableRow?.object(forKey: "likedByUsers") as! [String]
+                
+                //Checking if the current user is already in this array of likedByUsers
+                if curLikedByUsers.contains(likedByUserObjectId) {
+                    //2. Removing the current user from the array of likedByUsers
+                    likeTableRow?.remove(likedByUserObjectId, forKey: "likedByUsers")
+                    likeTableRow?.saveInBackground(block: { (success: Bool, error: Error?) in
+                        if(success) {
+                            print("Success! Current user has been removed from likedByUsers array")
+                            //1. Remove the user from the local array as well
+                            if let index = curLikedByUsers.index(of: likedByUserObjectId) {
+                                curLikedByUsers.remove(at: index)
+                                self.likedByUsersDict[unlikedUserObjectId] = curLikedByUsers
+                                self.loadMatchesForCurrentUser()
+                            }
+                            
+                        } else {
+                            print("Error! Could not add current user to likedByUsers array")
+                            print(error)
+                        }
+                    })
+                } else {
+                    print("Sorry! The current user cannot be deleted as they are not in the likedByUsers array for this user in Parse")
+                    
+                }
+            }
+        }
+    }
+    
+    // likedByUser is the current user, likedUser is the profile of the user whose cell was clicked
+    func addLikedByUser(likedUserObjectId: String, likedByUserObjectId: String) {
+        
+        //Updating the Like in table
+        let query = PFQuery(className: "Like2")
+        query.whereKey("userObjectId", equalTo: likedUserObjectId)
+        query.findObjectsInBackground { (likeTableResults: [PFObject]?, error: Error?) in
+            
+            //This means there are no existing likes for this user
+            if (likeTableResults?.isEmpty)! {
+                
+                var likedByUsers = [String]()
+                likedByUsers.append((PFUser.current()?.objectId)!)
+                
+                //Creating a new row to map likedUser and likedByUsers array
+                let likeTable = PFObject(className:"Like2")
+                likeTable["userObjectId"] = likedUserObjectId
+                likeTable["likedByUsers"] = likedByUsers
+                likeTable.saveInBackground(block: { (succcess: Bool, error: Error?) in
+                    if(succcess) {
+                        print("Success! New row added to map likedUser and likedByUsers array")
+                        self.likedByUsersDict[likedUserObjectId] = likedByUsers
+                        self.loadMatchesForCurrentUser()
+                        
+                    } else {
+                        print("Error! Could not add new row to map likedUser and likedByUsers array")
+                        print(error)
+                    }
+                })
+            }
+            
+            //This means there is just one row which is the expected case
+            if(likeTableResults?.count == 1){
+                
+                //Get the array of likedByUsers
+                let likeTableRow = likeTableResults?.first
+                var curLikedByUsers: [String] = likeTableRow?.object(forKey: "likedByUsers") as! [String]
+                
+                //Checking if the current user is already in this array of likedByUsers
+                if !curLikedByUsers.contains(likedByUserObjectId) {
+                    curLikedByUsers.append(likedByUserObjectId)
+                    likeTableRow?.setObject(curLikedByUsers, forKey: "likedByUsers")
+                    likeTableRow?.saveInBackground(block: { (success: Bool, error: Error?) in
+                        if(success) {
+                            print("Success! Current user has been to likedByUsers array")
+                            //Adding the current user into the array of likedByUsers
+                            
+                            self.likedByUsersDict[likedUserObjectId] = curLikedByUsers
+                            self.loadMatchesForCurrentUser()
+                        
+                        } else {
+                            print("Error! Could not add current user to likedByUsers array")
+                            print(error)
+                        }
+                    })
+                    
+                } else {
+                    print("Sorry! Already liked by this user")
+                    
+                }
+                
+            }
+            
+            
+        }
+    }
+    
   
 }
 
