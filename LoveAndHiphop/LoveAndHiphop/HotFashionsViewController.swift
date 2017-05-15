@@ -145,7 +145,7 @@ class HotFashionsViewController: UIViewController,  UICollectionViewDelegate, UI
         "FashionCell", for: indexPath) as! FashionCell
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapOwnerImage(tapGesture:)))
-        cell.fashionImage.isUserInteractionEnabled = true
+        cell.fashionImage.isUserInteractionEnabled = false
         cell.fashionImage.addGestureRecognizer(tapGesture)
 
         cell.fashionImage.setImageWith((self.fashionObjects?[indexPath.row].imagUrl)!)
@@ -187,16 +187,20 @@ class HotFashionsViewController: UIViewController,  UICollectionViewDelegate, UI
         self.present(ImagesViewController, animated:true, completion:nil)
 
     }
-    /*
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         var indexPath: IndexPath!
          print("I'm inside prepare method")
         let imagePressed = sender as! FashionCell
         indexPath = collectionView.indexPath(for: imagePressed)
+        let fashionObject: FashionObject = (self.fashionObjects?[indexPath!.row])!
+        let imagesViewController = segue.destination as! ImagesViewController
         
-    
-        let DetailImageViewController = segue.destination as! UIViewController
+        let imageUrl: URL = fashionObject.imagUrl!
+        imagesViewController.testUrl = imageUrl
+        imagesViewController.fashionObjects = self.fashionObjects
+        imagesViewController.indexPath = indexPath
         
     
         
@@ -204,5 +208,5 @@ class HotFashionsViewController: UIViewController,  UICollectionViewDelegate, UI
        
         
     }
- */
+
 }

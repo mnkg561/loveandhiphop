@@ -34,6 +34,9 @@
 		22E946BC1EAFF48500DCEC74 /* HotFashionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946BB1EAFF48500DCEC74 /* HotFashionsViewController.swift */; };
 		22E946BE1EAFF4A300DCEC74 /* TopMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946BD1EAFF4A300DCEC74 /* TopMusicViewController.swift */; };
 		22E946C01EB0669700DCEC74 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E946BF1EB0669700DCEC74 /* SongCell.swift */; };
+		22ECA1CE1EC9439A00287953 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECA1CD1EC9439A00287953 /* IntroViewController.swift */; };
+		22ECA1D01EC9443300287953 /* hiphop_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 22ECA1CF1EC9443300287953 /* hiphop_gif.gif */; };
+		22ECA1D41EC9509500287953 /* Hip_Hop_Rap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22ECA1D31EC9509500287953 /* Hip_Hop_Rap.mp3 */; };
 		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
 		AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */; };
@@ -82,6 +85,9 @@
 		22E946BB1EAFF48500DCEC74 /* HotFashionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotFashionsViewController.swift; sourceTree = "<group>"; };
 		22E946BD1EAFF4A300DCEC74 /* TopMusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMusicViewController.swift; sourceTree = "<group>"; };
 		22E946BF1EB0669700DCEC74 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		22ECA1CD1EC9439A00287953 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		22ECA1CF1EC9443300287953 /* hiphop_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hiphop_gif.gif; sourceTree = "<group>"; };
+		22ECA1D31EC9509500287953 /* Hip_Hop_Rap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hip_Hop_Rap.mp3; sourceTree = "<group>"; };
 		6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.debug.xcconfig"; sourceTree = "<group>"; };
 		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
@@ -149,10 +155,12 @@
 				22E946B71EAFF3FA00DCEC74 /* View Controllers */,
 				22E946A21EAFF3CB00DCEC74 /* AppDelegate.swift */,
 				22E946AB1EAFF3CB00DCEC74 /* Assets.xcassets */,
+				22ECA1D31EC9509500287953 /* Hip_Hop_Rap.mp3 */,
 				22E946AD1EAFF3CB00DCEC74 /* LaunchScreen.storyboard */,
 				ABD7102A1EBFA71B00E302B5 /* User.storyboard */,
 				2244917C1EC3B1C9008DCA0A /* loveme_or_not_gif.gif */,
 				226A17B21EBAF6C3005ACC83 /* Main.storyboard */,
+				22ECA1CF1EC9443300287953 /* hiphop_gif.gif */,
 				224491781EC2FD15008DCA0A /* lovepath_gif.gif */,
 				22E946B01EAFF3CB00DCEC74 /* Info.plist */,
 				ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */,
@@ -181,6 +189,7 @@
 				221475001EC1935800D2F9F4 /* UserProfileViewController.swift */,
 				2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */,
 				AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */,
+				22ECA1CD1EC9439A00287953 /* IntroViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -299,6 +308,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABB95B391EC588FD00AF837D /* PassQuizView.xib in Resources */,
+				22ECA1D01EC9443300287953 /* hiphop_gif.gif in Resources */,
+				22ECA1D41EC9509500287953 /* Hip_Hop_Rap.mp3 in Resources */,
 				ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */,
 				22DBC30E1EBD3DE2002D0220 /* ComposeCell.xib in Resources */,
 				2244917D1EC3B1C9008DCA0A /* loveme_or_not_gif.gif in Resources */,
@@ -374,6 +385,7 @@
 				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
 				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
 				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
+				22ECA1CE1EC9439A00287953 /* IntroViewController.swift in Sources */,
 				ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */,
 				22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */,
 				225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */,

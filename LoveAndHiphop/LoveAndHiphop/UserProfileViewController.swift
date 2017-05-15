@@ -39,7 +39,8 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+        //photosScrollView.frame = view.frame
 
     }
 
@@ -65,10 +66,12 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
                 self.locationLabel.text = self.currentUser?.location
                 
                 self.photosScrollView.delegate = self
+                //self.photosScrollView.frame.width = self.view.frame.width
                 let imageView = UIImageView()
                 imageView.setImageWith((self.currentUser?.profileImageUrl!)!)
                 imageView.contentMode = .scaleAspectFit
-                imageView.frame = CGRect(x: 0, y: 0, width: self.photosScrollView.frame.width, height: self.photosScrollView.frame.height)
+                imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.photosScrollView.frame.height)
+                //imageView.clipsToBounds = true
                 self.photosScrollView.contentSize.width = self.photosScrollView.frame.width
                 self.photosScrollView.addSubview(imageView)
                 
@@ -78,7 +81,7 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
                         imageView.setImageWith((imageUrlArray[i]))
                         imageView.contentMode = .scaleAspectFit
                         let xPosition = self.view.frame.width * CGFloat(i+1)
-                        imageView.frame = CGRect(x: xPosition, y: 4, width: self.photosScrollView.frame.width, height: self.photosScrollView.frame.height)
+                        imageView.frame = CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.photosScrollView.frame.height)
                         self.photosScrollView.contentSize.width = self.photosScrollView.frame.width * CGFloat(i+2)
                         imageView.isUserInteractionEnabled = false
                         self.photosScrollView.addSubview(imageView)

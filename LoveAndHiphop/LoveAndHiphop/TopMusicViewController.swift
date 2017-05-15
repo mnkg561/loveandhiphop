@@ -20,14 +20,16 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-
+    
     @IBOutlet weak var audioPlayerView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     
     
+    var currentUserObjectId: String?
+    var currentUserFullName: String?
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +50,20 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
+        self.tableView.tableFooterView = UIView()
+        
+        self.currentUserObjectId = (PFUser.current()?.objectId)!
         
         
+        let query2: PFQuery = PFUser.query()!
+        query2.whereKey("objectId", equalTo: currentUserObjectId! )
+        
+        query2.getFirstObjectInBackground { (currentUser: PFObject?, error: Error?) in
+            if error == nil {
+                let currentUser: UserObject = UserObject.currentUser(pfObject: currentUser!)
+                self.currentUserFullName = currentUser.fullName
+            }
+        }
         
     }
     
@@ -62,19 +76,19 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.musicObjects != nil {
             return (self.musicObjects?.count)!
         } else {
-          return 0
+            return 0
         }
-  
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,9 +97,10 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         
         let songUrl: URL = (musicObjects?[indexPath.row].songUrl)!
         playSong(url: songUrl)
@@ -93,8 +108,11 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
         presentSongId = musicObjects?[indexPath.row].songId
         increasePlayedCountForUser()
         audioPlayerView.isHidden = false
-  
+        
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
+    
+    
     
     @IBAction func onTapPlayButton(_ sender: UIButton) {
         if self.quePlayer.rate == 0
@@ -115,13 +133,13 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
         playerLayer.frame=CGRect(x: 0, y: 0, width: 10, height: 20)
         self.view.layer.addSublayer(playerLayer)
         
-    
+        
         self.quePlayer.play()
         
         playButton.setImage(UIImage(named: "Pause Filled-50"), for: UIControlState.normal)
         
-      
-      
+        
+        
         
     }
     
@@ -131,7 +149,7 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
         )
         
         //increasePlayedCountForUser()
-      
+        
         
         let stopedPlayerItem: AVPlayerItem = myNotification.object as! AVPlayerItem
         stopedPlayerItem.seek(to: kCMTimeZero)
@@ -140,20 +158,36 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
     
     func increasePlayedCountForUser() {
         print("i got the call")
+        
         let query = PFQuery(className: "topListeners")
-        query.whereKey("userId", equalTo: "naveen")
+        query.whereKey("userId", equalTo: "admin")
+        query.whereKey("listener_userid", equalTo: self.currentUserObjectId!)
+        query.whereKey("listener_name", equalTo: self.currentUserFullName!)
         query.whereKey("song_id", equalTo: self.presentSongId!)
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if error == nil {
-                for object in objects! {
-                    print("calling Parse to incremenet the value")
-                    object.incrementKey("played_count")
-                    object.saveInBackground(block: { (success: Bool, error: Error?) in
-                        if(success){
-                            print("count increased successfully")
-                        }
-                    })
+                if((objects?.count)! > 0 ){
+                    for object in objects! {
+                        print("calling Parse to incremenet the value")
+                        object.incrementKey("played_count")
+                        object.saveInBackground(block: { (success: Bool, error: Error?) in
+                            if(success){
+                                print("count increased successfully")
+                            }
+                        })
+                    }   
+                }
+                else if (objects?.count == 0) {
+                let listenerObject = PFObject(className:"topListeners")
+                    listenerObject["userId"] = "admin"
+                    listenerObject["listener_userid"] = self.currentUserObjectId!
+                    listenerObject["listener_name"] = self.currentUserFullName!
+                    listenerObject["song_id"] = self.presentSongId!
+                    listenerObject["played_count"] = 1
+                    listenerObject.saveInBackground()
+                    print("This is the first time user listening to this song")
+                    
                 }
                 
             }
@@ -171,8 +205,8 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
             if let cell = superview.superview as? SongCell {
                 indexPath = tableView.indexPath(for: cell)
             }
-            }
-  
+        }
+        
         
         
         print(indexPath.row)
@@ -181,7 +215,7 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
         
         let TopListenerViewController = segue.destination as! TopListenerViewController
         TopListenerViewController.musicObject = musicObject
-       
+        
     }
     /*
      // MARK: - Navigation

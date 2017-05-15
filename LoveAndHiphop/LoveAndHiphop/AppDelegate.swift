@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // must pass HipHop membership quiz.
     if PFUser.current() == nil {
       let storyboard = UIStoryboard(name: "Quiz", bundle: nil)
-      let initialViewController = storyboard.instantiateViewController(withIdentifier: "MembershipQuizTableViewController")
+      let initialViewController = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
     
       self.window?.rootViewController = initialViewController
       self.window?.makeKeyAndVisible()
