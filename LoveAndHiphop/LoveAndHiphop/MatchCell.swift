@@ -10,16 +10,13 @@ import UIKit
 import SwiftyGif
 
 protocol MatchCellDelegate: class {
-    func onLikeClicked (user: UserObject)
+    func onLikeClicked (selectedUserObject: UserObject)
     func onCancelClicked (cancelledUserObject: UserObject)
 
 }
 
 class MatchCell: UITableViewCell {
-    
-
     @IBOutlet weak var profilePicImageView: UIImageView!
-    
     @IBOutlet weak var lovemenotImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var occupationLabel: UILabel!
@@ -27,7 +24,6 @@ class MatchCell: UITableViewCell {
     @IBOutlet weak var hiphopIdentityLabel: UILabel!
 
     weak var delegate: MatchCellDelegate?
-
     var userObject: UserObject! {
         didSet{
             profilePicImageView.setImageWith(userObject.profileImageUrl!)
@@ -35,10 +31,9 @@ class MatchCell: UITableViewCell {
             occupationLabel.text = userObject.occupation
             hiphopIdentityLabel.text = userObject.hiphopIdentity
             nameLabel.text = userObject.fullName
-           
-          
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -53,7 +48,7 @@ class MatchCell: UITableViewCell {
     
     @IBAction func onClickLikeButton(_ sender: UIButton) {
         print("somebody clicked like/unlike in cell")
-        delegate?.onLikeClicked(user: userObject)
+        delegate?.onLikeClicked(selectedUserObject: userObject)
 
     }
 
