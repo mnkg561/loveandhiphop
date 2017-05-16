@@ -16,10 +16,7 @@ protocol MatchCellDelegate: class {
 }
 
 class MatchCell: UITableViewCell {
-    
-
     @IBOutlet weak var profilePicImageView: UIImageView!
-    
     @IBOutlet weak var lovemenotImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var occupationLabel: UILabel!
@@ -27,7 +24,6 @@ class MatchCell: UITableViewCell {
     @IBOutlet weak var hiphopIdentityLabel: UILabel!
 
     weak var delegate: MatchCellDelegate?
-
     var userObject: UserObject! {
         didSet{
             profilePicImageView.setImageWith(userObject.profileImageUrl!)
@@ -37,18 +33,6 @@ class MatchCell: UITableViewCell {
             nameLabel.text = userObject.fullName
         }
     }
-    
-//    var likedByUsers: [String] {
-//        if let likedByUsers = likedByUsers {
-//            if likedByUsers.contains((PFUser.current()?.objectId!)!) {
-//                likeUnlikeImageView.setImage(UIImage(named: "Heart-Liked"), for: UIControlState.normal)
-//            } else {
-//                likeUnlikeImageView.setImage(UIImage(named: "Heart-Unliked"), for: UIControlState.normal)
-//            }
-//        }
-//    }
-    
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

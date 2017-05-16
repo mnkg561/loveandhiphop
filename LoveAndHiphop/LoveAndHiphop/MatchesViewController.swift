@@ -42,8 +42,6 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     if(self.currentUser != nil) {
         setCurrentUserDetails()
 
-    
-    
         //Load matches for the current user
         loadMatchesForCurrentUser()
 
@@ -137,7 +135,6 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
 
-
     }
 
   
@@ -164,7 +161,6 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     return matchCell
     
   }
-
 
     func onLikeClicked (selectedUserObject: UserObject) {
         print("User has clicked like/unlike in Matches View Controller")
@@ -215,7 +211,6 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
 
-
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //        let vc = segue.destination as! MatchDetailedViewController
     //        let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
@@ -226,22 +221,35 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     print(" Yea me too")
     let detailViewController = segue.destination as! DetailViewController
-    let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
-    let user = userObjects?[(indexPath?.row)!]
-    let userObjectId: String = (user?.userObjectId)!
-    detailViewController.likedByUsers = self.likedByUsersDict[userObjectId]
-    detailViewController.userObject = user
     
+    //Get all details of the current user
+    let curUserObjectId: String = (self.currentUserObject?.userObjectId)!
+    let curLikedByUsers: [String] = self.likedByUsersDict[curUserObjectId] ?? []
+    
+    //Get all details of the selected user
+    let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
+    let selUser = userObjects?[(indexPath?.row)!]
+    let selUserObjectId: String = (selUser?.userObjectId)!
+    let selLikedByUsers: [String] = self.likedByUsersDict[selUserObjectId] ?? []
+    
+    if(curLikedByUsers.contains(selUserObjectId) && selLikedByUsers.contains(curUserObjectId)) {
+        print("The selected and current user like each other! YAY!!")
+        detailViewController.isMatch = true
+    } else {
+        detailViewController.isMatch = false
+    }
+
+    detailViewController.likedByUsers = self.likedByUsersDict[selUserObjectId]
+    detailViewController.userObject = selUser
   }
-  
+    
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("i got selected")
     tableView.deselectRow(at: indexPath, animated: true)
     
   }
-    
-    
-    func removeLikedByUser(unlikedUserObjectId: String, likedByUserObjectId: String) {
+  
+  func removeLikedByUser(unlikedUserObjectId: String, likedByUserObjectId: String) {
         
         let query = PFQuery(className: "Like2")
         query.whereKey("userObjectId", equalTo: unlikedUserObjectId)

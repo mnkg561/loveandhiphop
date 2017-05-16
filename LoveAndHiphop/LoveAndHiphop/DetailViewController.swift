@@ -32,13 +32,58 @@ class DetailViewController: UITableViewController {
     
     var userObject: UserObject?
     var likedByUsers: [String]?
+    var isMatch: Bool?
     weak var delegate: DetailedViewControllerDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         
-         self.updateProfile()
+        self.photoScrollView.delegate = self
+        let imageView = UIImageView()
+        imageView.setImageWith((self.userObject?.profileImageUrl)!)
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: 0, y: 0, width: self.photoScrollView.frame.width, height: self.photoScrollView.frame.height)
+        self.photoScrollView.contentSize.width = self.photoScrollView.frame.width
+        self.photoScrollView.addSubview(imageView)
+        
+        self.loadOtherImages(success: { (imageUrlArray: [URL]) in
+            for i in 0..<imageUrlArray.count {
+                let imageView = UIImageView()
+                imageView.setImageWith((imageUrlArray[i]))
+                imageView.contentMode = .scaleAspectFit
+                let xPosition = self.view.frame.width * CGFloat(i+1)
+                imageView.frame = CGRect(x: xPosition, y: 8, width: self.photoScrollView.frame.width, height: self.photoScrollView.frame.height)
+                self.photoScrollView.contentSize.width = self.photoScrollView.frame.width * CGFloat(i+2)
+                imageView.isUserInteractionEnabled = false
+                self.photoScrollView.addSubview(imageView)
+            }
+            }, failure: {
+                
+        })
+        
+        let gifmanager = SwiftyGifManager(memoryLimit:40)
+        let gif = UIImage(gifName: "loveme_or_not_gif.gif")
+        self.animatedImageView.setGifImage(gif, manager: gifmanager)
+        
+        self.nameLabel.text = userObject?.fullName
+        self.occupationLabel.text = userObject?.occupation
+        self.hiphopIdentityLabel.text = userObject?.hiphopIdentity
+        self.aboutLabel.text = userObject?.about
+        self.locationLabel.text = userObject?.location
+        self.emailIdLabel.text = userObject?.email
+        self.tableView.reloadData()
+        
+        
+        //TODO: The local array does not retain data after coming back from detailed view
+        if let likedByUsers = likedByUsers {
+            if likedByUsers.contains((PFUser.current()?.objectId!)!) {
+                likeUnlikeImageView.setImage(UIImage(named: "Heart-Liked"), for: UIControlState.normal)
+            } else {
+                likeUnlikeImageView.setImage(UIImage(named: "Heart-Unliked"), for: UIControlState.normal)
+            }
+        }
+
+        //self.updateProfile()
     }
-    
     
     func loadOtherImages(success: @escaping ([URL]) -> (), failure: @escaping () -> ()){
 
@@ -90,8 +135,7 @@ class DetailViewController: UITableViewController {
 
         }
     }
-    
-    
+
     
     @IBAction func onClickCancel(_ sender: UIButton) {
         print("Like button has been clicked in detailed view")
@@ -215,42 +259,6 @@ class DetailViewController: UITableViewController {
     }
 
     func updateProfile() {
-
-        self.photoScrollView.delegate = self
-        let imageView = UIImageView()
-        imageView.setImageWith((self.userObject?.profileImageUrl)!)
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 0, y: 0, width: self.photoScrollView.frame.width, height: self.photoScrollView.frame.height)
-        self.photoScrollView.contentSize.width = self.photoScrollView.frame.width
-        self.photoScrollView.addSubview(imageView)
-
-        self.loadOtherImages(success: { (imageUrlArray: [URL]) in
-            for i in 0..<imageUrlArray.count {
-                let imageView = UIImageView()
-                imageView.setImageWith((imageUrlArray[i]))
-                imageView.contentMode = .scaleAspectFit
-                let xPosition = self.view.frame.width * CGFloat(i+1)
-                imageView.frame = CGRect(x: xPosition, y: 8, width: self.photoScrollView.frame.width, height: self.photoScrollView.frame.height)
-                self.photoScrollView.contentSize.width = self.photoScrollView.frame.width * CGFloat(i+2)
-                imageView.isUserInteractionEnabled = false
-                self.photoScrollView.addSubview(imageView)
-            }
-            }, failure: {
-
-        })
-
-        let gifmanager = SwiftyGifManager(memoryLimit:40)
-        let gif = UIImage(gifName: "loveme_or_not_gif.gif")
-        self.animatedImageView.setGifImage(gif, manager: gifmanager)
-
-        self.nameLabel.text = userObject?.fullName
-        self.occupationLabel.text = userObject?.occupation
-        self.hiphopIdentityLabel.text = userObject?.hiphopIdentity
-        self.aboutLabel.text = userObject?.about
-        self.locationLabel.text = userObject?.location
-        self.emailIdLabel.text = userObject?.email
-        self.tableView.reloadData()
-
 
         //TODO: The local array does not retain data after coming back from detailed view
         if let likedByUsers = likedByUsers {
