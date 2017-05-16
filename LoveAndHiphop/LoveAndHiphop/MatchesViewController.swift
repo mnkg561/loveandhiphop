@@ -10,82 +10,90 @@ import UIKit
 import Parse
 import AFNetworking
 
-class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MatchCellDelegate {
+class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
+  // MARK: Properties
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var cancelImageView: MatchCell!
   @IBOutlet weak var likeUnlikeImageView: MatchCell!
-
-  var profileMatchesCount: Int = 0
-  var likedByUsersDict: Dictionary<String, [String]> = Dictionary()
   
-  var currentUser: PFUser? = nil
-  var currentUserGender: String? = nil
-  var currentUserGenderPreference: String? = nil
-  var currentUserObjectId: String = ""
-  var currentCancelledMatches: [String]?
-  var currentUserObject: UserObject?
-  var userObjects: [UserObject]?
+  // Potential matches for current user
+  var matches: [PFUser] = []
+  var userLikedMatches: Dictionary<String, Bool> = Dictionary()
+  var matchesWhoLikedUser: Dictionary<String, Bool> = Dictionary()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     tableView.delegate = self
     tableView.dataSource = self
-    
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 200
     
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    //Find and set the current user's gender, interested_gender and objectId of user table
-    self.currentUser = PFUser.current()
-    if(self.currentUser != nil) {
-        setCurrentUserDetails()
-
-    
-    
-        //Load matches for the current user
-        loadMatchesForCurrentUser()
-
+    // MARK: Load matches
+    let currentUser = PFUser.current()
+    if currentUser != nil {
+      //Load matches for the current user
+      //      let userObject = UserObject(pfObject: currentUser!)
+      
+      
+      
+      //      let query = PFQuery(className: "_User")
+      //      query.getFirstObjectInBackground(block: { (lisa: PFObject?, error: Error?) in
+      //        if error != nil {
+      //          print("error getting lisa")
+      //        }
+      //
+      //        if let lisa = lisa as? PFUser {
+      //          // Fake a like with current user
+      //          let like = PFObject(className: "Like", dictionary: ["likedUser" : currentUser!, "user": lisa])
+      //          like.saveInBackground()
+      //        }
+      //      })
+      //
+      
+      loadMatches(for: currentUser!)
     }
   }
   
   //Implementing the MatchDetailedViewControllerDelegate Protocol
-  func didLikeUnlikeUser(user: PFUser, didLike: Bool) {
+  //  func didLikeUnlikeUser(user: PFUser, didLike: Bool) {
+  //
+  //    if(didLike) {
+  //      likedByUsersDict[user.objectId!]?.append(PFUser.current()?.objectId)
+  //    } else {
+  //      if let index = likedByUsersDict[user.objectId!]?.index(of: self.currentUserObjectId) {
+  //        likedByUsersDict[user.objectId!]?.remove(at: index)
+  //      }
+  //    }
+  //  }
+  
+  // MARK: TableView Delegate
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //TODO: eventually return the count of the matches from the findMyMatches() method
+    return matches.count
     
-    if(didLike) {
-      self.likedByUsersDict[user.objectId!]?.append(self.currentUserObjectId)
-    } else {
-      if let index = likedByUsersDict[user.objectId!]?.index(of: self.currentUserObjectId) {
-        likedByUsersDict[user.objectId!]?.remove(at: index)
-      }
-    }
   }
   
-
-  /**
-   * Method Name: setCurrentUserDetails()
-   * This method sets the current user's details such as gender, interested_gender and objectId which
-   * will later be used in the matching algorithm
-   **/
-  func setCurrentUserDetails() {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let matchCell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
     
-    let query: PFQuery = PFUser.query()!
-    query.whereKey("objectId", equalTo: PFUser.current()!.objectId!)
-    query.getFirstObjectInBackground { (currentUser: PFObject?, error: Error?) in
-        if error == nil {
-            self.currentUserObject = UserObject.currentUser(pfObject: currentUser!)
-        }
-    }
-
-    //Find the current user's gender, gender preference and object ID
-    self.currentUserObjectId = self.currentUser!.objectId!
-    self.currentUserGender = self.currentUser!.object(forKey: "gender") as! String?
-    self.currentUserGenderPreference = self.currentUser?.object(forKey: "genderPreference") as! String?
-    self.currentCancelledMatches = self.currentUser?.object(forKey: "cancelledMatches") as! [String]?
+    let userObject = UserObject(pfObject: matches[indexPath.row])
+    matchCell.userObject = userObject
+    //    matchCell.delegate = self
+    
+    return matchCell
+    
   }
-
-
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print("i got selected")
+    tableView.deselectRow(at: indexPath, animated: true)
+    
+  }
+  
+  // MARK: Methods
+  
   /**
    * Method Name: loadMatchesForCurrentUser()
    *
@@ -94,129 +102,124 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
    * 2. Users who match the Current User's interested gender
    * TBD - Improving the algorithm once sign up flow is complete
    **/
-   func loadMatchesForCurrentUser() {
+  func loadMatches(for user: PFUser) {
     
-    print("Current User Details:")
-    print("Gender Preference: \(self.currentUserGenderPreference)")
-
-    let query: PFQuery = PFUser.query()!                                  // all users
-    query.whereKey("objectId", notEqualTo: currentUserObjectId)           // who are not current user
-    query.whereKey("gender", equalTo: currentUserGenderPreference!)       // who match the gender preference of current user
-    query.whereKey("objectId", notContainedIn: (self.currentUserObject?.cancelledMatches) ?? []) // who are not in cancelledMatches of current user
-    query.findObjectsInBackground{ (profileMatches: [PFObject]?, error: Error?) in
-
-            if profileMatches != nil {
-                self.userObjects = UserObject.userObjectWithArray(pfObjects: profileMatches!)
-                self.profileMatchesCount = (profileMatches?.count)!
-
-                //Create the likedByUsers dictionary
-                self.createLikedByUsersDictionary()
-                self.tableView.reloadData()
-
-            } else {
-                print("Sorry! No users available fot this app")
-                print("error: \(error?.localizedDescription)")
+    // First get matches who are not current user and are the preferred gender,
+    let query: PFQuery = PFUser.query()!
+    query.whereKey("objectId", notEqualTo: user.objectId!)
+    query.whereKey("gender", equalTo: (user["genderPreference"] as? String)!)
+    query.findObjectsInBackground{ (matches: [PFObject]?, error: Error?) in
+      
+      if error != nil {
+        print("######## Error retrieving matches: error: \(error?.localizedDescription)")
+      }
+      
+      if let matches = matches as? [PFUser] {
+        // Further filter the matches on cancelled matches by the user
+        let cancelledMatches = user["cancelledMatches"] as? [String]
+        print("99999999990999999999 HERE ARE USERS LIST OF CANCELLLED MATCHES, cancelledMatches: \(cancelledMatches)")
+        for match in matches {
+          if cancelledMatches != nil {
+            if (!cancelledMatches!.contains(match.objectId!)) {
+              self.matches.append(match)
+              print("^^^^^^^***************** HEY GOT A MATCH THAT ISN'T IN CANCELLEDMATCHES, \(match["firstName"])")
             }
+            else {
+              print("$$$$$$$$$ THIS MATCH SHOULD NOT BE SHOWN, match: \(match["firstName"])")
+            }
+          } else {
+            self.matches = matches
+          }
         }
+        
+        // Get the users who liked current users
+        // and vice versa.
+        self.getMatchesWhoLike(user: user)
+        //        self.getMatchesWhoUserLike(userObject)
+        self.tableView.reloadData()
+        
+      }
     }
-
-    func createLikedByUsersDictionary() {
-
-        for user in self.userObjects! {
-
-            let userObjectId: String = user.userObjectId!
-
-            let query = PFQuery(className: "Like2")
-            query.whereKey("userObjectId", equalTo: userObjectId)
-            query.findObjectsInBackground { (likeTableResults: [PFObject]?, error: Error?) in
-                if (likeTableResults?.count) == 1 {
-                    let likeTableResult = likeTableResults?.first
-                    let likedByUsers = likeTableResult?.object(forKey: "likedByUsers") as! [String]
-                    self.likedByUsersDict[userObjectId] = likedByUsers
-                }
-            }
+  }
+  
+  func getMatchesWhoLike(user: PFUser) {
+    
+    // Go through list of potential matches for current user
+    for potentialMatch in matches {
+      print("#######$$$$$$$$$$$$ GOT A POTENTIAL MATCH LETS SEE WHO LIKE THEM")
+      let potentialMatchObjectId: String = potentialMatch.objectId!
+      
+      // Get the users who have liked this potential match
+      let query = PFQuery(className: "Like")
+      
+      
+      
+      //      query.includeKey("user")
+      //      query.includeKey("likedUser")
+      //      query.whereKey("user", notEqualTo: PFUser.current()!) // Not current user
+      query.whereKey("user", equalTo: potentialMatch) // Is match user
+      query.whereKey("likedUser", equalTo: user)
+      query.getFirstObjectInBackground(block: { (potentialMatchUserLike: PFObject?, error: Error?) in
+        if error != nil {
+          print("############## Error retrieving users who liked current user, error: \(error?.localizedDescription)")
         }
-
-
+        
+        // Update matchLikedBy to include who liked this match
+        if potentialMatchUserLike != nil {
+          print("$$$$$$$$$$ Current match HAS LIKED CURRENT USER match: \(potentialMatch["firstName"])!")
+          self.matchesWhoLikedUser[potentialMatchObjectId] = true
+        } else {
+          //          print("$$$$$$$$$$$ this user didn't like our current user who name is user: \(user["firstName"])")
+        }
+      })
     }
-
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //TODO: eventually return the count of the matches from the findMyMatches() method
-    if self.userObjects?.count != nil {
-      return (self.userObjects?.count)!
-    } else {
-      return 0
+  func getMatchesWhoUserLike(_ user: UserObject) {
+    // Go through list of potential matches for current user
+    for potentialMatch in matches {
+      print("#######$$$$$$$$$$$$ GOT A POTENTIAL MATCH LETS SEE WHO LIKE THEM")
+      let potentialMatchObjectId = potentialMatch.objectId
+      
+      // Get the users who have liked this potential match
+      let query = PFQuery(className: "Like")
+      //      query.includeKey("user")
+      //      query.includeKey("likedUser")
+      //  query.whereKey("userObjectId", notEqualTo: PFUser.current()!.objectId!)
+      query.whereKey("user", equalTo: user)
+      query.whereKey("likedUser", equalTo: potentialMatch)
+      query.findObjectsInBackground(block: { (users: [PFObject]?, error: Error?) in
+        if error != nil {
+          print("############## Error retrieving users who liked current user, error: \(error?.localizedDescription)")
+        }
+        
+        if let users = users {
+          for user in users {
+            self.userLikedMatches[user.objectId!] = true
+            print("########### CURRENT USER LIKES THIS USER, user: \(user["userObjectId"])")
+          }
+        }
+      })
+      
     }
-    
+    //      query.getFirstObjectInBackground(block: { (potentialMatchUserLike: PFObject?, error: Error?) in
+    //        if error != nil {
+    //          print("############## Error retrieving users who liked current user, error: \(error?.localizedDescription)")
+    //        }
+    //
+    //        // Update matchLikedBy to include who liked this match
+    //        //  if potentialMatchUserLike != nil {
+    //        //  print("$$$$$$$$$$ Current match HAS LIKED CURRENT USER match: \(potentialMatch.firstName)!")
+    //        //  self.matchesWhoLikedUser[potentialMatchObjectId] = true
+    //        //  } else {
+    //        //  print("$$$$$$$$$$$ this did not like current user \(userObject.firstName)")
+    //        //  }
+    //        //  })
+    //
+    //      )}
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let matchCell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
-    matchCell.userObject = self.userObjects?[indexPath.row]
-    matchCell.delegate = self
-    
-    return matchCell
-    
-  }
-
-
-    func onLikeClicked (user: UserObject) {
-        print("User has clicked like/unlike in Matches View Controller")
-        //        let selectedUserObjectId: String = (self.userObject?.userObjectId)!
-        //        let currentUserObjectId: String = PFUser.current()!.objectId!
-        //
-        //        if let likedByUsers = likedByUsers {
-        //            if likedByUsers.contains(currentUserObjectId) {
-        //                //Unlike the match
-        //                self.removeLikedByUser(unlikedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
-        //            } else {
-        //                //Like the match
-        //                self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
-        //            }
-        //        } else {
-        //            //Like the match since the likeByUsers is nil
-        //            self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
-        //
-        //        }
-
-    }
-
-
-    /*
-     * Get the cancelled users for the current user
-     * if the selected user is not already in it, add it to the list and store it back in Parse User table under cancelledMatches
-     * Reload the table - the matching algorithm should not show matches who are in the list of cancelledMatches in user table
-     */
-    func onCancelClicked (cancelledUserObject: UserObject) {
-        print("User has clicked cancel in Matches View Controller")
-        //Get the userObject of the user who was cancelled
-        let cancelledUserObjectId: String = (cancelledUserObject.userObjectId)!
-
-        //Get the currentUser's userObject and the list of cancelledMatches for the current user. Add the cancelledUser to cancelledMatches array in User table
-        //Get the current user's cancelledMatches
-        var cancelledMatches: [String] = (self.currentUserObject?.cancelledMatches) ?? []
-        //Store the new cancelledMatches array to the user table for the current user
-
-        cancelledMatches.append(cancelledUserObjectId)
-        currentUserObject?.cancelledMatches = cancelledMatches
-//        currentUserObject?.setObject(cancelledMatches, forKey: "cancelledMatches")
-        currentUserObject?.saveInBackground(block: { (success: Bool, error: Error?) in
-            if success {
-                self.loadMatchesForCurrentUser()
-            }
-        })
-
-        //Reload the table
-
-    }
-
-
+  // MARK: Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     //        let vc = segue.destination as! MatchDetailedViewController
     //        let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
@@ -228,17 +231,11 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     print(" Yea me too")
     let detailViewController = segue.destination as! DetailViewController
     let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
-    let user = userObjects?[(indexPath?.row)!]
-    let userObjectId: String = (user?.userObjectId)!
-    detailViewController.likedByUsers = self.likedByUsersDict[userObjectId]
-    detailViewController.userObject = user
-    
-  }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("i got selected")
-    tableView.deselectRow(at: indexPath, animated: true)
-    
+    let user = matches[(indexPath?.row)!]
+    //    let userObjectId: String = (user.userObjectId)!
+    //    detailViewController.likedByUsers = self.matchLikedBy[userObjectId]
+    let userObject = UserObject(pfObject: user)
+    detailViewController.userObject = userObject
   }
   
 }
@@ -246,12 +243,73 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
 
+
+//  func onLikeClicked(user: UserObject) {
+//    print("User has clicked like/unlike in Matches View Controller")
+//    //        let selectedUserObjectId: String = (self.userObject?.userObjectId)!
+//    //        let currentUserObjectId: String = PFUser.current()!.objectId!
+//    //
+//    //        if let likedByUsers = likedByUsers {
+//    //            if likedByUsers.contains(currentUserObjectId) {
+//    //                //Unlike the match
+//    //                self.removeLikedByUser(unlikedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
+//    //            } else {
+//    //                //Like the match
+//    //                self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
+//    //            }
+//    //        } else {
+//    //            //Like the match since the likeByUsers is nil
+//    //            self.addLikedByUser(likedUserObjectId: selectedUserObjectId, likedByUserObjectId: currentUserObjectId)
+//    //
+//    //        }
+//  }
+//
+//
+
+
+
+
+/*
+ * Get the cancelled users for the current user
+ * if the selected user is not already in it, add it to the list and store it back in Parse User table under cancelledMatches
+ * Reload the table - the matching algorithm should not show matches who are in the list of cancelledMatches in user table
+ */
+//  func onCancelClicked (cancelledUserObject: UserObject) {
+//    print("User has clicked cancel in Matches View Controller")
+//    //Get the userObject of the user who was cancelled
+//    let cancelledUserObjectId: String = (cancelledUserObject.userObjectId)!
+//
+//    //Get the currentUser's userObject and the list of cancelledMatches for the current user. Add the cancelledUser to cancelledMatches array in User table
+//    //Get the current user's cancelledMatches
+//    var cancelledMatches: [String] = (PFUser.current()["cancelledMatches"]) ?? []
+//    //Store the new cancelledMatches array to the user table for the current user
+//
+//    cancelledMatches.append(cancelledUserObjectId)
+//    currentUserObject?.cancelledMatches = cancelledMatches
+//    //        currentUserObject?.setObject(cancelledMatches, forKey: "cancelledMatches")
+//    currentUserObject?.saveInBackground(block: { (success: Bool, error: Error?) in
+//      if success {
+//        self.loadMatchesForCurrentUser()
+//      }
+//    })
+//
+//    //Reload the table
+//
+//  }
+//
+//
+
+
+
+
+
+
 /*
  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
  let matchCell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
-
+ 
  if let user = profileMatches?[indexPath.row] {
-
+ 
  let name = user.object(forKey: "name")! as! String
  let age = user.object(forKey: "age")! as! String
  matchCell.nameLabel.text =  name+", "+age
@@ -259,7 +317,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
  matchCell.registeredAsLabel.text = user.object(forKey: "membershipType") as! String?
  matchCell.locationLabel.text = user.object(forKey: "location") as! String?
  matchCell.topInterestLabel.text = user.object(forKey: "interested_gender")! as? String
-
+ 
  let profilePictureFile = user.object(forKey: "picture") as? PFFile
  if profilePictureFile != nil {
  let pictureURL: String = profilePictureFile!.url!
@@ -267,11 +325,11 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
  matchCell.matchProfilePic.setImageWith(profilePictureURL!)
  }
  }
-
+ 
  return matchCell
-
+ 
  }
-
+ 
  */
 
 
