@@ -43,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window?.makeKeyAndVisible()
     }
     
+    
+//    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self])
+//    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self]).
+
+    
+    
     return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
   }
   
