@@ -52,6 +52,7 @@
 		ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */; };
 		ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */; };
 		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
+		E4F16A021ECBD076001ADEDF /* MembershipQuizTableViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipQuizTableViewController.swift; sourceTree = "<group>"; };
 		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
+		E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipQuizTableViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */,
 				AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */,
 				22ECA1CD1EC9439A00287953 /* IntroViewController.swift */,
+				E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */,
 				225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */,
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
+				E4F16A021ECBD076001ADEDF /* MembershipQuizTableViewController2.swift in Sources */,
 				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
 				ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */,
