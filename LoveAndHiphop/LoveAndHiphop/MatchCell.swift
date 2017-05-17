@@ -21,59 +21,60 @@ import Parse
 }
 
 class MatchCell: UITableViewCell {
-    
-
-    @IBOutlet weak var profilePicImageView: UIImageView!
-    
-    @IBOutlet weak var lovemenotImageView: UIImageView!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var occupationLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var hiphopIdentityLabel: UILabel!
+  
+  
+  @IBOutlet weak var profilePicImageView: UIImageView!
+  
+  @IBOutlet weak var lovemenotImageView: UIImageView!
+  @IBOutlet weak var locationLabel: UILabel!
+  @IBOutlet weak var occupationLabel: UILabel!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var hiphopIdentityLabel: UILabel!
   @IBOutlet weak var cancelUserButton: UIButton!
   @IBOutlet weak var likeUserButton: UIButton!
-
-    weak var delegate: MatchCellDelegate?
-
-    var userObject: UserObject! {
-        didSet{
-            profilePicImageView.setImageWith(userObject.profileImageUrl!)
-            locationLabel.text = userObject.city
-            occupationLabel.text = userObject.occupation
-            hiphopIdentityLabel.text = userObject.hiphopIdentity
-            nameLabel.text = userObject.fullName
-          
-        }
+  @IBOutlet weak var youLikedLabel: UILabel!
+  
+  weak var delegate: MatchCellDelegate?
+  
+  var likedByCurrentUser: Bool? {
+    didSet {
+      youLikedLabel.isHidden = likedByCurrentUser!
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-//      onSwitch.addTarget(self, action: #selector(SwitchCell.switchValueChanged), for: UIControlEvents.valueChanged)
-//      let cancelUserTap = UITapGestureRecognizer(target: self, action: #selector(onTapCancel(_:)))
-//      let likeUserTap = UITapGestureRecognizer(target: self, action: #selector(onTapLike(_:)))
-      
-//      originalTweeterImageView.addGestureRecognizer(profileTap)
-//      originalTweeterImageView.isUserInteractionEnabled = true
-      likeUserButton.addTarget(self, action: #selector(MatchCell.userLiked), for: UIControlEvents.touchUpInside)
-      cancelUserButton.addTarget(self, action: #selector(MatchCell.userCancelled), for: UIControlEvents.touchUpInside)
-
+  }
+  
+  var userObject: UserObject! {
+    didSet{
+      profilePicImageView.setImageWith(userObject.profileImageUrl!)
+      locationLabel.text = userObject.city
+      occupationLabel.text = userObject.occupation
+      hiphopIdentityLabel.text = userObject.hiphopIdentity
+      nameLabel.text = userObject.fullName
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    
+    likeUserButton.addTarget(self, action: #selector(MatchCell.userLiked), for: UIControlEvents.touchUpInside)
+    cancelUserButton.addTarget(self, action: #selector(MatchCell.userCancelled), for: UIControlEvents.touchUpInside)
+    
+    // Display if current user has liked this user.
+    youLikedLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 3)
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    
+    // Configure the view for the selected state
+  }
   
   func userLiked() {
-    print("liked@")
     delegate?.MatchCell(matchCell: self, didLikeUser: true)
   }
   
   func userCancelled() {
-    print("liked@")
     delegate?.MatchCellCancelled(matchCell: self, didCancelUser: true)
   }
-
-    
+  
+  
 }
