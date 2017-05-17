@@ -10,7 +10,13 @@ import UIKit
 import Parse
 import AFNetworking
 
-class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MatchCellDelegate {
+
+//@objc protocol MatchesViewControllerDelegate {
+//  //  func DetailViewController(user: PFUser, didLikeUser value: Bool)
+//  func MatchesViewController(didLikeUser: Bool)
+//}
+
+class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MatchCellDelegate, DetailViewControllerDelegate {
   
   // MARK: Properties
   @IBOutlet weak var tableView: UITableView!
@@ -78,12 +84,9 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
           }
         }
         
-        // Get the users who liked current users
-        // and vice versa.
+        // Get liking statuses.
         self.getMatchesWhoLike(user: user)
         self.getMatchesWhoUserLike(user)
-        self.tableView.reloadData()
-        
       }
     }
   }
@@ -128,6 +131,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
           print("Here is the liked user, likedUser: \(userLike["likedUser"])")
           let likedUser = userLike["likedUser"] as! PFUser
           self.userLikedMatches[likedUser.objectId!] = true
+          self.tableView.reloadData()
         }
       }
     })
@@ -135,13 +139,13 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   
   // MARK: Delegate Methods
+  
+  // TableView Delegate
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //TODO: eventually return the count of the matches from the findMyMatches() method
     return matches.count
-    
   }
   
-  // TODO: Not displaying onload when users have already liked someone.
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let matchCell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as! MatchCell
     
@@ -149,15 +153,23 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     matchCell.userObject = userObject
     matchCell.delegate = self
     
-    // Check if "you liked" label should be displayed
+    // Check if "you liked" label should be displayed,
+    // and/or if a match has shared contact info.
     if (!userLikedMatches.isEmpty) {
-      print(userLikedMatches)
       if userLikedMatches[userObject.userObjectId!] != nil {
-        matchCell.likedByCurrentUser = userLikedMatches[userObject.userObjectId!]!
+        matchCell.likedByCurrentUser = true
+      } else {
+        matchCell.likedByCurrentUser = false
+      }
+      
+      if matchesWhoLikedUser[userObject.userObjectId!] != nil {
+        matchCell.likeCurrentUser = true
+      } else {
+        matchCell.likeCurrentUser = false
       }
     }
-    return matchCell
     
+    return matchCell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -165,12 +177,15 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     tableView.deselectRow(at: indexPath, animated: true)
   }
   
+  // MatchCell Delegate
   @objc internal func MatchCell(matchCell: MatchCell, didLikeUser value: Bool) {
     let indexPath = tableView.indexPath(for: matchCell)
     let likedUser = matches[(indexPath?.row)!]
     
     let like = PFObject(className: "Like", dictionary: ["user": PFUser.current()!, "likedUser": likedUser])
+    
     matchCell.youLikedLabel.isHidden = false
+    
     like.saveInBackground { (success: Bool, error: Error?) in
       if error != nil {
         // Will have to adjust UI to display error
@@ -191,7 +206,6 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Update cancelled matches data source
     cancelledMatches.append(cancelledUser.objectId!)
     
-    
     PFUser.current()?.addUniqueObjects(from: cancelledMatches, forKey: "cancelledMatches")
     PFUser.current()?.saveInBackground(block: { (success: Bool, error: Error?) in
       if error != nil {
@@ -207,6 +221,30 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     tableView.deleteRows(at: [indexPath!], with: .fade)
   }
   
+  // DetailViewController delegate
+  internal func DetailViewController(user: PFUser, indexPath: IndexPath, didCancelUser value: Bool) {
+    
+    matches.remove(at: (indexPath.row))
+    
+    // Update cancelled matches data source
+    cancelledMatches.append(user.objectId!)
+    
+    
+    PFUser.current()?.addUniqueObjects(from: cancelledMatches, forKey: "cancelledMatches")
+    PFUser.current()?.saveInBackground(block: { (success: Bool, error: Error?) in
+      if error != nil {
+        print("Error adding user to cancelled matches, error: \(error?.localizedDescription)")
+      }
+      
+      if success {
+        print("User was cancelled from DetailViewController")
+      }
+    })
+    
+    // Remove row from UI
+    tableView.deleteRows(at: [indexPath], with: .fade)
+  }
+  
   
   
   // MARK: Navigation
@@ -216,10 +254,23 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     let detailViewController = segue.destination as! DetailViewController
     let indexPath = self.tableView.indexPath(for: sender as! MatchCell)
     let user = matches[(indexPath?.row)!]
-    //    let userObjectId: String = (user.userObjectId)!
-    //    detailViewController.likedByUsers = self.matchLikedBy[userObjectId]
     let userObject = UserObject(pfObject: user)
+    
+    // Set detail view properties
     detailViewController.userObject = userObject
+    detailViewController.pfUser = user
+    detailViewController.indexPath = indexPath
+    detailViewController.delegate = self
+    
+    if userLikedMatches[userObject.userObjectId!] != nil{
+      detailViewController.likedByCurrentUser = true
+    } else {
+      detailViewController.likedByCurrentUser = false
+    }
   }
   
+  // MARK: TODO
+  // Move several methods to shared instance.
+  // UserObject should subclass PFUser instead of PFObject to avoid
+  // lots of duplicate data storage and type casting.
 }

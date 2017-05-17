@@ -26,12 +26,27 @@ class MatchCell: UITableViewCell {
   @IBOutlet weak var cancelUserButton: UIButton!
   @IBOutlet weak var likeUserButton: UIButton!
   @IBOutlet weak var youLikedLabel: UILabel!
+  @IBOutlet weak var hasSharedInfoLabel: UILabel!
   
   weak var delegate: MatchCellDelegate?
   
   var likedByCurrentUser: Bool? {
     didSet {
-      youLikedLabel.isHidden = likedByCurrentUser!
+      if likedByCurrentUser! {
+        youLikedLabel.isHidden = false
+      } else {
+        youLikedLabel.isHidden = true
+      }
+    }
+  }
+  
+  var likeCurrentUser: Bool? {
+    didSet {
+      if likeCurrentUser! {
+        hasSharedInfoLabel.isHidden = false
+      } else {
+        hasSharedInfoLabel.isHidden = true
+      }
     }
   }
   
