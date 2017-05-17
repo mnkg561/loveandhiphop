@@ -20,6 +20,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Canvas (0.1.2)
   - FBSDKCoreKit (4.22.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.22.1):
@@ -39,6 +40,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - Canvas
   - FBSDKCoreKit
   - GooglePlaces
   - Parse
@@ -48,6 +50,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   FBSDKCoreKit: 9c2daf0162214d6d2e21cf8208a9c6c2a2e42b9c
   FBSDKLoginKit: 00cf28916b9f0169763a3d61985d745b579fe304
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
@@ -56,6 +59,6 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SwiftyGif: 89a0bb19709bdb6990e10405ad456d8bea804a65
 
-PODFILE CHECKSUM: 6e8274d0471f59043efb4f9148005c173bb64db5
+PODFILE CHECKSUM: 8b7a368cf3761026a658a626a7336b640e36c2f3
 
 COCOAPODS: 1.2.0

@@ -126,11 +126,7 @@ class TopListenerViewController: UIViewController, UITableViewDataSource, UITabl
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.userObject = userObject
-        
-        
-      
 
-        
         
     }
     

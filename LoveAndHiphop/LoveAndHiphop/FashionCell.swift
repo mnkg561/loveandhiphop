@@ -10,17 +10,7 @@ import UIKit
 
 class FashionCell: UICollectionViewCell {
     
-    @IBOutlet weak var fashionImage: UIImageView!
 
-    
-    @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
-    
-    
-    @IBAction func onClickLikeButton(_ sender: UIButton) {
-        print("User like button tapped")
-        //sender.isUserInteractionEnabled = false
-    }
- 
+    @IBOutlet weak var fashionImage: UIImageView!
     
 }

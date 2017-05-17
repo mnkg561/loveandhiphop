@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Parse
+import Canvas
 
 class TopMusicViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,7 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
     var quePlayer: AVQueuePlayer = AVQueuePlayer()
     var presentSongId: String?
     
+    @IBOutlet weak var animationView: CSAnimationView!
     
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -108,6 +110,7 @@ class TopMusicViewController: UIViewController, UITableViewDelegate, UITableView
         presentSongId = musicObjects?[indexPath.row].songId
         increasePlayedCountForUser()
         audioPlayerView.isHidden = false
+        animationView.startCanvasAnimation()
         
         self.tableView.deselectRow(at: indexPath, animated: false)
     }

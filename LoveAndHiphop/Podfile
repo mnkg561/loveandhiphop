@@ -12,5 +12,6 @@ target 'LoveAndHiphop' do
   pod 'ParseFacebookUtilsV4'
   pod 'SwiftyGif'
   pod 'GooglePlaces'
+  pod 'Canvas'
 
 end

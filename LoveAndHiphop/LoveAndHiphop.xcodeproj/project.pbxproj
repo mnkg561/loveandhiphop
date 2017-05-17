@@ -37,6 +37,7 @@
 		22ECA1CE1EC9439A00287953 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ECA1CD1EC9439A00287953 /* IntroViewController.swift */; };
 		22ECA1D01EC9443300287953 /* hiphop_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 22ECA1CF1EC9443300287953 /* hiphop_gif.gif */; };
 		22ECA1D41EC9509500287953 /* Hip_Hop_Rap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22ECA1D31EC9509500287953 /* Hip_Hop_Rap.mp3 */; };
+		22F3C64C1ECAE614003CC727 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */; };
 		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
 		AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */; };
@@ -88,6 +89,7 @@
 		22ECA1CD1EC9439A00287953 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		22ECA1CF1EC9443300287953 /* hiphop_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hiphop_gif.gif; sourceTree = "<group>"; };
 		22ECA1D31EC9509500287953 /* Hip_Hop_Rap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hip_Hop_Rap.mp3; sourceTree = "<group>"; };
+		22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.debug.xcconfig"; sourceTree = "<group>"; };
 		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */,
 				AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */,
 				22ECA1CD1EC9439A00287953 /* IntroViewController.swift */,
+				22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */,
 				22E946BE1EAFF4A300DCEC74 /* TopMusicViewController.swift in Sources */,
 				AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */,
+				22F3C64C1ECAE614003CC727 /* AnimationViewController.swift in Sources */,
 				221475031EC21AF800D2F9F4 /* UserObject.swift in Sources */,
 				AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */,
 			);
@@ -525,7 +529,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LoveAndHiphop/LoveAndHiphop.entitlements;
 				DEVELOPMENT_TEAM = MCYQH6V7BK;
 				INFOPLIST_FILE = LoveAndHiphop/Info.plist;
@@ -541,7 +546,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LoveAndHiphop/LoveAndHiphop.entitlements;
 				DEVELOPMENT_TEAM = MCYQH6V7BK;
 				INFOPLIST_FILE = LoveAndHiphop/Info.plist;
