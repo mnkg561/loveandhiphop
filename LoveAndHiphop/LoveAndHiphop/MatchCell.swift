@@ -10,11 +10,6 @@ import UIKit
 import SwiftyGif
 import Parse
 
-//@objc protocol MatchCellDelegate {
-//  @objc optional func MatchCell(matchCell: MatchCell, onLikeClicked: Bool)
-//  @objc optional func MatchCell(matchCell: MatchCell, onCancelClicked: Bool)
-//}
-
 @objc protocol MatchCellDelegate {
   func MatchCell(matchCell: MatchCell, didLikeUser value: Bool)
   func MatchCellCancelled(matchCell: MatchCell, didCancelUser value: Bool)
@@ -22,9 +17,7 @@ import Parse
 
 class MatchCell: UITableViewCell {
   
-  
   @IBOutlet weak var profilePicImageView: UIImageView!
-  
   @IBOutlet weak var lovemenotImageView: UIImageView!
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var occupationLabel: UILabel!
@@ -75,6 +68,4 @@ class MatchCell: UITableViewCell {
   func userCancelled() {
     delegate?.MatchCellCancelled(matchCell: self, didCancelUser: true)
   }
-  
-  
 }
