@@ -53,12 +53,12 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
 
         let query: PFQuery = PFUser.query()!
         query.whereKey("objectId", equalTo: PFUser.current()!.objectId!)
-        
         query.getFirstObjectInBackground { (currentUser: PFObject?, error: Error?) in
             if error == nil {
                 self.currentUser = UserObject.currentUser(pfObject: currentUser!)
                 self.aboutLabel.text = self.currentUser?.about
                 self.nameLabel.text = self.currentUser?.fullName
+                self.ageLabel.text = self.currentUser?.age
                 self.occupationLabel.text = self.currentUser?.occupation
                 self.hiphopIdentityLabel.text = self.currentUser?.hiphopIdentity
                 self.otherInterestsLabel.text = self.currentUser?.otherInterests
