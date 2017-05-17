@@ -8,11 +8,16 @@
 
 import UIKit
 import SwiftyGif
+import Parse
 
-protocol MatchCellDelegate: class {
-    func onLikeClicked (user: UserObject)
-    func onCancelClicked (cancelledUserObject: UserObject)
+//@objc protocol MatchCellDelegate {
+//  @objc optional func MatchCell(matchCell: MatchCell, onLikeClicked: Bool)
+//  @objc optional func MatchCell(matchCell: MatchCell, onCancelClicked: Bool)
+//}
 
+@objc protocol MatchCellDelegate {
+  func MatchCell(matchCell: MatchCell, didLikeUser value: Bool)
+  func MatchCellCancelled(matchCell: MatchCell, didCancelUser value: Bool)
 }
 
 class MatchCell: UITableViewCell {
@@ -25,6 +30,8 @@ class MatchCell: UITableViewCell {
     @IBOutlet weak var occupationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var hiphopIdentityLabel: UILabel!
+  @IBOutlet weak var cancelUserButton: UIButton!
+  @IBOutlet weak var likeUserButton: UIButton!
 
     weak var delegate: MatchCellDelegate?
 
@@ -35,13 +42,21 @@ class MatchCell: UITableViewCell {
             occupationLabel.text = userObject.occupation
             hiphopIdentityLabel.text = userObject.hiphopIdentity
             nameLabel.text = userObject.fullName
-           
           
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//      onSwitch.addTarget(self, action: #selector(SwitchCell.switchValueChanged), for: UIControlEvents.valueChanged)
+//      let cancelUserTap = UITapGestureRecognizer(target: self, action: #selector(onTapCancel(_:)))
+//      let likeUserTap = UITapGestureRecognizer(target: self, action: #selector(onTapLike(_:)))
+      
+//      originalTweeterImageView.addGestureRecognizer(profileTap)
+//      originalTweeterImageView.isUserInteractionEnabled = true
+      likeUserButton.addTarget(self, action: #selector(MatchCell.userLiked), for: UIControlEvents.touchUpInside)
+      cancelUserButton.addTarget(self, action: #selector(MatchCell.userCancelled), for: UIControlEvents.touchUpInside)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,18 +64,16 @@ class MatchCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-    @IBAction func onClickLikeButton(_ sender: UIButton) {
-        print("somebody clicked like/unlike in cell")
-        delegate?.onLikeClicked(user: userObject)
-
-    }
-
-    @IBAction func onClickCancelButton(_ sender: UIButton) {
-        print("somebody clicked cancel in cell")
-        delegate?.onCancelClicked(cancelledUserObject: userObject)
-    }
+  
+  func userLiked() {
+    print("liked@")
+    delegate?.MatchCell(matchCell: self, didLikeUser: true)
+  }
+  
+  func userCancelled() {
+    print("liked@")
+    delegate?.MatchCellCancelled(matchCell: self, didCancelUser: true)
+  }
 
     
 }
