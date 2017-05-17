@@ -87,6 +87,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Get liking statuses.
         self.getMatchesWhoLike(user: user)
         self.getMatchesWhoUserLike(user)
+        self.tableView.reloadData()
       }
     }
   }
@@ -110,6 +111,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         if potentialMatchUserLike != nil {
           print("Current match HAS LIKED CURRENT USER match: \(potentialMatch["firstName"])!")
           self.matchesWhoLikedUser[potentialMatchObjectId] = true
+          self.tableView.reloadData()
         }
       })
     }
@@ -245,6 +247,10 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     tableView.deleteRows(at: [indexPath], with: .fade)
   }
   
+  func DetailViewControllerDidLikeUser(user: PFUser, indexPath: IndexPath, value: Bool) {
+    userLikedMatches[user.objectId!] = true
+    tableView.reloadRows(at: [indexPath], with: .automatic)
+  }
   
   
   // MARK: Navigation

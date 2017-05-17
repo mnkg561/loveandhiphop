@@ -14,6 +14,7 @@ import SwiftyGif
 @objc protocol DetailViewControllerDelegate {
   //  func DetailViewController(user: PFUser, didLikeUser value: Bool)
   func DetailViewController(user: PFUser, indexPath: IndexPath, didCancelUser value: Bool)
+  func DetailViewControllerDidLikeUser(user: PFUser, indexPath: IndexPath, value: Bool)
 }
 
 class DetailViewController: UITableViewController {
@@ -75,7 +76,7 @@ class DetailViewController: UITableViewController {
     self.aboutLabel.text = userObject?.about
     self.locationLabel.text = userObject?.location
     self.emailIdLabel.text = userObject?.email
-    self.tableView.reloadData()
+
     
     
     //TODO: The local array does not retain data after coming back from detailed view
@@ -86,6 +87,16 @@ class DetailViewController: UITableViewController {
         likeUnlikeImageView.setImage(UIImage(named: "Heart-Unliked"), for: UIControlState.normal)
       }
     }
+    
+    if likedByCurrentUser != nil {
+      if likedByCurrentUser! {
+        youLikedLabel.isHidden = false
+      } else {
+        youLikedLabel.isHidden = true
+      }
+    }
+    
+    self.tableView.reloadData()
     
   }
   
@@ -121,14 +132,17 @@ class DetailViewController: UITableViewController {
   
   @IBAction func onClickLike(_ sender: UIButton) {
     youLikedLabel.isHidden = false
+    likedByCurrentUser = true
+    self.tableView.reloadData()
+    delegate?.DetailViewControllerDidLikeUser(user: pfUser!, indexPath: indexPath!, value: true)
     let like = PFObject(className: "Like", dictionary: ["user": PFUser.current()!, "likedUser": pfUser!])
-    print("#### HERE IS PFUSER IN DETAIL VIEW, \(pfUser)")
     like.saveInBackground { (success: Bool, error: Error?) in
       if error != nil {
         // Will have to adjust UI to display error
         print("Erro]r updating like status, error: \(error?.localizedDescription)")
       } else {
-        print("###### Detail View Just liked a user!!!!")
+        print("Detail View Just liked a user!!!!")
+        self.tableView.reloadData()
       }
     }
   }
@@ -294,10 +308,12 @@ class DetailViewController: UITableViewController {
     //self.updateProfile()
     
     if likedByCurrentUser != nil {
-      youLikedLabel.isHidden = false
-    } else {
-      youLikedLabel.isHidden = true
-    }
+      if likedByCurrentUser! {
+        youLikedLabel.isHidden = false
+      } else {
+        youLikedLabel.isHidden = true
+      }
+    } 
     
   }
   
