@@ -11,9 +11,9 @@
    - [X] Once user redirected back from facebook after succesful authentication, show the all the registration fields with              pre-filled data and allow users to update the information. Once user clicks on update/Agree button insert/update the          information in Parse Server.
    
 - [X] Tab Bar options on Users Home screen  
-- [-] Date/Flirt/Matches
-   - [ ] If user has a valid session, Display all the potential matches according to Match criteria.
-   - [ ] Provide the basic info in the main page like Name, Age, Location, Top Hip hop liked songs.
+- [X] Date/Flirt/Matches
+   - [X] If user has a valid session, Display all the potential matches according to Match criteria.
+   - [X] Provide the basic info in the main page like Name, Age, Location, Top Hip hop liked songs.
    - [ ] Allow users to send a friend(??) requests to potential matches.
    - [ ] if both the users mutually like then show the email id on the screen.
 - [X] Open Chat
@@ -48,7 +48,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://cloud.githubusercontent.com/assets/13710170/25791699/e372856e-3376-11e7-9e16-318720610de4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://cloud.githubusercontent.com/assets/13710170/26211150/ac6b28b8-3ba6-11e7-8901-c920e8d68cc9.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
