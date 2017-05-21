@@ -28,6 +28,7 @@ class QuizViewController: UIViewController {
 //    questionSubView.answer4 = "there"
     questionSubView.answers = ["a", "b", "c", "d"]
     questionView.addSubview(questionSubView)
+    questionView.layer.cornerRadius = 5
 
     
     }

@@ -106,8 +106,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXq-Vu-fLm">
-                                <rect key="frame" x="0.0" y="102" width="375" height="499"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXq-Vu-fLm" customClass="MultipleChoiceQuestionView" customModule="LoveAndHiphop" customModuleProvider="target">
+                                <rect key="frame" x="10" y="102" width="355" height="499"/>
                                 <color key="backgroundColor" red="0.66666666669999997" green="0.21830985210000001" blue="0.13595676800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="answer1" value="Hello"/>
@@ -136,13 +136,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.76559339179999997" green="0.83841608499999998" blue="0.83810947079999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="KXq-Vu-fLm" firstAttribute="leading" secondItem="a7S-sa-lpy" secondAttribute="leading" id="7eE-l3-7Lj"/>
+                            <constraint firstItem="KXq-Vu-fLm" firstAttribute="leading" secondItem="a7S-sa-lpy" secondAttribute="leading" constant="10" id="7eE-l3-7Lj"/>
                             <constraint firstItem="p1X-7B-VJ1" firstAttribute="centerX" secondItem="a7S-sa-lpy" secondAttribute="centerX" id="Gxu-KN-tZH"/>
                             <constraint firstItem="p1X-7B-VJ1" firstAttribute="top" secondItem="KXq-Vu-fLm" secondAttribute="bottom" constant="34" id="LKg-EZ-WCF"/>
                             <constraint firstItem="3tv-dU-0rm" firstAttribute="centerX" secondItem="a7S-sa-lpy" secondAttribute="centerX" id="Sl7-XN-EkK"/>
                             <constraint firstItem="3tv-dU-0rm" firstAttribute="top" secondItem="olZ-e7-5Bc" secondAttribute="bottom" constant="21" id="UZh-l3-H3t"/>
                             <constraint firstItem="KXq-Vu-fLm" firstAttribute="top" secondItem="3tv-dU-0rm" secondAttribute="bottom" constant="20" id="bgq-js-9E3"/>
-                            <constraint firstAttribute="trailing" secondItem="KXq-Vu-fLm" secondAttribute="trailing" id="gMR-eU-su8"/>
+                            <constraint firstAttribute="trailing" secondItem="KXq-Vu-fLm" secondAttribute="trailing" constant="10" id="gMR-eU-su8"/>
                             <constraint firstItem="c5o-Zm-g1b" firstAttribute="top" secondItem="p1X-7B-VJ1" secondAttribute="bottom" constant="30" id="hwq-Lp-zdE"/>
                         </constraints>
                     </view>

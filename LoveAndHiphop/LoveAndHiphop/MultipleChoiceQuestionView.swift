@@ -16,6 +16,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
   @IBOutlet weak var answer3Button: UIButton!
   @IBOutlet weak var answer4Button: UIButton!
   @IBOutlet var contentView: UIView!
+  @IBOutlet weak var scrollView: UIScrollView!
   
   
   var question: String? {
@@ -40,8 +41,6 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
       answer1Button.layer.borderColor = UIColor.white.cgColor
     }
   }
-  
-  //194 75 91
   
   var answer2: String? {
     get {
@@ -120,6 +119,8 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     
     // Set up custom view.
     contentView.frame = bounds // Fill up superview, with constraints applie
+    
+    scrollView.contentSize = contentView.frame.size
     
     // Add custom view to this view
     addSubview(contentView)
