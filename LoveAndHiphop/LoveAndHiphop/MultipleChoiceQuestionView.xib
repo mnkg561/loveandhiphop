@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MultipleChoiceQuestionView" customModule="LoveAndHiphop" customModuleProvider="target">
+            <connections>
+                <outlet property="answer1Button" destination="aVs-pM-UD3" id="pjJ-CJ-DlD"/>
+                <outlet property="answer2Button" destination="7Tn-zD-i6X" id="NIr-3U-pVa"/>
+                <outlet property="answer3Button" destination="xAh-lN-6Sy" id="Prm-CC-7MS"/>
+                <outlet property="answer4Button" destination="h0E-LB-wpa" id="ElD-Nh-1W3"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="DEl-U4-iea"/>
+                <outlet property="questionLabel" destination="bhb-SY-8IY" id="gcS-ZE-ll2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SY-8IY">
+                    <rect key="frame" x="20" y="30" width="335" height="30"/>
+                    <attributedString key="attributedText">
+                        <fragment content="A multiple choice question. ">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="26" name="GillSans-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-pM-UD3">
+                    <rect key="frame" x="28" y="80" width="319" height="31"/>
+                    <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                    <state key="normal" title="answer 1">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-zD-i6X">
+                    <rect key="frame" x="28" y="131" width="319" height="31"/>
+                    <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                    <state key="normal" title="answer 2">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-lN-6Sy">
+                    <rect key="frame" x="28" y="182" width="319" height="31"/>
+                    <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                    <state key="normal" title="answer 3">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0E-LB-wpa">
+                    <rect key="frame" x="28" y="233" width="319" height="31"/>
+                    <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                    <state key="normal" title="answer 4">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.4556483288" green="0.56516426279999998" blue="0.4949936452" alpha="0.94020226880000002" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7Tn-zD-i6X" secondAttribute="trailing" constant="28" id="3LO-uM-RTH"/>
+                <constraint firstItem="h0E-LB-wpa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="40X-VL-ox7"/>
+                <constraint firstAttribute="trailing" secondItem="h0E-LB-wpa" secondAttribute="trailing" constant="28" id="Adk-Nc-VbJ"/>
+                <constraint firstItem="bhb-SY-8IY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="Czr-MG-m9T"/>
+                <constraint firstItem="7Tn-zD-i6X" firstAttribute="top" secondItem="aVs-pM-UD3" secondAttribute="bottom" priority="750" constant="20" id="FwY-q8-8sT"/>
+                <constraint firstItem="7Tn-zD-i6X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JVh-ff-5D2"/>
+                <constraint firstItem="aVs-pM-UD3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="LNS-EK-POv"/>
+                <constraint firstItem="xAh-lN-6Sy" firstAttribute="top" secondItem="7Tn-zD-i6X" secondAttribute="bottom" constant="20" id="NX2-7p-xht"/>
+                <constraint firstItem="bhb-SY-8IY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="SlZ-wf-7rf"/>
+                <constraint firstItem="aVs-pM-UD3" firstAttribute="top" secondItem="bhb-SY-8IY" secondAttribute="bottom" constant="20" id="T5E-cR-UlH"/>
+                <constraint firstItem="aVs-pM-UD3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WMs-91-Ejq"/>
+                <constraint firstAttribute="trailing" secondItem="bhb-SY-8IY" secondAttribute="trailing" constant="20" id="WSA-gg-yjU"/>
+                <constraint firstItem="7Tn-zD-i6X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="Wo3-BZ-6XZ"/>
+                <constraint firstAttribute="trailing" secondItem="xAh-lN-6Sy" secondAttribute="trailing" constant="28" id="XbD-zd-MLf"/>
+                <constraint firstItem="h0E-LB-wpa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="Yd2-en-dNP"/>
+                <constraint firstItem="xAh-lN-6Sy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="gRg-xO-QzO"/>
+                <constraint firstItem="h0E-LB-wpa" firstAttribute="top" secondItem="xAh-lN-6Sy" secondAttribute="bottom" constant="20" id="hUT-Ky-wSE"/>
+                <constraint firstAttribute="trailing" secondItem="aVs-pM-UD3" secondAttribute="trailing" constant="28" id="v6b-Bq-0hG"/>
+                <constraint firstItem="xAh-lN-6Sy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w4L-Qd-oDC"/>
+            </constraints>
+            <point key="canvasLocation" x="-32.5" y="-13.5"/>
+        </view>
+    </objects>
+</document>

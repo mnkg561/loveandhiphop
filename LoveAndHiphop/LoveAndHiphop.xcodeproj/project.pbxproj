@@ -41,8 +41,11 @@
 		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
 		AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */; };
+		AB8285D31ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */; };
+		AB8285D51ECE534C00EDB804 /* MultipleChoiceQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */; };
 		AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */; };
 		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
+		AB8D5ED31ECF493700B9B6F6 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */; };
 		AB8D746B1EC60779005EC9FA /* FailQuizView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8D746A1EC60779005EC9FA /* FailQuizView.xib */; };
 		ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1153C1EBBE61700911786 /* FBViewController.swift */; };
 		ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA1153D1EBBE61700911786 /* FBViewController.xib */; };
@@ -95,8 +98,11 @@
 		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleChoiceQuestionView.xib; sourceTree = "<group>"; };
+		AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionView.swift; sourceTree = "<group>"; };
 		AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPageViewController.swift; sourceTree = "<group>"; };
 		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
+		AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		AB8D746A1EC60779005EC9FA /* FailQuizView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FailQuizView.xib; sourceTree = "<group>"; };
 		ABA1153C1EBBE61700911786 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBViewController.swift; sourceTree = "<group>"; };
 		ABA1153D1EBBE61700911786 /* FBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBViewController.xib; sourceTree = "<group>"; };
@@ -196,6 +202,7 @@
 				22ECA1CD1EC9439A00287953 /* IntroViewController.swift */,
 				22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */,
 				E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */,
+				AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -214,6 +221,8 @@
 				229024E31EC22CEC003CA4C8 /* MatchCell.swift */,
 				ABB95B381EC588FD00AF837D /* PassQuizView.xib */,
 				AB8D746A1EC60779005EC9FA /* FailQuizView.xib */,
+				AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */,
+				AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -318,6 +327,7 @@
 				ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */,
 				22DBC30E1EBD3DE2002D0220 /* ComposeCell.xib in Resources */,
 				2244917D1EC3B1C9008DCA0A /* loveme_or_not_gif.gif in Resources */,
+				AB8285D31ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib in Resources */,
 				224491791EC2FD15008DCA0A /* lovepath_gif.gif in Resources */,
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
@@ -387,6 +397,7 @@
 			files = (
 				221474FD1EC0069D00D2F9F4 /* MatchDetailedViewController.swift in Sources */,
 				221475011EC1935800D2F9F4 /* UserProfileViewController.swift in Sources */,
+				AB8285D51ECE534C00EDB804 /* MultipleChoiceQuestionView.swift in Sources */,
 				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
 				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
 				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
@@ -402,6 +413,7 @@
 				ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */,
 				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
 				2244917B1EC3A5C0008DCA0A /* DetailViewController.swift in Sources */,
+				AB8D5ED31ECF493700B9B6F6 /* QuizViewController.swift in Sources */,
 				225476121EB44AE800C0DCF5 /* TopListenerViewController.swift in Sources */,
 				225476161EB456DB00C0DCF5 /* TopListenerObject.swift in Sources */,
 				AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */,
