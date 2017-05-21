@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol MultipleChoiceQuestionViewDelegate {
+  func MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: MultipleChoiceQuestionView, button: UIButton, selectedAnswer: Int)
+}
+
 @IBDesignable
 class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
+  
+  // MARK: Properites
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var answer1Button: UIButton!
   @IBOutlet weak var answer2Button: UIButton!
@@ -18,6 +24,9 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
   @IBOutlet var contentView: UIView!
   @IBOutlet weak var scrollView: UIScrollView!
   
+  var selectedAnswer: Int?
+  var answerButtons: [UIButton]!
+  var delegate: MultipleChoiceQuestionViewDelegate?
   
   var question: String? {
     get {
@@ -91,13 +100,32 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     }
     
     set {
-      
       answer1 = newValue?[0]
       answer2 = newValue?[1]
       answer3 = newValue?[2]
       answer4 = newValue?[3]
     }
   }
+  
+  
+  // MARK: Methods
+  @IBAction func didTapAnswer(_ sender: UIButton) {
+    selectedAnswer = sender.tag
+
+    // Deselect all other buttons, except selected
+    for button in answerButtons {
+      button.backgroundColor = UIColor.clear
+    }
+    sender.backgroundColor = UIColor(red: 170/255, green: 56/255, blue: 35/255, alpha: 1.0)
+    
+    // Alert delegates
+    delegate?.MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: self, button: sender, selectedAnswer: sender.tag)
+  }
+  
+  // WHEN HOVERING IN ANSWER AREA
+  
+  
+  // MARK: Initialization
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -116,7 +144,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     // Initialize the nib
     let nib = UINib(nibName: "MultipleChoiceQuestionView", bundle: Bundle(for: type(of: self)))
     nib.instantiate(withOwner: self, options: nil)
-    
+
     // Set up custom view.
     contentView.frame = bounds // Fill up superview, with constraints applie
     
@@ -124,6 +152,9 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     
     // Add custom view to this view
     addSubview(contentView)
+    
+    // Allows easier control over manipulating button state appearances
+    answerButtons = [answer1Button, answer2Button, answer3Button, answer4Button]
     
     // When this view is instantiated, it will remain
     // grow with it's container with constraints applied

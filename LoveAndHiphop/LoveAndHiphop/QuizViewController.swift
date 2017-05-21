@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuizViewController: UIViewController {
+class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate {
   
   // MARK: Properties
   @IBOutlet weak var questionView: UIView!
@@ -20,12 +20,9 @@ class QuizViewController: UIViewController {
 
     // Load questions and position them inside question container
     let questionSubView = MultipleChoiceQuestionView(frame: CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height))
+    questionSubView.delegate = self
 
-//    questionSubView.question = "fuck"
-//    questionSubView.answer1 = "dude"
-//    questionSubView.answer2 = "nicki"
-//    questionSubView.answer3 = "hello"
-//    questionSubView.answer4 = "there"
+    questionSubView.question = "Will it be cloudy with a chance of meatballs?"
     questionSubView.answers = ["a", "b", "c", "d"]
     questionView.addSubview(questionSubView)
     questionView.layer.cornerRadius = 5
@@ -33,10 +30,13 @@ class QuizViewController: UIViewController {
     
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  // MARK: Delegates
+  func MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: MultipleChoiceQuestionView, button: UIButton, selectedAnswer: Int) {
+    print("In view controller, I know a user has selected answer.")
+    print("Here is the view, view: \(multipleChoiceQuestionView)")
+    print("Here is the button, \(button)")
+      print("Here is the answer \(selectedAnswer)")
+  }
     
 
     /*

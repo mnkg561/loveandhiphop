@@ -29,35 +29,47 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-pM-UD3">
-                            <rect key="frame" x="28" y="80" width="319" height="31"/>
+                            <rect key="frame" x="28" y="80" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 1">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="evu-KQ-fz5"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-zD-i6X">
-                            <rect key="frame" x="28" y="131" width="319" height="31"/>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-zD-i6X">
+                            <rect key="frame" x="28" y="131" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 2">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="dKo-Xp-GYz"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-lN-6Sy">
-                            <rect key="frame" x="28" y="182" width="319" height="31"/>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-lN-6Sy">
+                            <rect key="frame" x="28" y="182" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 3">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="jTr-ya-oRj"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0E-LB-wpa">
-                            <rect key="frame" x="28" y="233" width="319" height="31"/>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0E-LB-wpa">
+                            <rect key="frame" x="28" y="233" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 4">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="Wun-Co-1w2"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SY-8IY">
-                            <rect key="frame" x="46.5" y="20" width="282.5" height="30"/>
+                            <rect key="frame" x="20" y="20" width="335.5" height="30"/>
                             <attributedString key="attributedText">
                                 <fragment content="A multiple choice question. ">
                                     <attributes>
@@ -72,7 +84,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="aVs-pM-UD3" firstAttribute="top" secondItem="bhb-SY-8IY" secondAttribute="bottom" constant="30" id="40D-GV-kmE"/>
-                        <constraint firstItem="bhb-SY-8IY" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="6A6-8K-r1G"/>
+                        <constraint firstItem="bhb-SY-8IY" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="20" id="5sz-eE-zV1"/>
                         <constraint firstItem="7Tn-zD-i6X" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="6Pw-Nf-CJ0"/>
                         <constraint firstItem="xAh-lN-6Sy" firstAttribute="top" secondItem="7Tn-zD-i6X" secondAttribute="bottom" constant="20" id="Bs2-HW-0xP"/>
                         <constraint firstItem="xAh-lN-6Sy" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="FbH-Ea-Idb"/>
@@ -82,6 +94,7 @@
                         <constraint firstItem="bhb-SY-8IY" firstAttribute="top" secondItem="qfD-QG-hnp" secondAttribute="top" constant="20" id="VNo-sH-5gb"/>
                         <constraint firstItem="aVs-pM-UD3" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="28" id="X91-mb-Unl"/>
                         <constraint firstItem="aVs-pM-UD3" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="XQh-Hm-zFx"/>
+                        <constraint firstAttribute="trailing" secondItem="bhb-SY-8IY" secondAttribute="trailing" constant="20" id="a2h-la-Md5"/>
                         <constraint firstItem="xAh-lN-6Sy" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="28" id="eEp-sG-jFw"/>
                         <constraint firstAttribute="trailing" secondItem="h0E-LB-wpa" secondAttribute="trailing" constant="28" id="fcN-qA-3Nl"/>
                         <constraint firstItem="7Tn-zD-i6X" firstAttribute="top" secondItem="aVs-pM-UD3" secondAttribute="bottom" constant="20" id="hWA-WB-P7y"/>
