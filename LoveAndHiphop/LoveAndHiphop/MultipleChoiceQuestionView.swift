@@ -126,9 +126,6 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     delegate?.MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: self, button: sender, selectedAnswer: sender.tag)
   }
   
-  // WHEN HOVERING IN ANSWER AREA
-  
-  
   // MARK: Initialization
   
   required init?(coder aDecoder: NSCoder) {

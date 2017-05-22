@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate {
+class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, FactQuestionViewDelegate {
   
   // MARK: Properties
   @IBOutlet weak var questionView: UIView!
@@ -20,7 +20,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate {
     super.viewDidLoad()
     
     let query = PFQuery(className: "MembershipQuestion")
-    query.limit = 2
+    query.limit = 1
     query.findObjectsInBackground { (questionObjects: [PFObject]?, error: Error?) in
       if error != nil {
         print("Error retrieving question object, error: \(error?.localizedDescription)")
@@ -41,8 +41,14 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate {
   func loadQuestionView(for questionObject: QuestionObject!) {
     switch questionObject.type! {
     case .fact:
-      let questionSubView = UIView(frame: CGRect(x: 0, y: 0, width: self.questionView.frame.width, height: self.questionView.frame.height))
-      questionSubView.backgroundColor = UIColor.orange
+      let questionSubView = FactQuestionView(frame: CGRect(x: 0, y: 0, width: self.questionView.frame.width, height: self.questionView.frame.height))
+      questionSubView.delegate = self
+      
+
+      questionSubView.question = questionObject.question!
+      questionSubView.answer = questionObject.answer!
+      questionSubView.answers = questionObject.answers!
+      
       self.questionView.addSubview(questionSubView)
       self.questionView.layer.cornerRadius = 5
     case .multipleChoice:
@@ -57,6 +63,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate {
       questionSubView.question = question
       questionSubView.answer = answer
       questionSubView.answers = [answers[0], answers[1], answers[2], answers[3]]
+      
       self.questionView.addSubview(questionSubView)
       self.questionView.layer.cornerRadius = 5
     }
@@ -66,6 +73,13 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate {
   func MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: MultipleChoiceQuestionView, button: UIButton, selectedAnswer: Int) {
     print("In view controller, I know a user has selected answer.")
     print("Here is the view, view: \(multipleChoiceQuestionView)")
+    print("Here is the button, \(button)")
+    print("Here is the answer \(selectedAnswer)")
+  }
+  
+  func FactViewDidSelectAnswer(factQuestionView: FactQuestionView, button: UIButton, selectedAnswer: Int) {
+    print("In view controller, I know a user has selected answer.")
+    print("Here is the view, view: \(factQuestionView)")
     print("Here is the button, \(button)")
     print("Here is the answer \(selectedAnswer)")
   }

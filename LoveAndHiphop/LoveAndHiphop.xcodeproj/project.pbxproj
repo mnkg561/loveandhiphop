@@ -41,6 +41,8 @@
 		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
 		AB69E65C1ED247D8003651AD /* QuestionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E65B1ED247D8003651AD /* QuestionObject.swift */; };
+		AB69E65E1ED2A7E7003651AD /* FactQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69E65D1ED2A7E6003651AD /* FactQuestionView.xib */; };
+		AB69E6621ED2A96A003651AD /* FactQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E6611ED2A96A003651AD /* FactQuestionView.swift */; };
 		AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */; };
 		AB8285D31ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */; };
 		AB8285D51ECE534C00EDB804 /* MultipleChoiceQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */; };
@@ -99,6 +101,8 @@
 		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		AB69E65B1ED247D8003651AD /* QuestionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionObject.swift; sourceTree = "<group>"; };
+		AB69E65D1ED2A7E6003651AD /* FactQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FactQuestionView.xib; sourceTree = "<group>"; };
+		AB69E6611ED2A96A003651AD /* FactQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactQuestionView.swift; sourceTree = "<group>"; };
 		AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleChoiceQuestionView.xib; sourceTree = "<group>"; };
 		AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionView.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 				AB8D746A1EC60779005EC9FA /* FailQuizView.xib */,
 				AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */,
 				AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */,
+				AB69E65D1ED2A7E6003651AD /* FactQuestionView.xib */,
+				AB69E6611ED2A96A003651AD /* FactQuestionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 				AB8285D31ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib in Resources */,
 				224491791EC2FD15008DCA0A /* lovepath_gif.gif in Resources */,
 				22E946AF1EAFF3CB00DCEC74 /* LaunchScreen.storyboard in Resources */,
+				AB69E65E1ED2A7E7003651AD /* FactQuestionView.xib in Resources */,
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
 				224491771EC2F911008DCA0A /* love_gif.gif in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
@@ -413,6 +420,7 @@
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
 				E4F16A021ECBD076001ADEDF /* MembershipQuizTableViewController2.swift in Sources */,
 				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
+				AB69E6621ED2A96A003651AD /* FactQuestionView.swift in Sources */,
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
 				ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */,
 				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
