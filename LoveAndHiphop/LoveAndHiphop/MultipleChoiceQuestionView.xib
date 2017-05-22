@@ -32,7 +32,7 @@
                             <rect key="frame" x="28" y="80" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 1">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="evu-KQ-fz5"/>

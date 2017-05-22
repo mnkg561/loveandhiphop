@@ -25,6 +25,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
   @IBOutlet weak var scrollView: UIScrollView!
   
   var selectedAnswer: Int?
+  var answer: Int?
   var answerButtons: [UIButton]!
   var delegate: MultipleChoiceQuestionViewDelegate?
   
@@ -116,7 +117,10 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     for button in answerButtons {
       button.backgroundColor = UIColor.clear
     }
-    sender.backgroundColor = UIColor(red: 170/255, green: 56/255, blue: 35/255, alpha: 1.0)
+//    sender.backgroundColor = UIColor(red: 170/255, green: 56/255, blue: 35/255, alpha: 1.0)
+    
+    sender.backgroundColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0)
+    
     
     // Alert delegates
     delegate?.MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: self, button: sender, selectedAnswer: sender.tag)

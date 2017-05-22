@@ -40,6 +40,7 @@
 		22F3C64C1ECAE614003CC727 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */; };
 		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
+		AB69E65C1ED247D8003651AD /* QuestionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E65B1ED247D8003651AD /* QuestionObject.swift */; };
 		AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */; };
 		AB8285D31ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */; };
 		AB8285D51ECE534C00EDB804 /* MultipleChoiceQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */; };
@@ -97,6 +98,7 @@
 		6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.debug.xcconfig"; sourceTree = "<group>"; };
 		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		AB69E65B1ED247D8003651AD /* QuestionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionObject.swift; sourceTree = "<group>"; };
 		AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleChoiceQuestionView.xib; sourceTree = "<group>"; };
 		AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				225476151EB456DB00C0DCF5 /* TopListenerObject.swift */,
 				225476191EB4773500C0DCF5 /* FashionObject.swift */,
 				221475021EC21AF800D2F9F4 /* UserObject.swift */,
+				AB69E65B1ED247D8003651AD /* QuestionObject.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */,
 				22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */,
 				225476141EB453F300C0DCF5 /* MusicObject.swift in Sources */,
+				AB69E65C1ED247D8003651AD /* QuestionObject.swift in Sources */,
 				225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */,
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
 				E4F16A021ECBD076001ADEDF /* MembershipQuizTableViewController2.swift in Sources */,
