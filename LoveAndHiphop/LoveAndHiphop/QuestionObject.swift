@@ -38,6 +38,20 @@ class QuestionObject: PFObject, PFSubclassing {
     super.init()
   }
   
+  class func loadQuestionObjectsArray(from pfObjects: [PFObject]) -> [QuestionObject] {
+    var questionObjects: [QuestionObject] = []
+    
+    for pfObject in pfObjects {
+      print("Object: \(pfObject)")
+      let newQuestion = QuestionObject(pfObject: pfObject)
+      questionObjects.append(newQuestion)
+    }
+    
+    return questionObjects
+  }
+  
+
+  
   public class func parseClassName() -> String {
     return "QuestionObject"
   }

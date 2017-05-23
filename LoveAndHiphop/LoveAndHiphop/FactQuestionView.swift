@@ -12,7 +12,7 @@ protocol FactQuestionViewDelegate {
   func FactViewDidSelectAnswer(factQuestionView: FactQuestionView, button: UIButton, selectedAnswer: Int)
 }
 
-@IBDesignable
+//@IBDesignable
 class FactQuestionView: UIView, UIScrollViewDelegate {
   
   // MARK: Properties
@@ -123,8 +123,8 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
     
     // Set up custom view.
     contentView.frame = bounds // Fill up superview, with constraints applie
-    
-    scrollView.contentSize = contentView.frame.size
+    contentView.clipsToBounds = true
+    scrollView.contentSize = contentView.bounds.size
     // Add custom view to this view
     addSubview(contentView)
     
@@ -134,6 +134,7 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
     // When this view is instantiated, it will remain
     // grow with it's container with constraints applied
     self.setNeedsLayout()
+    self.clipsToBounds = true
     self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     self.translatesAutoresizingMaskIntoConstraints = true
   }

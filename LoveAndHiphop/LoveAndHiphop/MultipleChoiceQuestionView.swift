@@ -12,7 +12,7 @@ protocol MultipleChoiceQuestionViewDelegate {
   func MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: MultipleChoiceQuestionView, button: UIButton, selectedAnswer: Int)
 }
 
-@IBDesignable
+//@IBDesignable
 class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
   
   // MARK: Properites
@@ -148,6 +148,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
 
     // Set up custom view.
     contentView.frame = bounds // Fill up superview, with constraints applie
+    contentView.clipsToBounds = true
     
     scrollView.contentSize = contentView.frame.size
     

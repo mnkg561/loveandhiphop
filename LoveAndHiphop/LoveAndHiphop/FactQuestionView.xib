@@ -23,10 +23,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ItO-gx-U59">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItO-gx-U59">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-J7-ixw">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-J7-ixw">
                             <rect key="frame" x="20" y="20" width="335" height="30"/>
                             <attributedString key="attributedText">
                                 <fragment content="A Fact Question">
@@ -39,7 +39,7 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-3l-Lp3">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-3l-Lp3">
                             <rect key="frame" x="50" y="80" width="275" height="106"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="275" id="Hxy-eH-63r"/>
@@ -53,7 +53,7 @@
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="QxW-dC-tpd"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VJ-S1-2ba">
+                        <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VJ-S1-2ba">
                             <rect key="frame" x="50" y="216" width="275" height="106"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="106" id="Q8b-zW-Qdi"/>
@@ -69,7 +69,6 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="l8Z-J7-ixw" firstAttribute="centerX" secondItem="ItO-gx-U59" secondAttribute="centerX" id="0xy-6W-8Yx"/>
                         <constraint firstAttribute="trailing" secondItem="1VJ-S1-2ba" secondAttribute="trailing" constant="50" id="BHe-lv-WyF"/>
                         <constraint firstItem="l8Z-J7-ixw" firstAttribute="leading" secondItem="ItO-gx-U59" secondAttribute="leading" constant="20" id="Dz4-xg-SeI"/>
                         <constraint firstItem="W7t-3l-Lp3" firstAttribute="leading" secondItem="ItO-gx-U59" secondAttribute="leading" constant="50" id="Gr6-XK-Yw9"/>

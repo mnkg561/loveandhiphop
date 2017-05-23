@@ -9,65 +9,131 @@
 import UIKit
 import Parse
 
-class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, FactQuestionViewDelegate {
+class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, FactQuestionViewDelegate, UIScrollViewDelegate {
   
   // MARK: Properties
   @IBOutlet weak var questionView: UIView!
+  @IBOutlet var contentView: UIView!
+  @IBOutlet weak var scrollView: UIScrollView!
   
-  
+  var questions: [QuestionObject] = []
+  var questionViews: [UIView] = []
   // MARK: Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    scrollView.delegate = self
+    scrollView.frame = questionView.bounds
+//    questionView.layer.cornerRadius = 5
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    
     let query = PFQuery(className: "MembershipQuestion")
-    query.limit = 1
-    query.findObjectsInBackground { (questionObjects: [PFObject]?, error: Error?) in
+    query.limit = 2
+    query.findObjectsInBackground { (pfObjects: [PFObject]?, error: Error?) in
       if error != nil {
         print("Error retrieving question object, error: \(error?.localizedDescription)")
       }
       
-      if questionObjects != nil {
-        // Load questions and position them inside question container
-        for questionObject in questionObjects! {
-          print("Object: \(questionObject)")
-          let newQuestion = QuestionObject(pfObject: questionObject)
-          self.loadQuestionView(for: newQuestion)
-        }
+      if pfObjects != nil {
+        let questionObjects = QuestionObject.loadQuestionObjectsArray(from: pfObjects!)
+        self.questions = questionObjects
+        
+        self.loadQuestionSubViews(from: questionObjects)
+        
+        self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questions.count), height: self.scrollView.bounds.size.height)
       }
+      
     }
   }
   
-  // Load question views into question container
-  func loadQuestionView(for questionObject: QuestionObject!) {
-    switch questionObject.type! {
-    case .fact:
-      let questionSubView = FactQuestionView(frame: CGRect(x: 0, y: 0, width: self.questionView.frame.width, height: self.questionView.frame.height))
-      questionSubView.delegate = self
-      
-
-      questionSubView.question = questionObject.question!
-      questionSubView.answer = questionObject.answer!
-      questionSubView.answers = questionObject.answers!
-      
-      self.questionView.addSubview(questionSubView)
-      self.questionView.layer.cornerRadius = 5
-    case .multipleChoice:
-      let questionSubView = MultipleChoiceQuestionView(frame: CGRect(x: 0, y: 0, width: self.questionView.frame.width, height: self.questionView.frame.height))
-      
-      questionSubView.delegate = self
-      
-      let question = questionObject.question!
-      let answers = questionObject.answers!
-      let answer = questionObject.answer!
-      
-      questionSubView.question = question
-      questionSubView.answer = answer
-      questionSubView.answers = [answers[0], answers[1], answers[2], answers[3]]
-      
-      self.questionView.addSubview(questionSubView)
-      self.questionView.layer.cornerRadius = 5
+  func loadQuestionSubViews(from questionObjects: [QuestionObject]) {
+    for questionObject in questionObjects {
+      switch questionObject.type! {
+        
+      case .fact:
+        let questionSubView = FactQuestionView(frame: CGRect(x: 0, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height))
+        questionSubView.delegate = self
+        self.questionViews.append(questionSubView as UIView)
+        
+        
+        questionSubView.question = questionObject.question!
+        questionSubView.answer = questionObject.answer!
+        questionSubView.answers = questionObject.answers!
+        
+        self.scrollView.addSubview(questionSubView)
+        
+      case .multipleChoice:
+        let questionSubView = MultipleChoiceQuestionView(frame: CGRect(x:0, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height))
+        questionSubView.delegate = self
+        self.questionViews.append(questionSubView as UIView)
+        
+        let question = questionObject.question!
+        let answers = questionObject.answers!
+        let answer = questionObject.answer!
+        
+        questionSubView.question = question
+        questionSubView.answer = answer
+        questionSubView.answers = answers
+        
+        self.scrollView.addSubview(questionSubView)
+      }
     }
   }
+  //  // Load question views into question container
+  //  func loadQuestionView(number i: Int, with questionObject: QuestionObject!) {
+  //    switch questionObject.type! {
+  //    case .fact:
+  //      let questionSubView = FactQuestionView(frame: CGRect(x: CGFloat(i) * scrollView.frame.width, y: 0, width: self.questionView.frame.width, height: self.questionView.frame.height))
+  //      questionSubView.delegate = self
+  //
+  //
+  //      questionSubView.question = questionObject.question!
+  //      questionSubView.answer = questionObject.answer!
+  //      questionSubView.answers = questionObject.answers!
+  //
+  //      self.scrollView.addSubview(questionSubView)
+  //      self.questionView.layer.cornerRadius = 5
+  //    case .multipleChoice:
+  //      let questionSubView = MultipleChoiceQuestionView(frame: CGRect(x: CGFloat(i) * scrollView.frame.width, y: 0, width: self.questionView.frame.width, height: self.questionView.frame.height))
+  //
+  //      questionSubView.delegate = self
+  //
+  //      let question = questionObject.question!
+  //      let answers = questionObject.answers!
+  //      let answer = questionObject.answer!
+  //
+  //      questionSubView.question = question
+  //      questionSubView.answer = answer
+  //      questionSubView.answers = answers
+  //
+  //      self.scrollView.addSubview(questionSubView)
+  //      self.questionView.layer.cornerRadius = 5
+  //    }
+  //  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
+  func rotated() {
+    self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questions.count), height: self.scrollView.bounds.size.height)
+    //    if UIDevice.current.orientation.isLandscape {
+    //      print("Landscape")
+    //      self.scrollView.frame = questionView.bounds
+    //      self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(questions.count), height: self.scrollView.bounds.size.height)
+    //
+    //      self.scrollView.translatesAutoresizingMaskIntoConstraints = true
+    //      self.scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    //    } else {
+    //      print("Portrait")
+    //      self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(questions.count), height: self.scrollView.bounds.size.height)
+    //
+    //      self.scrollView.translatesAutoresizingMaskIntoConstraints = true
+    //      self.scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    //    }
+  }
+  
   
   // MARK: Delegates
   func MultiplChoiceViewDidSelectAnswer(multipleChoiceQuestionView: MultipleChoiceQuestionView, button: UIButton, selectedAnswer: Int) {
@@ -84,6 +150,10 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     print("Here is the answer \(selectedAnswer)")
   }
   
+  //  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+  //    questionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+  //    questionView.bringSubview(toFront: scrollView.subviews[1])
+  //  }
   
   /*
    // MARK: - Navigation

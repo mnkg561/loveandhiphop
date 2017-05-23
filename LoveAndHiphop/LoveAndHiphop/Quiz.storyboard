@@ -107,7 +107,20 @@
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXq-Vu-fLm">
                                 <rect key="frame" x="10" y="102" width="355" height="499"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGf-k9-BaZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="499"/>
+                                    </scrollView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.66666666669999997" green="0.21830985210000001" blue="0.13595676800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wGf-k9-BaZ" secondAttribute="trailing" id="QbZ-Jo-Sa9"/>
+                                    <constraint firstItem="wGf-k9-BaZ" firstAttribute="leading" secondItem="KXq-Vu-fLm" secondAttribute="leading" id="Wsl-CE-5BX"/>
+                                    <constraint firstItem="wGf-k9-BaZ" firstAttribute="height" secondItem="KXq-Vu-fLm" secondAttribute="height" id="dSr-Ri-DXe"/>
+                                    <constraint firstAttribute="bottom" secondItem="wGf-k9-BaZ" secondAttribute="bottom" id="f5Z-6z-lw1"/>
+                                    <constraint firstItem="wGf-k9-BaZ" firstAttribute="width" secondItem="KXq-Vu-fLm" secondAttribute="width" id="ood-nf-WDZ"/>
+                                    <constraint firstItem="wGf-k9-BaZ" firstAttribute="top" secondItem="KXq-Vu-fLm" secondAttribute="top" id="qg5-QH-cAF"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="answer1" value="Hello"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="question" value="Trick"/>
@@ -148,7 +161,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="a7S-sa-lpy" id="HSb-5b-nRs"/>
                         <outlet property="questionView" destination="KXq-Vu-fLm" id="Wgf-zd-ZIV"/>
+                        <outlet property="scrollView" destination="wGf-k9-BaZ" id="tBS-x1-W40"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTQ-P0-wWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

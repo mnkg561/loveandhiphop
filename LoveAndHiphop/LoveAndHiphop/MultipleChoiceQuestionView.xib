@@ -25,10 +25,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfD-QG-hnp">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfD-QG-hnp">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-pM-UD3">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-pM-UD3">
                             <rect key="frame" x="28" y="80" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 1">
@@ -38,7 +38,7 @@
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="evu-KQ-fz5"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-zD-i6X">
+                        <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-zD-i6X">
                             <rect key="frame" x="28" y="131" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 2">
@@ -48,7 +48,7 @@
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="dKo-Xp-GYz"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-lN-6Sy">
+                        <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-lN-6Sy">
                             <rect key="frame" x="28" y="182" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 3">
@@ -58,7 +58,7 @@
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="jTr-ya-oRj"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0E-LB-wpa">
+                        <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0E-LB-wpa">
                             <rect key="frame" x="28" y="233" width="319.5" height="31"/>
                             <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
                             <state key="normal" title="answer 4">
@@ -68,7 +68,7 @@
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="Wun-Co-1w2"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SY-8IY">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SY-8IY">
                             <rect key="frame" x="20" y="20" width="335.5" height="30"/>
                             <attributedString key="attributedText">
                                 <fragment content="A multiple choice question. ">
