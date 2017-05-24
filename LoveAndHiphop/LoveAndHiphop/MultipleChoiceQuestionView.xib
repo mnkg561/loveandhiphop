@@ -25,55 +25,71 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfD-QG-hnp">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfD-QG-hnp">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVs-pM-UD3">
-                            <rect key="frame" x="28" y="80" width="319.5" height="31"/>
-                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                            <rect key="frame" x="63" y="80" width="250" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="250" id="4e2-Wx-KuC"/>
+                                <constraint firstAttribute="height" constant="50" id="bNC-A7-XS4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="22"/>
                             <state key="normal" title="answer 1">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="evu-KQ-fz5"/>
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tn-zD-i6X">
-                            <rect key="frame" x="28" y="131" width="319.5" height="31"/>
-                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                            <rect key="frame" x="63" y="150" width="250" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="dbr-vC-66g"/>
+                                <constraint firstAttribute="width" constant="250" id="gjF-MS-bR5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="22"/>
                             <state key="normal" title="answer 2">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="dKo-Xp-GYz"/>
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAh-lN-6Sy">
-                            <rect key="frame" x="28" y="182" width="319.5" height="31"/>
-                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                            <rect key="frame" x="63" y="220" width="250" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="250" id="Gqh-vP-CC0"/>
+                                <constraint firstAttribute="height" constant="50" id="zBY-Rt-Jlt"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="22"/>
                             <state key="normal" title="answer 3">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="jTr-ya-oRj"/>
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0E-LB-wpa">
-                            <rect key="frame" x="28" y="233" width="319.5" height="31"/>
-                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="16"/>
+                            <rect key="frame" x="62.5" y="290" width="250" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Fga-LI-nmS"/>
+                                <constraint firstAttribute="width" constant="250" id="jVs-05-aQk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="22"/>
                             <state key="normal" title="answer 4">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didTapAnswer:" destination="-1" eventType="touchUpInside" id="Wun-Co-1w2"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SY-8IY">
-                            <rect key="frame" x="20" y="20" width="335.5" height="30"/>
+                            <rect key="frame" x="10" y="20" width="355" height="30"/>
                             <attributedString key="attributedText">
                                 <fragment content="A multiple choice question. ">
                                     <attributes>
-                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="26" name="GillSans-Light"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
@@ -82,31 +98,25 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="aVs-pM-UD3" firstAttribute="top" secondItem="bhb-SY-8IY" secondAttribute="bottom" constant="30" id="40D-GV-kmE"/>
-                        <constraint firstItem="bhb-SY-8IY" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="20" id="5sz-eE-zV1"/>
+                        <constraint firstItem="bhb-SY-8IY" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="10" id="5sz-eE-zV1"/>
                         <constraint firstItem="7Tn-zD-i6X" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="6Pw-Nf-CJ0"/>
                         <constraint firstItem="xAh-lN-6Sy" firstAttribute="top" secondItem="7Tn-zD-i6X" secondAttribute="bottom" constant="20" id="Bs2-HW-0xP"/>
                         <constraint firstItem="xAh-lN-6Sy" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="FbH-Ea-Idb"/>
-                        <constraint firstAttribute="bottom" secondItem="h0E-LB-wpa" secondAttribute="bottom" constant="50" id="GEz-7J-G0v"/>
-                        <constraint firstItem="7Tn-zD-i6X" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="28" id="OBC-pz-Iaf"/>
-                        <constraint firstAttribute="trailing" secondItem="xAh-lN-6Sy" secondAttribute="trailing" constant="28" id="T7h-uw-OyL"/>
+                        <constraint firstAttribute="bottom" secondItem="h0E-LB-wpa" secondAttribute="bottom" constant="50" id="U7F-iB-nRY"/>
                         <constraint firstItem="bhb-SY-8IY" firstAttribute="top" secondItem="qfD-QG-hnp" secondAttribute="top" constant="20" id="VNo-sH-5gb"/>
-                        <constraint firstItem="aVs-pM-UD3" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="28" id="X91-mb-Unl"/>
                         <constraint firstItem="aVs-pM-UD3" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="XQh-Hm-zFx"/>
-                        <constraint firstAttribute="trailing" secondItem="bhb-SY-8IY" secondAttribute="trailing" constant="20" id="a2h-la-Md5"/>
-                        <constraint firstItem="xAh-lN-6Sy" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="28" id="eEp-sG-jFw"/>
-                        <constraint firstAttribute="trailing" secondItem="h0E-LB-wpa" secondAttribute="trailing" constant="28" id="fcN-qA-3Nl"/>
+                        <constraint firstAttribute="trailing" secondItem="bhb-SY-8IY" secondAttribute="trailing" constant="10" id="a2h-la-Md5"/>
+                        <constraint firstItem="bhb-SY-8IY" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="bZr-ow-QyX"/>
                         <constraint firstItem="7Tn-zD-i6X" firstAttribute="top" secondItem="aVs-pM-UD3" secondAttribute="bottom" constant="20" id="hWA-WB-P7y"/>
-                        <constraint firstItem="h0E-LB-wpa" firstAttribute="leading" secondItem="qfD-QG-hnp" secondAttribute="leading" constant="28" id="lWm-aW-0Yl"/>
                         <constraint firstItem="h0E-LB-wpa" firstAttribute="top" secondItem="xAh-lN-6Sy" secondAttribute="bottom" constant="20" id="lk4-tx-h9M"/>
-                        <constraint firstAttribute="trailing" secondItem="7Tn-zD-i6X" secondAttribute="trailing" constant="28" id="n7n-Nd-YUw"/>
                         <constraint firstItem="h0E-LB-wpa" firstAttribute="centerX" secondItem="qfD-QG-hnp" secondAttribute="centerX" id="noE-Bq-grf"/>
-                        <constraint firstAttribute="trailing" secondItem="aVs-pM-UD3" secondAttribute="trailing" constant="28" id="x9h-0I-mtM"/>
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.4556483288" green="0.56516426279999998" blue="0.4949936452" alpha="0.94020226880000002" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.76559339179999997" green="0.83841608499999998" blue="0.83810947079999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="qfD-QG-hnp" secondAttribute="bottom" id="2ML-pj-Cfg"/>
                 <constraint firstAttribute="trailing" secondItem="qfD-QG-hnp" secondAttribute="trailing" id="8HZ-KD-DTn"/>

@@ -48,7 +48,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
       answer1Button.setTitle(newValue, for: .normal)
       answer1Button.layer.cornerRadius = 5
       answer1Button.layer.borderWidth = 1
-      answer1Button.layer.borderColor = UIColor.white.cgColor
+      answer1Button.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
     }
   }
   
@@ -61,7 +61,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
       answer2Button.setTitle(newValue, for: .normal)
       answer2Button.layer.cornerRadius = 5
       answer2Button.layer.borderWidth = 1
-      answer2Button.layer.borderColor = UIColor.white.cgColor
+      answer2Button.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
     }
   }
   
@@ -74,7 +74,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
       answer3Button.setTitle(newValue, for: .normal)
       answer3Button.layer.cornerRadius = 5
       answer3Button.layer.borderWidth = 1
-      answer3Button.layer.borderColor = UIColor.white.cgColor
+      answer3Button.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
     }
   }
   
@@ -87,7 +87,7 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
       answer4Button.setTitle(newValue, for: .normal)
       answer4Button.layer.cornerRadius = 5
       answer4Button.layer.borderWidth = 1
-      answer4Button.layer.borderColor = UIColor.white.cgColor
+      answer4Button.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
     }
   }
   
@@ -117,7 +117,6 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     for button in answerButtons {
       button.backgroundColor = UIColor.clear
     }
-//    sender.backgroundColor = UIColor(red: 170/255, green: 56/255, blue: 35/255, alpha: 1.0)
     
     sender.backgroundColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0)
     
@@ -150,19 +149,16 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
     contentView.frame = bounds // Fill up superview, with constraints applie
     contentView.clipsToBounds = true
     
-    scrollView.contentSize = contentView.frame.size
+    scrollView.frame = contentView.bounds
+    scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height)
+    scrollView.clipsToBounds = true
     
-    // Add custom view to this view
     addSubview(contentView)
     
     // Allows easier control over manipulating button state appearances
     answerButtons = [answer1Button, answer2Button, answer3Button, answer4Button]
     
-    // When this view is instantiated, it will remain
-    // grow with it's container with constraints applied
-    self.setNeedsLayout()
-    self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    self.translatesAutoresizingMaskIntoConstraints = true
+    self.clipsToBounds = true
   }
   
 }

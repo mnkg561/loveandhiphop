@@ -21,7 +21,6 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var trueButton: UIButton!
   @IBOutlet weak var falseButton: UIButton!
-  
   var selectedAnswer: Int?
   var answer: Int?
   var answerButtons: [UIButton]?
@@ -46,7 +45,7 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
       trueButton.setTitle(newValue, for: .normal)
       trueButton.layer.cornerRadius = 5
       trueButton.layer.borderWidth = 1
-      trueButton.layer.borderColor = UIColor.white.cgColor
+      trueButton.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
     }
   }
   
@@ -59,7 +58,7 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
       falseButton.setTitle(newValue, for: .normal)
       falseButton.layer.cornerRadius = 5
       falseButton.layer.borderWidth = 1
-      falseButton.layer.borderColor = UIColor.white.cgColor
+      falseButton.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
     }
   }
   
@@ -83,24 +82,12 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
       button.backgroundColor = UIColor.clear
     }
     
-    //    sender.backgroundColor = UIColor(red: 170/255, green: 56/255, blue: 35/255, alpha: 1.0)
-    
     sender.backgroundColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0)
     
     // Alert delegates
     delegate?.FactViewDidSelectAnswer(factQuestionView: self, button: sender, selectedAnswer: sender.tag)
     
   }
-  
-  
-  
-  /*
-   // Only override draw() if you perform custom drawing.
-   // An empty implementation adversely affects performance during animation.
-   override func draw(_ rect: CGRect) {
-   // Drawing code
-   }
-   */
   
   // MARK: Initialization
   required init?(coder aDecoder: NSCoder) {
@@ -124,19 +111,17 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
     // Set up custom view.
     contentView.frame = bounds // Fill up superview, with constraints applie
     contentView.clipsToBounds = true
-    scrollView.contentSize = contentView.bounds.size
-    // Add custom view to this view
+    
+    scrollView.frame = contentView.bounds
+    scrollView.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height)
+    scrollView.clipsToBounds = true
+
     addSubview(contentView)
     
     // Allows easier control over manipulating button state appearances
     answerButtons = [trueButton, falseButton]
-    
-    // When this view is instantiated, it will remain
-    // grow with it's container with constraints applied
-    self.setNeedsLayout()
+
     self.clipsToBounds = true
-    self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    self.translatesAutoresizingMaskIntoConstraints = true
   }
   
 }
