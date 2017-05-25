@@ -18,9 +18,12 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   @IBOutlet weak var statusView: UIView!
   @IBOutlet weak var progressView: UIProgressView!
   @IBOutlet weak var submitButton: UIButton!
+  @IBOutlet weak var currentPageLabel: UILabel!
+  @IBOutlet weak var numberOfPagesLabel: UILabel!
+  
   var questions: [QuestionObject] = []
   var questionViews: [UIView] = []
-  var currentQuestionPage: Int = 0
+  var currentPage: Int = 0
   
   // MARK: Methods
   override func viewDidLoad() {
@@ -28,6 +31,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     
     scrollView.delegate = self
     scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
+    currentPageLabel.text = String(describing: 1 + currentPage)
     
     // When screen rotates scrollView must be updated.
     NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -47,6 +51,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
         self.loadQuestionSubViews(from: questionObjects)
         // This is reset on device rotation which allows scrollView to update with addition/subtraction of screen space
         self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questionViews.count), height: self.scrollView.bounds.size.height)
+        self.numberOfPagesLabel.text = String(describing: self.questionViews.count)
       }
     }
   }
@@ -111,7 +116,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     
     scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
     self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questions.count), height: self.scrollView.bounds.size.height)
-    let xOffset = scrollView.bounds.width * CGFloat(currentQuestionPage)
+    let xOffset = scrollView.bounds.width * CGFloat(currentPage)
     scrollView.setContentOffset(CGPoint(x: xOffset, y:0) , animated: true)
   }
   
@@ -121,6 +126,12 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     print("Here is the view, view: \(multipleChoiceQuestionView)")
     print("Here is the button, \(button)")
     print("Here is the answer \(selectedAnswer)")
+  }
+  
+  @IBAction func onCancel(_ sender: UIButton) {
+    // Return back to landing page (intro view controller)
+    let introVC = storyboard?.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
+    show(introVC, sender: self)
   }
   
   func FactViewDidSelectAnswer(factQuestionView: FactQuestionView, button: UIButton, selectedAnswer: Int) {
@@ -133,7 +144,9 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     // Get the current page based on the scroll offset
 
-    currentQuestionPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    
+    currentPageLabel.text = String(describing: 1 + currentPage)
   }
   
   /*
