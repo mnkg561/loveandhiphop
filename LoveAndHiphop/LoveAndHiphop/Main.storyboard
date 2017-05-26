@@ -969,7 +969,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfA-Jm-dJc">
                                         <rect key="frame" x="9" y="377" width="21" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                        <color key="textColor" red="0.16558837779999999" green="0.25657037240000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" red="0.43632568960000001" green="0.52154750240000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-zz-gPG">
@@ -1486,6 +1486,6 @@
         <image name="user-filled" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VGy-bo-nS4"/>
+        <segue reference="Y5W-sy-nbD"/>
     </inferredMetricsTieBreakers>
 </document>

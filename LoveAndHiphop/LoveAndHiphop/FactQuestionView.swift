@@ -26,6 +26,8 @@ class FactQuestionView: UIView, UIScrollViewDelegate {
   var answerButtons: [UIButton]?
   var delegate: FactQuestionViewDelegate?
   
+  var questionId: String?
+  
   @IBInspectable var question: String? {
     get {
       return questionLabel.text

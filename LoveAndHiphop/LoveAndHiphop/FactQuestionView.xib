@@ -26,21 +26,13 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItO-gx-U59">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-J7-ixw">
-                            <rect key="frame" x="10" y="20" width="355" height="30"/>
-                            <attributedString key="attributedText">
-                                <fragment content="A Fact Question">
-                                    <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="26" name="GillSans-Light"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Fact Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-J7-ixw">
+                            <rect key="frame" x="10" y="20" width="355" height="31.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1VJ-S1-2ba">
-                            <rect key="frame" x="62.5" y="150" width="250" height="50"/>
+                            <rect key="frame" x="62.5" y="151.5" width="250" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="Nor-VV-7vf"/>
                                 <constraint firstAttribute="width" constant="250" id="jbP-WL-cyZ"/>
@@ -60,7 +52,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7t-3l-Lp3">
-                            <rect key="frame" x="62.5" y="80" width="250" height="50"/>
+                            <rect key="frame" x="62.5" y="81.5" width="250" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="250" id="7Aj-dB-jcJ"/>
                                 <constraint firstAttribute="height" constant="50" id="wA0-4R-gAI"/>
@@ -94,7 +86,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.76559339179999997" green="0.83841608499999998" blue="0.83810947079999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="ItO-gx-U59" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NmV-2A-C5e"/>
                 <constraint firstAttribute="trailing" secondItem="ItO-gx-U59" secondAttribute="trailing" id="d9F-Zu-17S"/>

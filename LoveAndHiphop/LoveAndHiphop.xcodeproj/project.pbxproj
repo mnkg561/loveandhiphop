@@ -46,20 +46,13 @@
 		AB7388C31EC4D4E600B1A266 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */; };
 		AB8285D31ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */; };
 		AB8285D51ECE534C00EDB804 /* MultipleChoiceQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */; };
-		AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */; };
-		AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */; };
 		AB8D5ED31ECF493700B9B6F6 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */; };
-		AB8D746B1EC60779005EC9FA /* FailQuizView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8D746A1EC60779005EC9FA /* FailQuizView.xib */; };
 		ABA1153E1EBBE61700911786 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA1153C1EBBE61700911786 /* FBViewController.swift */; };
 		ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABA1153D1EBBE61700911786 /* FBViewController.xib */; };
 		ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */; };
-		ABB95B391EC588FD00AF837D /* PassQuizView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB95B381EC588FD00AF837D /* PassQuizView.xib */; };
 		ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */; };
 		ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD7102A1EBFA71B00E302B5 /* User.storyboard */; };
 		ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */; };
-		ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */; };
-		ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */; };
-		E4F16A021ECBD076001ADEDF /* MembershipQuizTableViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,21 +99,14 @@
 		AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleChoiceQuestionView.xib; sourceTree = "<group>"; };
 		AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionView.swift; sourceTree = "<group>"; };
-		AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizPageViewController.swift; sourceTree = "<group>"; };
-		AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitQuizViewController.swift; sourceTree = "<group>"; };
 		AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
-		AB8D746A1EC60779005EC9FA /* FailQuizView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FailQuizView.xib; sourceTree = "<group>"; };
 		ABA1153C1EBBE61700911786 /* FBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBViewController.swift; sourceTree = "<group>"; };
 		ABA1153D1EBBE61700911786 /* FBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBViewController.xib; sourceTree = "<group>"; };
 		ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
-		ABB95B381EC588FD00AF837D /* PassQuizView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassQuizView.xib; sourceTree = "<group>"; };
 		ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignupTableViewController.swift; sourceTree = "<group>"; };
 		ABD7102A1EBFA71B00E302B5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
-		ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipQuizTableViewController.swift; sourceTree = "<group>"; };
-		ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewController.swift; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
-		E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipQuizTableViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,19 +181,14 @@
 				22E946BB1EAFF48500DCEC74 /* HotFashionsViewController.swift */,
 				22E946BD1EAFF4A300DCEC74 /* TopMusicViewController.swift */,
 				226A17AC1EB953D6005ACC83 /* ImagesViewController.swift */,
-				ABF69D791EB1BC4C009FDEB9 /* QuizTableViewController.swift */,
-				AB8A14C51EB27CBB00F5AF32 /* QuizPageViewController.swift */,
 				ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */,
-				AB8A14CD1EB28C2500F5AF32 /* SubmitQuizViewController.swift */,
 				ABA1153C1EBBE61700911786 /* FBViewController.swift */,
 				221474FC1EC0069D00D2F9F4 /* MatchDetailedViewController.swift */,
-				ABF686411EC0154300DC0690 /* MembershipQuizTableViewController.swift */,
 				221475001EC1935800D2F9F4 /* UserProfileViewController.swift */,
 				2244917A1EC3A5C0008DCA0A /* DetailViewController.swift */,
 				AB7388C21EC4D4E600B1A266 /* LocationSearchViewController.swift */,
 				22ECA1CD1EC9439A00287953 /* IntroViewController.swift */,
 				22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */,
-				E4F16A011ECBD076001ADEDF /* MembershipQuizTableViewController2.swift */,
 				AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */,
 			);
 			name = "View Controllers";
@@ -225,8 +206,6 @@
 				22DBC30D1EBD3DE2002D0220 /* ComposeCell.xib */,
 				22DBC30F1EBD3E48002D0220 /* ChatMessageCell.xib */,
 				229024E31EC22CEC003CA4C8 /* MatchCell.swift */,
-				ABB95B381EC588FD00AF837D /* PassQuizView.xib */,
-				AB8D746A1EC60779005EC9FA /* FailQuizView.xib */,
 				AB8285D21ECE48EC00EDB804 /* MultipleChoiceQuestionView.xib */,
 				AB8285D41ECE534C00EDB804 /* MultipleChoiceQuestionView.swift */,
 				AB69E65D1ED2A7E6003651AD /* FactQuestionView.xib */,
@@ -330,7 +309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABB95B391EC588FD00AF837D /* PassQuizView.xib in Resources */,
 				22ECA1D01EC9443300287953 /* hiphop_gif.gif in Resources */,
 				22ECA1D41EC9509500287953 /* Hip_Hop_Rap.mp3 in Resources */,
 				ABA1153F1EBBE61700911786 /* FBViewController.xib in Resources */,
@@ -343,7 +321,6 @@
 				22E946AC1EAFF3CB00DCEC74 /* Assets.xcassets in Resources */,
 				224491771EC2F911008DCA0A /* love_gif.gif in Resources */,
 				226A17B31EBAF6C3005ACC83 /* Main.storyboard in Resources */,
-				AB8D746B1EC60779005EC9FA /* FailQuizView.xib in Resources */,
 				ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */,
 				22DBC3101EBD3E48002D0220 /* ChatMessageCell.xib in Resources */,
 				ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */,
@@ -409,8 +386,6 @@
 				221475011EC1935800D2F9F4 /* UserProfileViewController.swift in Sources */,
 				AB8285D51ECE534C00EDB804 /* MultipleChoiceQuestionView.swift in Sources */,
 				225476181EB4701500C0DCF5 /* FashionCell.swift in Sources */,
-				AB8A14C61EB27CBB00F5AF32 /* QuizPageViewController.swift in Sources */,
-				ABF69D7A1EB1BC4C009FDEB9 /* QuizTableViewController.swift in Sources */,
 				22ECA1CE1EC9439A00287953 /* IntroViewController.swift in Sources */,
 				ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */,
 				22E946A71EAFF3CB00DCEC74 /* DiscussionsViewController.swift in Sources */,
@@ -418,11 +393,9 @@
 				AB69E65C1ED247D8003651AD /* QuestionObject.swift in Sources */,
 				225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */,
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
-				E4F16A021ECBD076001ADEDF /* MembershipQuizTableViewController2.swift in Sources */,
 				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
 				AB69E6621ED2A96A003651AD /* FactQuestionView.swift in Sources */,
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
-				ABF686421EC0154300DC0690 /* MembershipQuizTableViewController.swift in Sources */,
 				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
 				2244917B1EC3A5C0008DCA0A /* DetailViewController.swift in Sources */,
 				AB8D5ED31ECF493700B9B6F6 /* QuizViewController.swift in Sources */,
@@ -439,7 +412,6 @@
 				AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */,
 				22F3C64C1ECAE614003CC727 /* AnimationViewController.swift in Sources */,
 				221475031EC21AF800D2F9F4 /* UserObject.swift in Sources */,
-				AB8A14CE1EB28C2500F5AF32 /* SubmitQuizViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,27 +10,38 @@ import UIKit
 import Parse
 
 class QuizResultsViewController: UIViewController {
-  @IBOutlet weak var downArrowImageView: UIImageView!
-  @IBOutlet weak var loginButton: UIButton!
-  var resultsView: UIView!
   
+  // MARK: Properties
+  @IBOutlet weak var passView: UIView!
+  @IBOutlet weak var failView: UIView!
+  @IBOutlet weak var retakeButton: UIButton!
+  var pass: Bool?
+  
+  // MARK: Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    loginButton.layer.cornerRadius = 4
+
+    // Flips the next button to be a previous button
+    retakeButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+    
+    // Display correct view, depending on pass/fail challenge.
+    if pass! {
+      failView.isHidden = true
+    } else {
+      passView.isHidden = true
+    }
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  @IBAction func onRetake(_ sender: UIButton) {
+    // Reissues challenge.
+    let quizVC = storyboard?.instantiateViewController(withIdentifier: "QuizViewController") as! QuizViewController
+    show(quizVC, sender: self)
   }
   
-  @IBAction func onDownArrowTap(_ sender: UITapGestureRecognizer) {
+  @IBAction func onSignIn(_ sender: Any) {
+    // User can sign in after passing challenge.
     let fbVC = FBViewController(nibName: "FBViewController", bundle: nil)
-    show(fbVC, sender: nil)
-  }
-  
-  @IBAction func onClose(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
+    show(fbVC, sender: self)
   }
   
   /*

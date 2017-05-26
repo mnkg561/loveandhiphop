@@ -23,6 +23,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   
   var questions: [QuestionObject] = []
   var questionViews: [UIView] = []
+  var quiz: [String: (question: String, answer: Int, selectedAnswer: Int?)] = [:]
   var currentPage: Int = 0
   
   // MARK: Methods
@@ -31,7 +32,8 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     
     scrollView.delegate = self
     scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
-    currentPageLabel.text = String(describing: 1 + currentPage)
+    
+    currentPageLabel.text = String(describing: 1 + currentPage) // Page numbers on views
     
     // When screen rotates scrollView must be updated.
     NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -49,8 +51,9 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
         self.questions = questionObjects
         
         self.loadQuestionSubViews(from: questionObjects)
-        // This is reset on device rotation which allows scrollView to update with addition/subtraction of screen space
+
         self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questionViews.count), height: self.scrollView.bounds.size.height)
+        
         self.numberOfPagesLabel.text = String(describing: self.questionViews.count)
       }
     }
@@ -62,8 +65,10 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   
   func loadQuestionSubViews(from questionObjects: [QuestionObject]) {
     // Generate question subviews for scrollView from question objects.
-    
     for (i, questionObject) in questionObjects.enumerated() {
+      // Add question to quiz
+      quiz[questionObject.id!] = (questionObject.question!, questionObject.answer!, nil)
+      
       // The subViews frame will be offset depending on when it is
       // added as a subView.
       let frame = CGRect(x: CGFloat(i) * self.scrollView.bounds.width, y: 0, width: self.scrollView.bounds.width, height: self.scrollView.bounds.height)
@@ -78,6 +83,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
         
         self.questionViews.append(questionSubView as UIView)
         
+        questionSubView.questionId = questionObject.id!
         questionSubView.question = questionObject.question!
         questionSubView.answer = questionObject.answer!
         questionSubView.answers = questionObject.answers!
@@ -98,6 +104,7 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
         let answers = questionObject.answers!
         let answer = questionObject.answer!
         
+        questionSubView.questionId = questionObject.id!
         questionSubView.question = question
         questionSubView.answer = answer
         questionSubView.answers = answers
@@ -113,11 +120,46 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   
   func rotated() {
     // Updates scrollView on screen rotation
-    
     scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
     self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questions.count), height: self.scrollView.bounds.size.height)
     let xOffset = scrollView.bounds.width * CGFloat(currentPage)
     scrollView.setContentOffset(CGPoint(x: xOffset, y:0) , animated: true)
+  }
+  
+  @IBAction func onCancel(_ sender: UIButton) {
+    // Return back to landing page (intro view controller)
+    let introVC = storyboard?.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
+    show(introVC, sender: self)
+  }
+
+  @IBAction func onSubmit(_ sender: UIButton) {
+    // Grade the challenge.
+    let pass = gradeQuiz()
+    
+    let quizResultsVC = storyboard?.instantiateViewController(withIdentifier: "QuizResultsViewController") as! QuizResultsViewController
+    quizResultsVC.pass = pass
+    present(quizResultsVC, animated: true) {
+      print("Passed or failed")
+    }
+  }
+  
+  func gradeQuiz() -> Bool {
+    var score = 0
+    var questionNumber = 0 // Track which questions wrong/right
+    
+    for question in quiz.values {
+      questionNumber += 1
+      print("question number, number: \(questionNumber)")
+      
+      guard let selectedAnswer = question.selectedAnswer else {
+        continue
+      }
+      
+      if question.answer == selectedAnswer {
+        score += 1
+      }
+    }
+    return Double(Double(score) / Double(questionViews.count)) >= 0.50 // 50% or more is passing
   }
   
   // MARK: Delegates
@@ -126,12 +168,9 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     print("Here is the view, view: \(multipleChoiceQuestionView)")
     print("Here is the button, \(button)")
     print("Here is the answer \(selectedAnswer)")
-  }
-  
-  @IBAction func onCancel(_ sender: UIButton) {
-    // Return back to landing page (intro view controller)
-    let introVC = storyboard?.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
-    show(introVC, sender: self)
+    
+    // Update quiz
+    quiz[multipleChoiceQuestionView.questionId!] = (question: multipleChoiceQuestionView.question!, answer: multipleChoiceQuestionView.answer!, selectedAnswer: selectedAnswer)
   }
   
   func FactViewDidSelectAnswer(factQuestionView: FactQuestionView, button: UIButton, selectedAnswer: Int) {
@@ -139,14 +178,20 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     print("Here is the view, view: \(factQuestionView)")
     print("Here is the button, \(button)")
     print("Here is the answer \(selectedAnswer)")
+    
+    // Update quiz
+    quiz[factQuestionView.questionId!] = (question: factQuestionView.question!, answer: factQuestionView.answer!, selectedAnswer: selectedAnswer)
   }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     // Get the current page based on the scroll offset
-
-    currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    // Pages start at 1 not 0, so current page always incremented by 1
     
+    currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     currentPageLabel.text = String(describing: 1 + currentPage)
+    
+    // Display submit button when on last question of test.
+    submitButton.isHidden = (currentPage + 1 != questionViews.count)
   }
   
   /*
@@ -159,4 +204,6 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
    }
    */
   
+  // MARK: Todo
+  // Make base class for question uiviews.
 }

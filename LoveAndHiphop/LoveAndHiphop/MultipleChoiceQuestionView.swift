@@ -29,6 +29,8 @@ class MultipleChoiceQuestionView: UIView, UIScrollViewDelegate {
   var answerButtons: [UIButton]!
   var delegate: MultipleChoiceQuestionViewDelegate?
   
+  var questionId: String?
+  
   var question: String? {
     get {
       return questionLabel.text

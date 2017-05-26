@@ -14,7 +14,12 @@ enum QuestionType {
   case multipleChoice
 }
 
+enum LetterGradeScale {
+  case A, B, C, D, F
+}
+
 class QuestionObject: PFObject, PFSubclassing {
+  var id: String?
   var type: QuestionType?
   var question: String?
   var answers: [String]?
@@ -22,6 +27,7 @@ class QuestionObject: PFObject, PFSubclassing {
   var object: PFObject
   
   init(pfObject: PFObject) {
+    id = pfObject.objectId!
     object = pfObject
     question = pfObject["question"] as? String
     answers = pfObject["answers"] as? [String]
@@ -38,11 +44,31 @@ class QuestionObject: PFObject, PFSubclassing {
     super.init()
   }
   
+  // Grades a series of questions based on provided users answers.
+  // Based on provided passingGrade, returns a boolean if passingGrade is met.
+  
+//  class func gradeTest(answeredQuestions: [QuestionObject: Int], passingGrade: LetterGradeScale) -> Bool? {
+//    guard !(userAnswers.isEmpty) else {
+//      return nil
+//    }
+//    
+//    var grade: Bool!
+//    var score: (right: Int, total: Int)?
+//    
+//    for userAnswer in answeredQuestions {
+//      if question.answer == question.userAnswer {
+//        score?.right += 1
+//      }
+//    }
+//    
+//    return grade
+//  }
+  
+  // Type method to allow converting pfObjects into question objects
   class func loadQuestionObjectsArray(from pfObjects: [PFObject]) -> [QuestionObject] {
     var questionObjects: [QuestionObject] = []
     
     for pfObject in pfObjects {
-      print("Object: \(pfObject)")
       let newQuestion = QuestionObject(pfObject: pfObject)
       questionObjects.append(newQuestion)
     }
