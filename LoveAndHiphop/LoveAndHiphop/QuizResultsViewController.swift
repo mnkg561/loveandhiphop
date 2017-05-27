@@ -34,8 +34,7 @@ class QuizResultsViewController: UIViewController {
   
   @IBAction func onRetake(_ sender: UIButton) {
     // Reissues challenge.
-    let quizVC = storyboard?.instantiateViewController(withIdentifier: "QuizViewController") as! QuizViewController
-    show(quizVC, sender: self)
+    dismiss(animated: true, completion: nil)
   }
   
   @IBAction func onSignIn(_ sender: Any) {

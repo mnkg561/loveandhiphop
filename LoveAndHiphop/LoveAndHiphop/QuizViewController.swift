@@ -30,17 +30,19 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    scrollView.delegate = self
-    scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
-    
-    currentPageLabel.text = String(describing: 1 + currentPage) // Page numbers on views
-    
     // When screen rotates scrollView must be updated.
     NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     
-    // Load Quiz
+    getQuestions()
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
+  // Get initial questions from database, store them and issue first challenge.
+  func getQuestions() {
     let query = PFQuery(className: "MembershipQuestion")
-    //    query.limit = 2
     query.findObjectsInBackground { (pfObjects: [PFObject]?, error: Error?) in
       if error != nil {
         print("Error retrieving question object, error: \(error?.localizedDescription)")
@@ -49,22 +51,55 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
       if pfObjects != nil {
         let questionObjects = QuestionObject.loadQuestionObjectsArray(from: pfObjects!)
         self.questions = questionObjects
-        
-        self.loadQuestionSubViews(from: questionObjects)
-
-        self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questionViews.count), height: self.scrollView.bounds.size.height)
-        
-        self.numberOfPagesLabel.text = String(describing: self.questionViews.count)
+        self.loadQuiz()
       }
     }
   }
   
-  deinit {
-    NotificationCenter.default.removeObserver(self)
+  // Issues a challenge by loading individual questions as subviews of a scrollview.
+  func loadQuiz() {
+    // Remove any previous questions and set up scrollView
+    removeQuestionSubviews()
+    
+    scrollView.delegate = self
+    scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
+    scrollView.contentOffset = .zero
+    
+    self.currentPage = 0
+    currentPageLabel.text = String(describing: 1 + currentPage) // Page numbers on views
+
+    // Set up new questions
+    let quizQuestions = selectRandomQuestions(questionObjects: questions, count: 2)
+    if quizQuestions != nil {
+      loadQuestionSubViews(from: quizQuestions!)
+      self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questionViews.count), height: self.scrollView.bounds.size.height)
+      self.numberOfPagesLabel.text = String(describing: self.questionViews.count)
+    }
   }
   
+  // Returns a random subset of questions from a list of questions.
+  func selectRandomQuestions(questionObjects: [QuestionObject], count: Int) -> [QuestionObject]? {
+    guard questionObjects.count >= count else {
+      return nil
+    }
+    
+    var questions: [QuestionObject] = []
+    var randomNumbers: [Int: Bool] = [:]
+    while randomNumbers.count < count {
+      let randomNumber = Int(arc4random_uniform(UInt32(questionObjects.count)))
+      randomNumbers[randomNumber] = true
+    }
+    
+    for i in randomNumbers.keys {
+      questions.append(questionObjects[i])
+    }
+    
+    return questions
+  }
+  
+  // Given a list of questions as objects, based on the type of question
+  // adds a custom subview to a scrollview.
   func loadQuestionSubViews(from questionObjects: [QuestionObject]) {
-    // Generate question subviews for scrollView from question objects.
     for (i, questionObject) in questionObjects.enumerated() {
       // Add question to quiz
       quiz[questionObject.id!] = (questionObject.question!, questionObject.answer!, nil)
@@ -118,8 +153,17 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     }
   }
   
+  // Removes all subviews from a scrollview.
+  func removeQuestionSubviews() {
+    for subView in scrollView.subviews {
+      subView.removeFromSuperview()
+    }
+    
+    questionViews = []
+  }
+  
+  // Updates scrollView on screen rotation
   func rotated() {
-    // Updates scrollView on screen rotation
     scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
     self.scrollView.contentSize = CGSize(width: self.scrollView.bounds.size.width * CGFloat(self.questions.count), height: self.scrollView.bounds.size.height)
     let xOffset = scrollView.bounds.width * CGFloat(currentPage)
@@ -131,25 +175,28 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     let introVC = storyboard?.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
     show(introVC, sender: self)
   }
-
+  
   @IBAction func onSubmit(_ sender: UIButton) {
     // Grade the challenge.
     let pass = gradeQuiz()
     
     let quizResultsVC = storyboard?.instantiateViewController(withIdentifier: "QuizResultsViewController") as! QuizResultsViewController
     quizResultsVC.pass = pass
+
     present(quizResultsVC, animated: true) {
-      print("Passed or failed")
+      // If returning, user failed quiz.
+      // Set up another challenge.
+      self.loadQuiz()
     }
   }
   
+  // Returns a grade for an issued challenge.
   func gradeQuiz() -> Bool {
     var score = 0
     var questionNumber = 0 // Track which questions wrong/right
     
     for question in quiz.values {
       questionNumber += 1
-      print("question number, number: \(questionNumber)")
       
       guard let selectedAnswer = question.selectedAnswer else {
         continue
