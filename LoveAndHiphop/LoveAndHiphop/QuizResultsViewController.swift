@@ -10,27 +10,46 @@ import UIKit
 import Parse
 
 class QuizResultsViewController: UIViewController {
-  @IBOutlet weak var downArrowImageView: UIImageView!
-  @IBOutlet weak var loginButton: UIButton!
-  var resultsView: UIView!
   
+  // MARK: Properties
+  @IBOutlet weak var passView: UIView!
+  @IBOutlet weak var failView: UIView!
+  @IBOutlet weak var retakeButton: UIButton!
+  @IBOutlet weak var retakeChallengeLabel: UILabel!
+  @IBOutlet weak var signInLabel: UILabel!
+  var pass: Bool?
+  
+  // MARK: Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    loginButton.layer.cornerRadius = 4
+
+    // Flips the next button to be a previous button
+    retakeButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+    
+    // Retake/SignIn labels trigger retake/signIn methods
+    let retakeLabelTap = UITapGestureRecognizer(target: self, action: #selector(onRetake(_:)))
+    retakeChallengeLabel.addGestureRecognizer(retakeLabelTap)
+    
+    let signInLabelTap = UITapGestureRecognizer(target: self, action: #selector(onSignIn(_:)))
+    signInLabel.addGestureRecognizer(signInLabelTap)
+    
+    // Display correct view, depending on pass/fail challenge.
+    if pass! {
+      failView.isHidden = true
+    } else {
+      passView.isHidden = true
+    }
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  @IBAction func onDownArrowTap(_ sender: UITapGestureRecognizer) {
-    let fbVC = FBViewController(nibName: "FBViewController", bundle: nil)
-    show(fbVC, sender: nil)
-  }
-  
-  @IBAction func onClose(_ sender: Any) {
+  @IBAction func onRetake(_ sender: Any) {
+    // Reissues challenge.
     dismiss(animated: true, completion: nil)
+  }
+  
+  @IBAction func onSignIn(_ sender: Any) {
+    // User can sign in after passing challenge.
+    let fbVC = FBViewController(nibName: "FBViewController", bundle: nil)
+    show(fbVC, sender: self)
   }
   
   /*
