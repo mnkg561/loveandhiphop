@@ -67,6 +67,8 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     // Remove any previous questions and set up scrollView
     removeQuestionSubviews()
     
+    submitButton.isHidden = true
+    
     scrollView.delegate = self
     scrollView.frame = CGRect(x: 0, y: 0, width: questionView.frame.width, height: questionView.frame.height)
     scrollView.contentOffset = .zero

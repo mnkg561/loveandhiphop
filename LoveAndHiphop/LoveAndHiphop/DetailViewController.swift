@@ -45,7 +45,9 @@ class DetailViewController: UITableViewController {
   override func viewWillAppear(_ animated: Bool) {
     self.photoScrollView.delegate = self
     let imageView = UIImageView()
-    imageView.setImageWith((self.userObject?.profileImageUrl)!)
+    if userObject?.profileImageUrl != nil {
+      imageView.setImageWith((self.userObject?.profileImageUrl)!)
+    }
     imageView.contentMode = .scaleAspectFit
     imageView.frame = CGRect(x: 0, y: 0, width: self.photoScrollView.frame.width, height: self.photoScrollView.frame.height)
     self.photoScrollView.contentSize.width = self.photoScrollView.frame.width

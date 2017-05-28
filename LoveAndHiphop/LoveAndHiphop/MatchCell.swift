@@ -53,7 +53,10 @@ class MatchCell: UITableViewCell {
   
   var userObject: UserObject! {
     didSet{
-      profilePicImageView.setImageWith(userObject.profileImageUrl!)
+      if userObject.profileImageUrl != nil {
+        profilePicImageView.setImageWith(userObject.profileImageUrl!)
+      }
+      
       locationLabel.text = userObject.city
       occupationLabel.text = userObject.occupation
       hiphopIdentityLabel.text = userObject.hiphopIdentity

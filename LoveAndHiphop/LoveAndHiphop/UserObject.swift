@@ -58,8 +58,10 @@ class UserObject: PFObject, PFSubclassing {
         country = pfObject["country"] as? String
         otherInterests = pfObject["otherInterests"] as? String
         profileImageFile = pfObject["profilePicImage"] as? PFFile
-        let profileImageFileURL: String = profileImageFile!.url!
-        profileImageUrl = URL(string: profileImageFileURL)
+        if profileImageFile != nil {
+          let profileImageFileURL: String = profileImageFile!.url!
+          profileImageUrl = URL(string: profileImageFileURL)
+        }
 
         cancelledMatches = pfObject["cancelledMatches"] as? [String]
         super.init()
