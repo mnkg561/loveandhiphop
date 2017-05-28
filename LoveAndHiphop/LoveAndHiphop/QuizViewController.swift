@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, FactQuestionViewDelegate, UIScrollViewDelegate {
   
@@ -33,6 +34,8 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
     // When screen rotates scrollView must be updated.
     NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     
+    MBProgressHUD.showAdded(to: view, animated: true)
+    
     getQuestions()
   }
   
@@ -44,6 +47,9 @@ class QuizViewController: UIViewController, MultipleChoiceQuestionViewDelegate, 
   func getQuestions() {
     let query = PFQuery(className: "MembershipQuestion")
     query.findObjectsInBackground { (pfObjects: [PFObject]?, error: Error?) in
+      
+      MBProgressHUD.hide(for: self.view, animated: true)
+      
       if error != nil {
         print("Error retrieving question object, error: \(error?.localizedDescription)")
       }

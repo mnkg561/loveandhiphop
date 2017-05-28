@@ -15,6 +15,8 @@ class QuizResultsViewController: UIViewController {
   @IBOutlet weak var passView: UIView!
   @IBOutlet weak var failView: UIView!
   @IBOutlet weak var retakeButton: UIButton!
+  @IBOutlet weak var retakeChallengeLabel: UILabel!
+  @IBOutlet weak var signInLabel: UILabel!
   var pass: Bool?
   
   // MARK: Methods
@@ -24,6 +26,13 @@ class QuizResultsViewController: UIViewController {
     // Flips the next button to be a previous button
     retakeButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
     
+    // Retake/SignIn labels trigger retake/signIn methods
+    let retakeLabelTap = UITapGestureRecognizer(target: self, action: #selector(onRetake(_:)))
+    retakeChallengeLabel.addGestureRecognizer(retakeLabelTap)
+    
+    let signInLabelTap = UITapGestureRecognizer(target: self, action: #selector(onSignIn(_:)))
+    signInLabel.addGestureRecognizer(signInLabelTap)
+    
     // Display correct view, depending on pass/fail challenge.
     if pass! {
       failView.isHidden = true
@@ -32,7 +41,7 @@ class QuizResultsViewController: UIViewController {
     }
   }
   
-  @IBAction func onRetake(_ sender: UIButton) {
+  @IBAction func onRetake(_ sender: Any) {
     // Reissues challenge.
     dismiss(animated: true, completion: nil)
   }

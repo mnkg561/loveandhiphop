@@ -13,5 +13,6 @@ target 'LoveAndHiphop' do
   pod 'SwiftyGif'
   pod 'GooglePlaces'
   pod 'Canvas'
+  pod 'MBProgressHUD'
 
 end
