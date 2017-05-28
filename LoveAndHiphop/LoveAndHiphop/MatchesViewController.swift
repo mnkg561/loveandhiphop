@@ -44,6 +44,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         cancelledMatches.append(contentsOf: currentUser?["cancelledMatches"] as! [String])
       }
       loadMatches(for: currentUser!)
+      tableView.reloadData()
     }
   }
   
@@ -74,21 +75,22 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Further filter the matches on cancelled matches by the user.
         let cancelledMatches = user["cancelledMatches"] as? [String]
-        for match in matches {
-          if cancelledMatches != nil {
-            if (!cancelledMatches!.contains(match.objectId!)) {
-              self.matches.append(match)
-            }
-          } else {
-            self.matches = matches
+        if cancelledMatches != nil {
+          for match in matches {
+              if (!cancelledMatches!.contains(match.objectId!)) {
+                      self.matches.append(match)
+              }
           }
+        } else {
+          self.matches.append(contentsOf: matches)
         }
+        self.tableView.reloadData()
         
         // Get liking statuses.
-        self.getMatchesWhoLike(user: user)
-        self.getMatchesWhoUserLike(user)
-        self.tableView.reloadData()
       }
+//      self.getMatchesWhoLike(user: user)
+//      self.getMatchesWhoUserLike(user)
+      self.tableView.reloadData()
     }
   }
   
@@ -111,8 +113,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         if potentialMatchUserLike != nil {
           print("Current match HAS LIKED CURRENT USER match: \(potentialMatch["firstName"])!")
           self.matchesWhoLikedUser[potentialMatchObjectId] = true
-          self.tableView.reloadData()
         }
+        self.tableView.reloadData()
       })
     }
   }
@@ -133,9 +135,10 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
           print("Here is the liked user, likedUser: \(userLike["likedUser"])")
           let likedUser = userLike["likedUser"] as! PFUser
           self.userLikedMatches[likedUser.objectId!] = true
-          self.tableView.reloadData()
         }
+//        self.tableView.reloadData()
       }
+      self.tableView.reloadData()
     })
   }
   
@@ -249,7 +252,9 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   func DetailViewControllerDidLikeUser(user: PFUser, indexPath: IndexPath, value: Bool) {
     userLikedMatches[user.objectId!] = true
-    tableView.reloadRows(at: [indexPath], with: .automatic)
+    let cell = tableView.cellForRow(at: indexPath) as! MatchCell
+    cell.likedByCurrentUser = true
+//    tableView.reloadRows(at: [indexPath], with: .fade)
   }
   
   

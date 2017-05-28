@@ -26,7 +26,7 @@ class DiscussionsViewController: UIViewController, UITableViewDelegate, UITableV
     super.viewDidLoad()
     
     // Set up timer to fetch new messages
-    Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
+    Timer.scheduledTimer(timeInterval: 50, target: self, selector: #selector(onTimer), userInfo: nil, repeats: true)
     
     // MARK: Set Up TableView
     tableView.dataSource = self

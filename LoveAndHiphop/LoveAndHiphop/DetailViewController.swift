@@ -76,8 +76,7 @@ class DetailViewController: UITableViewController {
     self.aboutLabel.text = userObject?.about
     self.locationLabel.text = userObject?.location
     self.emailIdLabel.text = userObject?.email
-
-    
+    self.ageLabel.text = userObject?.age
     
     //TODO: The local array does not retain data after coming back from detailed view
     if let likedByUsers = likedByUsers {
@@ -133,7 +132,8 @@ class DetailViewController: UITableViewController {
   @IBAction func onClickLike(_ sender: UIButton) {
     youLikedLabel.isHidden = false
     likedByCurrentUser = true
-    self.tableView.reloadData()
+//    self.tableView.reloadData()
+    
     delegate?.DetailViewControllerDidLikeUser(user: pfUser!, indexPath: indexPath!, value: true)
     let like = PFObject(className: "Like", dictionary: ["user": PFUser.current()!, "likedUser": pfUser!])
     like.saveInBackground { (success: Bool, error: Error?) in

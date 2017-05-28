@@ -26,7 +26,8 @@ class MatchCell: UITableViewCell {
   @IBOutlet weak var cancelUserButton: UIButton!
   @IBOutlet weak var likeUserButton: UIButton!
   @IBOutlet weak var youLikedLabel: UILabel!
-  @IBOutlet weak var hasSharedInfoLabel: UILabel!
+  @IBOutlet weak var hasSharedInfoLabel: UIView!
+  @IBOutlet weak var ageLabel: UILabel!
   
   weak var delegate: MatchCellDelegate?
   
@@ -57,6 +58,7 @@ class MatchCell: UITableViewCell {
       occupationLabel.text = userObject.occupation
       hiphopIdentityLabel.text = userObject.hiphopIdentity
       nameLabel.text = userObject.fullName
+      ageLabel.text = userObject.age
     }
   }
   
