@@ -31,6 +31,7 @@ class UserObject: PFObject, PFSubclassing {
     var location: String?
     var cancelledMatches: [String]?
     var space: String = " "
+    var isProfileComplete: Bool?
     
     
     init(pfObject: PFObject) {
@@ -47,6 +48,7 @@ class UserObject: PFObject, PFSubclassing {
         hiphopIdentity = pfObject["hiphopIdentity"] as? String
         city = pfObject["city"] as? String
         state = pfObject["state"] as? String
+        isProfileComplete = pfObject["isProfileComplete"] as! Bool?
         
         if city != nil
         {
@@ -64,6 +66,7 @@ class UserObject: PFObject, PFSubclassing {
         }
 
         cancelledMatches = pfObject["cancelledMatches"] as? [String]
+      
         super.init()
     }
     

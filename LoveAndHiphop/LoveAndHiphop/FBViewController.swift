@@ -91,7 +91,8 @@ class FBViewController: UIViewController {
           currentUser.saveInBackground(block: { (success: Bool, error: Error?) in
             if error != nil {
               print("Error updating user object, error: \(error)")
-            } else {
+            }
+            if success {
               print("Successfully updated user profile with Facebook data.")
             }
           })
@@ -103,25 +104,23 @@ class FBViewController: UIViewController {
   @IBAction func onFBLogin(_ sender: Any) {
     PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error?) in
       if let user = user {
+        print("User logged in through Facebook!")
+        self.loadFBData()
+        
+        // check if user is new
         if user.isNew {
-          print("User signed up and logged in through Facebook!")
-          
-          // Get user FB basic data
-          self.loadFBData()
-          
-          // Currently, just send all users to profile set up.
-          let storyboard = UIStoryboard.init(name: "User", bundle: nil)
-          let userSignUpVC = storyboard.instantiateViewController(withIdentifier: "UserSignupTableViewController") as! UserSignupTableViewController
-          self.show(userSignUpVC, sender: self)
-        } else {
-          print("User logged in through Facebook!")
-          let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-          let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-          // After update user can't go back to profile set up section
-          matchesVC.navigationItem.hidesBackButton = true
-          matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
-          self.show(matchesVC, sender: self)
+          user["isProfileComplete"] = false
+          print("#####$$$$$$$$$$$$$$ NEW USER, \(user.isNew)")
+          PFUser.current()?["isProfileComplete"] = false
+          user.saveInBackground()
         }
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+        // After update user can't go back to profile set up section
+        matchesVC.navigationItem.hidesBackButton = true
+        matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
+        self.show(matchesVC, sender: self)
       } else {
         print("Uh oh. The user cancelled the Facebook login.")
       }

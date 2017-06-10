@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // self.window?.backgroundColor = UIColor.black
     //self.window?.backgroundColor = UIColor(patternImage: UIImage(named: "background_color")!)
-
+    
     //UIView.appearance().backgroundColor = UIColor.cyan
     // Set up shared navigation bar settings
     let navigationBarAppearance = UINavigationBar.appearance()
@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let tabBarAppearance = UITabBar.appearance()
     tabBarAppearance.backgroundColor = UIColor.purple
-//    navigationBarAppearace.tintColor = UIColor.white // Text buttons
-//    navigationBarAppearace.barTintColor = UIColor(red: 127/255, green: 167/255, blue: 255/255, alpha: 1) // Nav bar
-//    navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]  // Title's text color etc.
+    //    navigationBarAppearace.tintColor = UIColor.white // Text buttons
+    //    navigationBarAppearace.barTintColor = UIColor(red: 127/255, green: 167/255, blue: 255/255, alpha: 1) // Nav bar
+    //    navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]  // Title's text color etc.
     
     // MARK: Parse Initialization
     Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
@@ -51,17 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // must pass HipHop membership quiz.
     if PFUser.current() == nil {
       let storyboard = UIStoryboard(name: "Quiz", bundle: nil)
-      let initialViewController = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
-    
+      let initialViewController = storyboard.instantiateViewController(withIdentifier: "QuizViewController")
+      
       self.window?.rootViewController = initialViewController
       self.window?.makeKeyAndVisible()
-       
+      
     }
     
+    //    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self])
+    //    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self]).
     
-//    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self])
-//    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self]).
-
     
     
     return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

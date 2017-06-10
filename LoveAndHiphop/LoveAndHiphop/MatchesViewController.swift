@@ -38,13 +38,35 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     tableView.estimatedRowHeight = 200
     
     // MARK: Load matches
-    let currentUser = PFUser.current()
-    if currentUser != nil {
-      if currentUser?["cancelledMatches"] != nil {
-        cancelledMatches.append(contentsOf: currentUser?["cancelledMatches"] as! [String])
+    if PFUser.current() != nil {
+      let currentUser =  PFUser.current()!
+      if currentUser["cancelledMatches"] != nil {
+        cancelledMatches.append(contentsOf: currentUser["cancelledMatches"] as! [String])
       }
-      loadMatches(for: currentUser!)
+      loadMatches(for: currentUser)
       tableView.reloadData()
+      
+      // Matches only viewable to members with complete profile setup
+      let isProfileComplete = currentUser["isProfileComplete"] as! Bool
+      if isProfileComplete {
+        print("USER COMPLETED PROFILE SETUP AND SHOULD SEE MATCHES")
+      } else {
+        // Blur the matches section to prevent user from using feature
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        
+        let profileWarningLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 30))
+        profileWarningLabel.backgroundColor = UIColor.clear
+        profileWarningLabel.text = "Must set up your profile to use this feature"
+        profileWarningLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        blurEffectView.addSubview(profileWarningLabel)
+        profileWarningLabel.centerXAnchor.constraint(equalTo: blurEffectView.centerXAnchor).isActive = true
+        profileWarningLabel.centerYAnchor.constraint(equalTo: blurEffectView.centerYAnchor).isActive = true
+      }
     }
   }
   
@@ -63,7 +85,10 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     // First get matches who are not current user and are the preferred gender,
     let query: PFQuery = PFUser.query()!
     query.whereKey("objectId", notEqualTo: user.objectId!)
-    query.whereKey("gender", equalTo: (user["genderPreference"] as? String)!)
+    
+    if user["isProfileComplete"] as! Bool {
+      query.whereKey("gender", equalTo: (user["genderPreference"] as? String)!)
+    }
     query.findObjectsInBackground{ (matches: [PFObject]?, error: Error?) in
       
       if error != nil {
@@ -77,9 +102,9 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cancelledMatches = user["cancelledMatches"] as? [String]
         if cancelledMatches != nil {
           for match in matches {
-              if (!cancelledMatches!.contains(match.objectId!)) {
-                      self.matches.append(match)
-              }
+            if (!cancelledMatches!.contains(match.objectId!)) {
+              self.matches.append(match)
+            }
           }
         } else {
           self.matches.append(contentsOf: matches)
@@ -88,8 +113,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Get liking statuses.
       }
-//      self.getMatchesWhoLike(user: user)
-//      self.getMatchesWhoUserLike(user)
+      //      self.getMatchesWhoLike(user: user)
+      //      self.getMatchesWhoUserLike(user)
       self.tableView.reloadData()
     }
   }
@@ -136,7 +161,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
           let likedUser = userLike["likedUser"] as! PFUser
           self.userLikedMatches[likedUser.objectId!] = true
         }
-//        self.tableView.reloadData()
+        //        self.tableView.reloadData()
       }
       self.tableView.reloadData()
     })
@@ -254,7 +279,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     userLikedMatches[user.objectId!] = true
     let cell = tableView.cellForRow(at: indexPath) as! MatchCell
     cell.likedByCurrentUser = true
-//    tableView.reloadRows(at: [indexPath], with: .fade)
+    //    tableView.reloadRows(at: [indexPath], with: .fade)
   }
   
   
