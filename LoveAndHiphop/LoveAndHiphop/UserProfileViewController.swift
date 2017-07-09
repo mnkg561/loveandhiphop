@@ -41,6 +41,8 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
         super.viewDidLoad()
       
         //photosScrollView.frame = view.frame
+//      tableView.contentInset = UIEdgeInsetsMake(-90, 0, 0, 0);
+//      automaticallyAdjustsScrollViewInsets = false
 
     }
 
@@ -67,14 +69,18 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
                 
                 self.photosScrollView.delegate = self
                 //self.photosScrollView.frame.width = self.view.frame.width
+              if self.currentUser?.profileImageUrl != nil {
                 let imageView = UIImageView()
                 imageView.setImageWith((self.currentUser?.profileImageUrl!)!)
                 imageView.contentMode = .scaleAspectFit
-                imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.photosScrollView.frame.height)
+
                 //imageView.clipsToBounds = true
+              
                 self.photosScrollView.contentSize.width = self.photosScrollView.frame.width
                 self.photosScrollView.addSubview(imageView)
-                
+                imageView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.photosScrollView.bounds.height)
+              }
+              
                 self.loadOtherImages(success: { (imageUrlArray: [URL]) in
                     for i in 0..<imageUrlArray.count {
                         let imageView = UIImageView()

@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }))
     
     // MARK: Facebook Initialization
-    FBSDKSettings.setAppID("1491026230961299")
+    FBSDKSettings.setAppID("1918911158323633")
     PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
     PFUser.enableRevocableSessionInBackground()
     
@@ -55,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
       self.window?.rootViewController = initialViewController
       self.window?.makeKeyAndVisible()
-      
     }
     
     //    UITextField.appearance(whenContainedInInstancesOf: [ViewController.self, TableViewController.self])

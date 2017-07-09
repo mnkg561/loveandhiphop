@@ -17,8 +17,9 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   let genders = ["male", "female"]
   @IBOutlet weak var genderPreferenceControl: UISegmentedControl!
   @IBOutlet weak var searchContainerView: UIView!
-  let hipHopIdentities = ["Artist", "Producer", "DJ", "Fan", "Model", "Director"]
-  @IBOutlet weak var hipHopIdentityControl: UISegmentedControl!
+  let hipHopIdentities = ["Fan", "Artist", "Producer", "Director", "Model", "Designer", "Dancer", "Writer"]
+  var hipHopIdentityIndex: Int?
+  @IBOutlet weak var hiphopIdentityLabel: UILabel!
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var genderControl: UISegmentedControl!
   @IBOutlet weak var aboutTextView: UITextView!
@@ -43,6 +44,8 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Prefill user profile data
+    
     // Uncomment the following line to preserve selection between presentations
     self.clearsSelectionOnViewWillAppear = false
     
@@ -54,12 +57,12 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     profileImageView.addGestureRecognizer(imageTap)
     
     // Disable all disabled fields
-    heightTextField.isEnabled = false
-    weightTextField.isEnabled = false
-    interestsTextView.isEditable = false
-    minAgePreferenceTextField.isEnabled = false
-    maxAgePreferenceTextField.isEnabled = false
-    minHeightPreferenceTextField.isEnabled = false
+//    heightTextField.isEnabled = false
+//    weightTextField.isEnabled = false
+//    interestsTextView.isEditable = false
+//    minAgePreferenceTextField.isEnabled = false
+//    maxAgePreferenceTextField.isEnabled = false
+//    minHeightPreferenceTextField.isEnabled = false
   }
   
   
@@ -70,20 +73,25 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     // Prepopulate profile fields with stored user data
     PFUser.current()?.fetchInBackground(block: { (user: PFObject?, error: Error?) in
       if error == nil {
-        if let user = user {
-          if let firstName = user["firstName"] as? String {
+        if user != nil {
+          let user = user!
+          let pfUser = UserObject(pfObject: user)
+          if let firstName = pfUser.firstName {
             self.firstNameTextField.text = firstName
             self.firstNameTextField.isEnabled = false // Can't change
           }
-          if let lastName = user["lastName"] as? String {
+          if let lastName = pfUser.lastName {
             self.lastNameTextField.text = lastName
             self.lastNameTextField.isEnabled = false // Can't change
           }
-          if let email = user["email"] as? String {
+          if let email = pfUser.email {
             self.emailTextField.text = email
             self.emailTextField.isEnabled = false // Can't change email
           }
-          if let gender = user["gender"] as? String {
+          if let age = pfUser.age {
+            self.ageTextField.text = age
+          }
+          if let gender = pfUser.gender {
             // Update UI to include gender
             for (i, genderTitle) in self.genders.enumerated() {
               if genderTitle == gender {
@@ -93,7 +101,7 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           }
           
           // Load profile image
-          if let profileImage = user["profilePicImage"] as? PFFile {
+          if let profileImage = pfUser.profileImageFile {
             profileImage.getDataInBackground(block: { (data: Data?, error: Error?) in
               if (error == nil) {
                 if let data = data {
@@ -103,12 +111,28 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
             }) // End of query block for profile image
           }
           
-          if let city = user["city"] as? String {
+          if let city = pfUser.city {
             self.cityTextField.text = city
           }
           
-          if let state = user["state"] as? String {
+          if let state = pfUser.state {
             self.stateTextField.text = state
+          }
+          
+          if let aboutMe = pfUser.about {
+            self.aboutTextView.text = aboutMe
+          }
+          
+          if let occupation = pfUser.occupation {
+            self.occupationTextField.text = occupation
+          }
+          
+          if user["hiphopIdentity"] != nil {
+            self.hiphopIdentityLabel.text = user["hiphopIdentity"] as! String
+          } else if let hiphopIdentity = pfUser.hiphopIdentity {
+            self.hiphopIdentityLabel.text = hiphopIdentity
+          } else {
+            self.hiphopIdentityLabel.text = self.hipHopIdentities[0]
           }
         }
       }
@@ -141,10 +165,16 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       let lastName = self.lastNameTextField.text!
       let genderIndex = self.genderControl.selectedSegmentIndex
       let gender = self.genders[genderIndex]
+      
       let age = self.ageTextField.text!
+      if age.isEmpty {
+        print("########### AGE IS REQUIRED!")
+      }
+
       let occupation = self.occupationTextField.text!
-      let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
-      let hiphopIdentity = self.hipHopIdentities[hipHopIdentityIndex]
+//      let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
+//      let hiphopIdentity = self.hipHopIdentities[hipHopIdentityIndex]
+      let hiphopIdentity = self.hiphopIdentityLabel.text!
       let city = self.cityTextField.text!
       let state = self.stateTextField.text!
       let country = self.countryTextField.text!
@@ -158,12 +188,17 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
       let image = imageFile!
       
+      
       let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
-      let genderPreference = self.genders[genderPreferenceIndex]
+      if genderPreferenceIndex < 0 {
+        print("Gender preference IS REQUIRED!")
+      } else {
+        let genderPreference = self.genders[genderPreferenceIndex]
+      }
       
       currentUser.setValuesForKeys(["firstName" : firstName, "lastName": lastName, "age": age, "gender": gender,
                                     "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about,
-                                    "profilePicImage": image, "genderPreference": genderPreference, "city": city,
+                                    "profilePicImage": image, "genderPreference": genderPreferenceIndex, "city": city,
                                     "state": state, "country": country])
       
       currentUser.saveInBackground(block: { (success: Bool, error: Error?) in
@@ -282,7 +317,9 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     // User will select a location to which can update the location in the form.
-    let locationSearchVC = segue.destination as! LocationSearchViewController
-    locationSearchVC.delegate = self
+    if segue.identifier == "LocationSearchViewController" {
+      let locationSearchVC = segue.destination as! LocationSearchViewController
+      locationSearchVC.delegate = self
+    }
   }
 }

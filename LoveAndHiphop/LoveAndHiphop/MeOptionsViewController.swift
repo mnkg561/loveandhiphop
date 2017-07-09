@@ -7,18 +7,19 @@
 //
 
 import UIKit
+import Parse
 
 protocol MeOptionsViewControllerDelegate {
   // Alert delegates that a profile menu option is selected
   func meOptionsViewController(viewController: UIViewController, didSelectMenuOption option: Int?)
 }
 
-class MeOptionsViewController: UIViewController {
+class MeOptionsViewController: UIViewController, UIScrollViewDelegate {
   
   // MARK: Properties
-  @IBOutlet weak var viewProfileButton: UIButton!
-  @IBOutlet weak var editProfileButton: UIButton!
-  @IBOutlet weak var logoutButton: UIButton!
+  @IBOutlet weak var viewProfileButton: UIImageView!
+  @IBOutlet weak var editProfileButton: UIImageView!
+  @IBOutlet weak var logoutButton: UIImageView!
   
   var viewControllers: [UIViewController] = {
     let storyboard = UIStoryboard.init(name: "User", bundle: nil)
@@ -31,28 +32,33 @@ class MeOptionsViewController: UIViewController {
   var delegate: MeOptionsViewControllerDelegate?
   
   // MARK: Methods
-  // TODO: Make custom UIButton or work with appearance()
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    viewProfileButton.layer.cornerRadius = 5
-    viewProfileButton.layer.borderWidth = 1
-    viewProfileButton.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
+    let viewProfileTap = UITapGestureRecognizer(target: self, action: #selector(onSelectMeOption(_:)))
+    let editProfileTap = UITapGestureRecognizer(target: self, action: #selector(onSelectMeOption(_:)))
+    let logoutTap = UITapGestureRecognizer(target: self, action: #selector(onLogout(_:)))
     
-    editProfileButton.layer.cornerRadius = 5
-    editProfileButton.layer.borderWidth = 1
-    editProfileButton.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
-    
-    logoutButton.layer.cornerRadius = 5
-    logoutButton.layer.borderWidth = 1
-    logoutButton.layer.borderColor = UIColor(red: 49/255, green: 136/255, blue: 170/255, alpha: 1.0).cgColor
+    viewProfileButton.addGestureRecognizer(viewProfileTap)
+    editProfileButton.addGestureRecognizer(editProfileTap)
+    logoutButton.addGestureRecognizer(logoutTap)
+
   }
   
-  @IBAction func onSelectMeOption(_ sender: UIButton) {
-    // Alerts that new profile menu option has been selected.
+  func onSelectMeOption(_ sender: UITapGestureRecognizer) {
+    // Alerts new profile menu option has been selected.
+    let sender = sender.view as! UIImageView
     delegate?.meOptionsViewController(viewController: viewControllers[sender.tag], didSelectMenuOption: sender.tag)
   }
   
+  // Delegates
+  func onLogout(_ sender: UIButton) {
+    PFUser.logOutInBackground { (error: Error?) in
+      let storyboard = UIStoryboard(name: "Quiz", bundle: nil)
+      let quizVC = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
+      self.show(quizVC, sender: nil)
+    }
+  }
   
   /*
    // MARK: - Navigation
