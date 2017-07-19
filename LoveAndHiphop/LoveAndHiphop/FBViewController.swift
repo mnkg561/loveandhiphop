@@ -29,12 +29,14 @@ class FBViewController: UIViewController {
     userDetails?.start(completionHandler: { (connection: FBSDKGraphRequestConnection?, data: Any?, error: Error?) in
       
       if(error != nil) {
+        print("############ error loading facebook data")
         print("\(error?.localizedDescription)")
         return
       }
       
       // FB graph API returned user data
       if data != nil {
+        print("########## GOT SOME FACEBOOK DATA")
         // User Facebook data from graph call
         let userFBData = data as! NSDictionary
         
@@ -57,6 +59,8 @@ class FBViewController: UIViewController {
             currentUser.setObject(gender, forKey: "gender")
           }
           
+          currentUser.saveInBackground()
+          
           // Retrieve users profile pic from Facebook
           let facebookID = userFBData["id"] as? String
           if facebookID != nil {
@@ -73,16 +77,19 @@ class FBViewController: UIViewController {
               with: request as URLRequest,
               completionHandler: { (data, response, error) in
                 if error != nil {
-                  print("Error getting profile url from facebook \(error)")
+                  print("########## Error getting profile url from facebook \(error)")
                 }
-                if let data = data {
+                if data != nil {
+                  let data = data!
+                  print("############ GOT THE PROFILE PIC!!!!!")
                   let extensionString: String = ".jpg"
                   let imageFile = PFFile(name:"profileImage" + extensionString, data:data)
                   let image = imageFile!
                   PFUser.current()?.setObject(image, forKey: "profilePicImage")
+                  currentUser.saveInBackground()
                 }
                 else {
-                  print("Error: \(error?.localizedDescription)")
+                  print("############ Error: \(error?.localizedDescription)")
                 }
             });
             task.resume()
@@ -91,7 +98,8 @@ class FBViewController: UIViewController {
           currentUser.saveInBackground(block: { (success: Bool, error: Error?) in
             if error != nil {
               print("Error updating user object, error: \(error)")
-            } else {
+            }
+            if success {
               print("Successfully updated user profile with Facebook data.")
             }
           })
@@ -103,25 +111,23 @@ class FBViewController: UIViewController {
   @IBAction func onFBLogin(_ sender: Any) {
     PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error?) in
       if let user = user {
+        print("User logged in through Facebook!")
+        self.loadFBData()
+        
+        // check if user is new
         if user.isNew {
-          print("User signed up and logged in through Facebook!")
-          
-          // Get user FB basic data
-          self.loadFBData()
-          
-          // Currently, just send all users to profile set up.
-          let storyboard = UIStoryboard.init(name: "User", bundle: nil)
-          let userSignUpVC = storyboard.instantiateViewController(withIdentifier: "UserSignupTableViewController") as! UserSignupTableViewController
-          self.show(userSignUpVC, sender: self)
-        } else {
-          print("User logged in through Facebook!")
-          let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-          let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-          // After update user can't go back to profile set up section
-          matchesVC.navigationItem.hidesBackButton = true
-          matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
-          self.show(matchesVC, sender: self)
+          user["isProfileComplete"] = false
+          print("#####$$$$$$$$$$$$$$ NEW USER, \(user.isNew)")
+          PFUser.current()?["isProfileComplete"] = false
+          user.saveInBackground()
         }
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+        // After update user can't go back to profile set up section
+        matchesVC.navigationItem.hidesBackButton = true
+        matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
+        self.show(matchesVC, sender: self)
       } else {
         print("Uh oh. The user cancelled the Facebook login.")
       }
@@ -135,5 +141,23 @@ class FBViewController: UIViewController {
   // MARK: TODO
   // Move FB data to FB Client
   // Set up user data model
+  
+  // Add this to the header of your file, e.g. in ViewController.m
+  // after #import "ViewController.h"
+//  #import <FBSDKCoreKit/FBSDKCoreKit.h>
+//  #import <FBSDKLoginKit/FBSDKLoginKit.h>
+//  
+//  // Add this to the body
+//  @implementation ViewController
+//  
+//  - (void)viewDidLoad {
+//  [super viewDidLoad];
+//  FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+//  // Optional: Place the button in the center of your view.
+//  loginButton.center = self.view.center;
+//  [self.view addSubview:loginButton];
+//  }
+//  
+//  @end
   
 }

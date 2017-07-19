@@ -40,6 +40,8 @@
 		22F3C64C1ECAE614003CC727 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */; };
 		AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */; };
 		AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */; };
+		AB08DF551EF2040A00FCACDD /* MeOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08DF541EF2040A00FCACDD /* MeOptionsViewController.swift */; };
+		AB15B01C1EFDFF9800604484 /* HipHopIdentityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB15B01B1EFDFF9800604484 /* HipHopIdentityTableViewController.swift */; };
 		AB69E65C1ED247D8003651AD /* QuestionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E65B1ED247D8003651AD /* QuestionObject.swift */; };
 		AB69E65E1ED2A7E7003651AD /* FactQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69E65D1ED2A7E6003651AD /* FactQuestionView.xib */; };
 		AB69E6621ED2A96A003651AD /* FactQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E6611ED2A96A003651AD /* FactQuestionView.swift */; };
@@ -52,6 +54,7 @@
 		ABB95B371EC5828C00AF837D /* QuizResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */; };
 		ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */; };
 		ABD7102B1EBFA71B00E302B5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD7102A1EBFA71B00E302B5 /* User.storyboard */; };
+		ABEEECD61EF50536003686AC /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEEECD51EF50536003686AC /* MyProfileViewController.swift */; };
 		ABF686401EC00F3200DC0690 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +96,8 @@
 		6AAB059B2B94063B11C01C8D /* Pods-LoveAndHiphop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.debug.xcconfig"; sourceTree = "<group>"; };
 		AB07AFF81EB86AF800C53D97 /* ComposeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeCell.swift; sourceTree = "<group>"; };
 		AB07AFFA1EB86B1500C53D97 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		AB08DF541EF2040A00FCACDD /* MeOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeOptionsViewController.swift; sourceTree = "<group>"; };
+		AB15B01B1EFDFF9800604484 /* HipHopIdentityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HipHopIdentityTableViewController.swift; sourceTree = "<group>"; };
 		AB69E65B1ED247D8003651AD /* QuestionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionObject.swift; sourceTree = "<group>"; };
 		AB69E65D1ED2A7E6003651AD /* FactQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FactQuestionView.xib; sourceTree = "<group>"; };
 		AB69E6611ED2A96A003651AD /* FactQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactQuestionView.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		ABB95B361EC5828C00AF837D /* QuizResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultsViewController.swift; sourceTree = "<group>"; };
 		ABD710281EBFA70C00E302B5 /* UserSignupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignupTableViewController.swift; sourceTree = "<group>"; };
 		ABD7102A1EBFA71B00E302B5 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		ABEEECD51EF50536003686AC /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		ABF6863F1EC00F3200DC0690 /* Quiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
 		E3D8FF0AB91CA6CAD1D29D0B /* Pods-LoveAndHiphop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveAndHiphop.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveAndHiphop/Pods-LoveAndHiphop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +196,9 @@
 				22ECA1CD1EC9439A00287953 /* IntroViewController.swift */,
 				22F3C64B1ECAE614003CC727 /* AnimationViewController.swift */,
 				AB8D5ED21ECF493700B9B6F6 /* QuizViewController.swift */,
+				AB08DF541EF2040A00FCACDD /* MeOptionsViewController.swift */,
+				ABEEECD51EF50536003686AC /* MyProfileViewController.swift */,
+				AB15B01B1EFDFF9800604484 /* HipHopIdentityTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -394,8 +403,10 @@
 				225476101EB448A600C0DCF5 /* TopListenerCell.swift in Sources */,
 				22E946A31EAFF3CB00DCEC74 /* AppDelegate.swift in Sources */,
 				2254761A1EB4773500C0DCF5 /* FashionObject.swift in Sources */,
+				AB15B01C1EFDFF9800604484 /* HipHopIdentityTableViewController.swift in Sources */,
 				AB69E6621ED2A96A003651AD /* FactQuestionView.swift in Sources */,
 				22E946A51EAFF3CB00DCEC74 /* MatchesViewController.swift in Sources */,
+				ABEEECD61EF50536003686AC /* MyProfileViewController.swift in Sources */,
 				ABD710291EBFA70C00E302B5 /* UserSignupTableViewController.swift in Sources */,
 				2244917B1EC3A5C0008DCA0A /* DetailViewController.swift in Sources */,
 				AB8D5ED31ECF493700B9B6F6 /* QuizViewController.swift in Sources */,
@@ -409,6 +420,7 @@
 				22E946C01EB0669700DCEC74 /* SongCell.swift in Sources */,
 				AB07AFFB1EB86B1500C53D97 /* ChatMessageCell.swift in Sources */,
 				22E946BE1EAFF4A300DCEC74 /* TopMusicViewController.swift in Sources */,
+				AB08DF551EF2040A00FCACDD /* MeOptionsViewController.swift in Sources */,
 				AB07AFF91EB86AF800C53D97 /* ComposeCell.swift in Sources */,
 				22F3C64C1ECAE614003CC727 /* AnimationViewController.swift in Sources */,
 				221475031EC21AF800D2F9F4 /* UserObject.swift in Sources */,
@@ -470,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -515,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -531,6 +543,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LoveAndHiphop/LoveAndHiphop.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LoveAndHiphop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
@@ -548,6 +561,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LoveAndHiphop/LoveAndHiphop.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LoveAndHiphop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
