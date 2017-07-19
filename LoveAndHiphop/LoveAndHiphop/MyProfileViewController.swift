@@ -14,7 +14,7 @@ class MyProfileViewController: UIViewController, MeOptionsViewControllerDelegate
   @IBOutlet weak var containerView: UIView!
   
   // Manages selection of Profile Menu Options
-  private lazy var meOptionsViewController: MeOptionsViewController = {
+  lazy var meOptionsViewController: MeOptionsViewController = {
     
     let storyboard = UIStoryboard(name: "User", bundle: Bundle.main)
     var viewController = storyboard.instantiateViewController(withIdentifier: "MeOptionsViewController") as! MeOptionsViewController
@@ -23,14 +23,14 @@ class MyProfileViewController: UIViewController, MeOptionsViewControllerDelegate
   }()
   
   // Default selected menu option for profile view/container view
-  private lazy var userProfileViewController: UserProfileViewController = {
+  lazy var userProfileViewController: UserProfileViewController = {
     let storyboard = UIStoryboard(name: "User", bundle: nil)
     let viewController = storyboard.instantiateViewController(withIdentifier: "UserProfileViewController") as! UserProfileViewController
     
     return viewController
   }()
   
-  private var activeViewController: UIViewController? {
+  var activeViewController: UIViewController? {
     // Updates container view to display profile menu option/s
     didSet {
       removeInactiveViewController(inactiveViewController: oldValue)

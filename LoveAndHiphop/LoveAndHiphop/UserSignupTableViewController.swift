@@ -14,11 +14,17 @@ import GooglePlaces
 class UserSignupTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationSearchViewControllerDelegate {
   
   // MARK: Properties
+  var isProfileComplete: Bool!
+  var matchesRequiredFields: [UIView] {
+    return [firstNameTextField, occupationTextField]
+  }
   let genders = ["male", "female"]
+  
   @IBOutlet weak var genderPreferenceControl: UISegmentedControl!
   @IBOutlet weak var searchContainerView: UIView!
   let hipHopIdentities = ["Fan", "Artist", "Producer", "Director", "Model", "Designer", "Dancer", "Writer"]
   var hipHopIdentityIndex: Int?
+  
   @IBOutlet weak var hiphopIdentityLabel: UILabel!
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var genderControl: UISegmentedControl!
@@ -28,18 +34,18 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   @IBOutlet weak var ageTextField: UITextField!
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var occupationTextField: UITextField!
-  
-  // Disabled fields that are wired, but not being stored in Parse
+  @IBOutlet weak var phoneTextField: UITextField!
   @IBOutlet weak var heightTextField: UITextField!
   @IBOutlet weak var weightTextField: UITextField!
+  @IBOutlet weak var heightFeetTextField: UITextField!
+  @IBOutlet weak var heightInchTextField: UITextField!
   @IBOutlet weak var countryTextField: UITextField!
   @IBOutlet weak var stateTextField: UITextField!
   @IBOutlet weak var cityTextField: UITextField!
   @IBOutlet weak var interestsTextView: UITextView!
   @IBOutlet weak var minAgePreferenceTextField: UITextField!
   @IBOutlet weak var maxAgePreferenceTextField: UITextField!
-  @IBOutlet weak var minHeightPreferenceTextField: UITextField!
-  @IBOutlet weak var maxHeightTextField: UITextField!
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -56,19 +62,6 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     let imageTap = UITapGestureRecognizer(target: self, action: #selector(onTapProfileImage(_:)))
     profileImageView.addGestureRecognizer(imageTap)
     
-    // Disable all disabled fields
-//    heightTextField.isEnabled = false
-//    weightTextField.isEnabled = false
-//    interestsTextView.isEditable = false
-//    minAgePreferenceTextField.isEnabled = false
-//    maxAgePreferenceTextField.isEnabled = false
-//    minHeightPreferenceTextField.isEnabled = false
-  }
-  
-  
-  // MARK: ViewDidAppear: Prepopulate User Data from Parse
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(true)
     
     // Prepopulate profile fields with stored user data
     PFUser.current()?.fetchInBackground(block: { (user: PFObject?, error: Error?) in
@@ -119,6 +112,10 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
             self.stateTextField.text = state
           }
           
+          if let country = pfUser.country {
+            self.countryTextField.text = country
+          }
+          
           if let aboutMe = pfUser.about {
             self.aboutTextView.text = aboutMe
           }
@@ -128,19 +125,114 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
           }
           
           if user["hiphopIdentity"] != nil {
-            self.hiphopIdentityLabel.text = user["hiphopIdentity"] as! String
+            self.hiphopIdentityLabel.text = (user["hiphopIdentity"] as! String)
           } else if let hiphopIdentity = pfUser.hiphopIdentity {
             self.hiphopIdentityLabel.text = hiphopIdentity
           } else {
             self.hiphopIdentityLabel.text = self.hipHopIdentities[0]
           }
+          
+          if user["weight"] != nil {
+            self.weightTextField.text = user["weight"] as! String?
+          }
+          
+          if user["heightFeet"] != nil {
+            self.heightFeetTextField.text = (user["heightFeet"] as! String)
+          }
+          
+          if user["heightInch"] != nil {
+            self.heightInchTextField.text = (user["heightInch"] as! String)
+          }
+          
+          if user["otherInterests"] != nil {
+            self.interestsTextView.text = user["otherInterests"] as! String
+          }
+          
+          // Match preferences
+          
+          if user["matchMinAge"] != nil {
+            self.minAgePreferenceTextField.text = user["matchMinAge"] as! String?
+          }
+          
+          if user["matchMaxAge"] != nil {
+            self.maxAgePreferenceTextField.text = user["matchMaxAge"] as! String?
+          }
+          
+          self.isProfileComplete = user["isProfileComplete"] as! Bool
         }
       }
     }) // End of fetch block
   }
   
+  // Validate required profile fields
+  func isValidated() {
+    var not_validated: [String] = []
+    
+    if (firstNameTextField.text?.isEmpty)! {
+      not_validated.append("First Name")
+    }
+    
+    if (lastNameTextField.text?.isEmpty)! {
+      not_validated.append("Last Name")
+    }
+    
+    if (ageTextField.text?.isEmpty)! {
+      not_validated.append("Age")
+    }
+    
+    if (genderPreferenceControl.selectedSegmentIndex < 0) {
+      not_validated.append("Gender")
+    }
+    
+    if ((countryTextField.text?.isEmpty)! || (stateTextField.text?.isEmpty)! || (cityTextField.text?.isEmpty)!) {
+      not_validated.append("City, State, Country")
+    }
+    
+    if (genderPreferenceControl.selectedSegmentIndex < 0) {
+      not_validated.append("Gender Preference")
+    }
+    
+    if ((minAgePreferenceTextField.text?.isEmpty)! || (maxAgePreferenceTextField.text?.isEmpty)!) {
+      not_validated.append("Partner Preference Min age and Max age")
+    }
+    
+    if ((emailTextField.text?.isEmpty)!) {
+      not_validated.append("Email")
+    }
+    
+    if not_validated.isEmpty {
+      isProfileComplete = true
+      self.updateProfile(self)
+      return
+    }
+    
+    isProfileComplete = false
+    
+    let alert = UIAlertController(title: "Missing Profile Requirements",
+                                  message: "In order to use the Flirt dating feature, the required marked fields, \(not_validated) are needed. You may proceed to save your profile changes and continue to use other features of this site, or update the missing requirements.",
+      preferredStyle: .alert)
+    
+    // Submit button
+    let submitAction = UIAlertAction(title: "Submit Changes", style: .default, handler: { (action) -> Void in
+      
+      self.updateProfile(self)
+      return
+    })
+    
+    let cancel = UIAlertAction(title: "Update Requirements", style: .destructive, handler: { (action) -> Void in })
+    
+    alert.addAction(submitAction)
+    alert.addAction(cancel)
+    present(alert, animated: true, completion: nil)
+    
+  }
+  
+  @IBAction func onTapSaveProfile(_ sender: Any) {
+    isValidated()
+  }
+  
   // MARK: Update User Profile Data in Parse
-  @IBAction func onUpdateProfile(_ sender: Any) {
+  func updateProfile(_ sender: Any) {
     
     // Update user profile data
     if PFUser.current() != nil {
@@ -168,17 +260,30 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       
       let age = self.ageTextField.text!
       if age.isEmpty {
-        print("########### AGE IS REQUIRED!")
+        print("AGE IS REQUIRED!")
       }
-
+      
       let occupation = self.occupationTextField.text!
-//      let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
-//      let hiphopIdentity = self.hipHopIdentities[hipHopIdentityIndex]
+      //      let hipHopIdentityIndex = self.hipHopIdentityControl.selectedSegmentIndex
+      //      let hiphopIdentity = self.hipHopIdentities[hipHopIdentityIndex]
       let hiphopIdentity = self.hiphopIdentityLabel.text!
       let city = self.cityTextField.text!
       let state = self.stateTextField.text!
       let country = self.countryTextField.text!
       let about = self.aboutTextView.text!
+      let otherInterests = self.interestsTextView.text!
+      
+      if (!(self.heightFeetTextField.text?.isEmpty)!) {
+        currentUser.setValue(self.heightFeetTextField.text, forKey: "heightFeet")
+      }
+      
+      if (!(self.heightInchTextField.text?.isEmpty)!) {
+        currentUser.setValue(self.heightInchTextField.text, forKey: "heightInch")
+      }
+      
+      if (!(self.weightTextField.text?.isEmpty)!) {
+        currentUser.setValue(self.weightTextField.text, forKey: "weight")
+      }
       
       // Profile Image
       let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
@@ -188,60 +293,57 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
       let image = imageFile!
       
-      
+      // Match Preferences
+      var genderPreference: String = ""
       let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
       if genderPreferenceIndex < 0 {
         print("Gender preference IS REQUIRED!")
       } else {
-        let genderPreference = self.genders[genderPreferenceIndex]
+        if genderPreferenceIndex == 0 {
+          genderPreference = "male"
+        } else {
+          genderPreference = "female"
+        }
+      }
+      
+      if (!(self.minAgePreferenceTextField.text?.isEmpty)!) {
+        currentUser.setValue(self.minAgePreferenceTextField.text, forKey: "matchMinAge")
+      }
+      
+      if (!(self.maxAgePreferenceTextField.text?.isEmpty)!) {
+        currentUser.setValue(self.maxAgePreferenceTextField.text, forKey: "matchMaxAge")
       }
       
       currentUser.setValuesForKeys(["firstName" : firstName, "lastName": lastName, "age": age, "gender": gender,
                                     "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about,
-                                    "profilePicImage": image, "genderPreference": genderPreferenceIndex, "city": city,
-                                    "state": state, "country": country])
+                                    "profilePicImage": image, "genderPreference": genderPreference, "city": city,
+                                    "state": state, "country": country, "otherInterests": otherInterests, "isProfileComplete": isProfileComplete])
       
       currentUser.saveInBackground(block: { (success: Bool, error: Error?) in
         if (success) {
           print("user succesfully created into table")
           
-          // Send user to matches section
+          let alert = UIAlertController(title: "Profile Successfully Updated",
+                                        message: "",
+                                        preferredStyle: .alert)
+          
+          let close = UIAlertAction(title: "Close", style: .default, handler: { (action) -> Void in })
+          
+          alert.addAction(close)
+          self.present(alert, animated: true, completion: nil)
+          // Send user to profile preview section
           let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-          let matchesVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+          let myProfileVC = storyboard.instantiateViewController(withIdentifier: "MyProfileViewController") as! MyProfileViewController
           
           // After update user can't go back to profile set up section
-          matchesVC.navigationItem.hidesBackButton = true
-          matchesVC.childViewControllers[0].navigationItem.hidesBackButton = true
-          self.show(matchesVC, sender: self)
+          myProfileVC.navigationItem.hidesBackButton = true
+          myProfileVC.activeViewController = myProfileVC.userProfileViewController
+          //          viewProfileVC.childViewControllers[0].navigationItem.hidesBackButton = true
+          self.show(myProfileVC, sender: self)
         } else {
           print("Unable to save the data into user class, error: \(error?.localizedDescription)")
         }
-        
       })
-      
-      /* Location Details
-       userProfile?["city"] = self.userCityTextField.text
-       userProfile?["state"] = self.userStateTextField.text
-       userProfile?["country"] = self.userCountryTextField.text
-       */
-      
-      /* Contact details */
-      
-      // MARK: User Matches
-      
-      // let genderPreferenceIndex = self.genderPreferenceControl.selectedSegmentIndex
-      // user["genderPreference"] = self.genders[genderPreferenceIndex]
-      
-      /* Preference Details
-       userProfile?["userHeight"] = Int(self.userHeightTextField.text!)
-       userProfile?["userWeight"] = Int(self.userHeightTextField.text!)
-       userProfile?["userPreferenceMinAge"] = Int(self.userPreferenceMinAgeTextField.text!)
-       userProfile?["userPreferenceMaxAge"] = Int(self.userPreferenceMaxAgeTextField.text!)
-       userProfile?["userPreferenceMinHeight"] = Int(self.userPreferenceMinHeight.text!)
-       userProfile?["userPreferenceMaxHeight"] = Int(self.userPreferenceMaxHeight.text!)
-       userProfile?["userOtherInterests"] = self.userOtherInterestsTextView.text
-       */
-      
     }
   }
   
@@ -266,7 +368,6 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     
     self.present(vc, animated: true, completion: nil)
   }
-  
   
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -299,16 +400,19 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
         switch field.type {
         case kGMSPlaceTypeLocality:
           cityTextField.text = field.name
-          
+          print("City: \(field.name)")
         case kGMSPlaceTypeAdministrativeAreaLevel1:
           stateTextField.text = field.name
-          
+          print("State: \(field.name)")
         case kGMSPlaceTypeCountry:
           countryTextField.text = field.name
+          print("COUNTRY: \(field.name)")
         default:
           print("Type: \(field.type), Name: \(field.name)")
         }
       }
+    } else {
+      print("Error getting data, selectedLocation: \(selectedLocation)")
     }
   }
   
@@ -317,9 +421,7 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     // User will select a location to which can update the location in the form.
-    if segue.identifier == "LocationSearchViewController" {
-      let locationSearchVC = segue.destination as! LocationSearchViewController
-      locationSearchVC.delegate = self
-    }
+    let locationSearchVC = segue.destination as! LocationSearchViewController
+    locationSearchVC.delegate = self
   }
 }
