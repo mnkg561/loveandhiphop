@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import AFNetworking
 import SwiftyGif
+import MBProgressHUD
 
 class UserProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -43,6 +44,7 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
         //photosScrollView.frame = view.frame
 //      tableView.contentInset = UIEdgeInsetsMake(-90, 0, 0, 0);
 //      automaticallyAdjustsScrollViewInsets = false
+      MBProgressHUD.showAdded(to: photosScrollView, animated: true)
 
     }
 
@@ -57,6 +59,7 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
         query.whereKey("objectId", equalTo: PFUser.current()!.objectId!)
         query.getFirstObjectInBackground { (currentUser: PFObject?, error: Error?) in
             if error == nil {
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.currentUser = UserObject.currentUser(pfObject: currentUser!)
                 self.aboutLabel.text = self.currentUser?.about
                 self.nameLabel.text = self.currentUser?.fullName

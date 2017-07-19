@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseFacebookUtilsV4
 import GooglePlaces
+import MBProgressHUD
 
 class UserSignupTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationSearchViewControllerDelegate {
   
@@ -50,7 +51,8 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Prefill user profile data
+    MBProgressHUD.showAdded(to: view, animated: true)
+    
     
     // Uncomment the following line to preserve selection between presentations
     self.clearsSelectionOnViewWillAppear = false
@@ -67,6 +69,8 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
     PFUser.current()?.fetchInBackground(block: { (user: PFObject?, error: Error?) in
       if error == nil {
         if user != nil {
+          MBProgressHUD.hide(for: self.view, animated: true)
+          
           let user = user!
           let pfUser = UserObject(pfObject: user)
           if let firstName = pfUser.firstName {
