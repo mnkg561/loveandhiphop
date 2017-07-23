@@ -1187,7 +1187,7 @@
         <!--My Profile-->
         <scene sceneID="oUB-Qs-5KP">
             <objects>
-                <viewController storyboardIdentifier="MyProfileViewController" id="rRB-8I-g72" customClass="MyProfileViewController" customModule="LoveAndHiphop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="rRB-8I-g72" customClass="MyProfileViewController" customModule="LoveAndHiphop" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mfp-WE-2wV"/>
                         <viewControllerLayoutGuide type="bottom" id="f5G-Mh-pBd"/>
@@ -1203,10 +1203,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="C2Q-lm-Pit" secondAttribute="trailing" id="2Gl-cQ-T4W"/>
-                            <constraint firstItem="C2Q-lm-Pit" firstAttribute="leading" secondItem="7CR-XJ-pfB" secondAttribute="leading" id="e4b-vg-2lM"/>
-                            <constraint firstItem="C2Q-lm-Pit" firstAttribute="top" secondItem="mfp-WE-2wV" secondAttribute="bottom" id="qQ9-OT-DM4"/>
-                            <constraint firstItem="f5G-Mh-pBd" firstAttribute="top" secondItem="C2Q-lm-Pit" secondAttribute="bottom" id="yC6-3e-8zQ"/>
+                            <constraint firstItem="C2Q-lm-Pit" firstAttribute="top" secondItem="7CR-XJ-pfB" secondAttribute="top" constant="64" id="Dmk-d3-7GI"/>
+                            <constraint firstAttribute="trailing" secondItem="C2Q-lm-Pit" secondAttribute="trailing" id="UAw-zM-ahq"/>
+                            <constraint firstItem="C2Q-lm-Pit" firstAttribute="leading" secondItem="7CR-XJ-pfB" secondAttribute="leading" id="Uf7-qd-1Ly"/>
+                            <constraint firstAttribute="bottom" secondItem="C2Q-lm-Pit" secondAttribute="bottom" constant="49" id="WtR-Im-DKc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Profile" id="stU-jh-sve"/>
@@ -1216,7 +1216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMh-Mn-cuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="2552"/>
+            <point key="canvasLocation" x="1748" y="2551.5742128935535"/>
         </scene>
     </scenes>
     <resources>
