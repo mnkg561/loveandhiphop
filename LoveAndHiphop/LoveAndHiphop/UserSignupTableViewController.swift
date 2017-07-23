@@ -290,12 +290,15 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       }
       
       // Profile Image
-      let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
-      let imageName = UUID().uuidString
+      if self.profileImageView.image != nil {
+        let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 1.0)
+        let imageName = UUID().uuidString
       
-      let extensionString: String = ".jpg"
-      let imageFile = PFFile(name:imageName + extensionString, data:imageData!)
-      let image = imageFile!
+        let extensionString: String = ".jpg"
+        let imageFile = PFFile(name: "profileImage" + extensionString, data:imageData!)
+        let image = imageFile!
+        currentUser.setValue(image, forKey: "profilePicImage")
+      }
       
       // Match Preferences
       var genderPreference: String = ""
@@ -319,8 +322,7 @@ class UserSignupTableViewController: UITableViewController, UIImagePickerControl
       }
       
       currentUser.setValuesForKeys(["firstName" : firstName, "lastName": lastName, "age": age, "gender": gender,
-                                    "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about,
-                                    "profilePicImage": image, "genderPreference": genderPreference, "city": city,
+                                    "occupation": occupation, "hiphopIdentity": hiphopIdentity, "about": about, "genderPreference": genderPreference, "city": city,
                                     "state": state, "country": country, "otherInterests": otherInterests, "isProfileComplete": isProfileComplete])
       
       currentUser.saveInBackground(block: { (success: Bool, error: Error?) in

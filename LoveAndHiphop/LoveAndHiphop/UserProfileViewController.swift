@@ -18,7 +18,8 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
     @IBOutlet weak var emailIdLabel: UILabel!
 
     @IBOutlet weak var otherInterestsLabel: UILabel!
-    @IBOutlet weak var photosScrollView: UIScrollView!
+  @IBOutlet weak var photosScrollView: UIScrollView!
+
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -31,13 +32,7 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
     
     var currentUser: UserObject?
     var imageUrlArray: [URL]?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadImages()
-    }
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -47,11 +42,10 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
       MBProgressHUD.showAdded(to: photosScrollView, animated: true)
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    loadImages()
+  }
     
     func loadImages(){
 
@@ -75,7 +69,8 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
               if self.currentUser?.profileImageUrl != nil {
                 let imageView = UIImageView()
                 imageView.setImageWith((self.currentUser?.profileImageUrl!)!)
-                imageView.contentMode = .scaleAspectFit
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
 
                 //imageView.clipsToBounds = true
               
@@ -91,6 +86,8 @@ class UserProfileViewController: UITableViewController, UIImagePickerControllerD
                         imageView.contentMode = .scaleAspectFit
                         let xPosition = self.view.frame.width * CGFloat(i+1)
                         imageView.frame = CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.photosScrollView.frame.height)
+                      imageView.contentMode = .scaleAspectFill
+                      imageView.clipsToBounds = true
                         self.photosScrollView.contentSize.width = self.photosScrollView.frame.width * CGFloat(i+2)
                         imageView.isUserInteractionEnabled = false
                         self.photosScrollView.addSubview(imageView)
